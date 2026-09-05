@@ -1,0 +1,26 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.99s
+     Running tests/core_source_journal.rs (target/debug/deps/core_source_journal-2b1529596f06c7a1)
+
+running 10 tests
+test cleanup_budget_must_fit_every_accepted_journal_row_shape ... ok
+test newline_checkpoint_rejects_impossible_partial_without_mutating_decoder ... ok
+test runtime_rejects_journal_semaphore_ranges_before_opening_store ... ok
+test aggregate_checkpoint_bytes_reject_growth_without_replacing_old_state ... ok
+test begin_capture_read_checkpoint_and_explicit_receipt_expiry ... ok
+test multi_output_frame_is_atomic_with_markers_and_pins_its_generation ... ok
+test shared_source_journal_contract ... ok
+test runtime_composes_capture_and_atomic_output_with_bounded_admission ... ok
+test journal_ingestion_drains_valid_zero_consumption_buffered_outputs ... ok
+test journal_ingestion_replays_after_output_before_checkpoint_and_restores_split_frame ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/source_finalization.rs (target/debug/deps/source_finalization-7d81f77b36ce613c)
+
+running 2 tests
+test memory_seal_and_finish_preserve_exact_retries_and_reject_new_work ... ok
+test runtime_routes_finalization_and_rejects_work_after_shutdown ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

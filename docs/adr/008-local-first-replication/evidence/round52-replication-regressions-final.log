@@ -1,0 +1,98 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused import: `Digest`
+ --> src/infrastructure/memory_replication.rs:4:12
+  |
+4 | use sha2::{Digest, Sha256};
+  |            ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `replica_bootstraps`, `published_replica_bootstraps`, `replica_staging_chunks`, `replica_staging_bytes`, `replica_staging_records`, and `replica_staging_record_bytes` are never read
+   --> src/infrastructure/memory.rs:247:16
+    |
+140 | pub(super) struct State {
+    |                   ----- fields in this struct
+...
+247 |     pub(super) replica_bootstraps:
+    |                ^^^^^^^^^^^^^^^^^^
+...
+250 |     pub(super) published_replica_bootstraps: HashMap<OriginStream, BootstrapId>,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+251 |     #[cfg(feature = "replication")]
+252 |     pub(super) replica_staging_chunks: usize,
+    |                ^^^^^^^^^^^^^^^^^^^^^^
+253 |     #[cfg(feature = "replication")]
+254 |     pub(super) replica_staging_bytes: u64,
+    |                ^^^^^^^^^^^^^^^^^^^^^
+255 |     #[cfg(feature = "replication")]
+256 |     pub(super) replica_staging_records: usize,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^
+257 |     #[cfg(feature = "replication")]
+258 |     pub(super) replica_staging_record_bytes: u64,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `State` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: multiple fields are never read
+  --> src/infrastructure/memory_replication.rs:28:5
+   |
+27 | pub(super) struct MemoryReplicaBootstrap {
+   |                   ---------------------- fields in this struct
+28 |     request: ReplicaBootstrap,
+   |     ^^^^^^^
+29 |     state: ReplicaBootstrapState,
+   |     ^^^^^
+30 |     chunks: BTreeMap<u64, Payload>,
+   |     ^^^^^^
+31 |     accepted_bytes: u64,
+   |     ^^^^^^^^^^^^^^
+32 |     suffix_records: BTreeMap<u64, Arc<Record>>,
+   |     ^^^^^^^^^^^^^^
+33 |     suffix_batches: std::collections::HashMap<BatchId, ReplicaBatch>,
+   |     ^^^^^^^^^^^^^^
+34 |     suffix_bytes: u64,
+   |     ^^^^^^^^^^^^
+35 |     verification: Option<MemoryReplicaBootstrapVerification>,
+   |     ^^^^^^^^^^^^
+36 |     publish: Option<(PublishReplicaBootstrap, ReplicaBootstrapReceipt)>,
+   |     ^^^^^^^
+   |
+   = note: `MemoryReplicaBootstrap` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: fields `snapshot_offset`, `suffix_offset`, `suffix_records`, `suffix_bytes`, and `hasher` are never read
+  --> src/infrastructure/memory_replication.rs:41:5
+   |
+40 | struct MemoryReplicaBootstrapVerification {
+   |        ---------------------------------- fields in this struct
+41 |     snapshot_offset: u64,
+   |     ^^^^^^^^^^^^^^^
+42 |     suffix_offset: u64,
+   |     ^^^^^^^^^^^^^
+43 |     suffix_records: usize,
+   |     ^^^^^^^^^^^^^^
+44 |     suffix_bytes: u64,
+   |     ^^^^^^^^^^^^
+45 |     hasher: Sha256,
+   |     ^^^^^^
+   |
+   = note: `MemoryReplicaBootstrapVerification` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: `event-stream` (lib) generated 4 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.40s
+     Running tests/core_replication.rs (target/debug/deps/core_replication-de07635c12035336)
+
+running 2 tests
+test memory_replica_destination_obeys_atomic_batch_contract ... ok
+test memory_replication_origin_obeys_batch_contract ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_resource_regressions.rs (target/debug/deps/replication_resource_regressions-e5329f98299b98a7)
+
+running 2 tests
+test closed_origin_rejects_exact_attach_retry_and_detach ... ok
+test destination_floor_cannot_exceed_combined_receipt_count_limit ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,64 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+   Compiling event-stream-verification v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream/verification)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.65s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running `verification/target/debug/event-stream-verification --scenario replica-retry`
+{
+  "format_version": 1,
+  "scenario_id": "replica-retry",
+  "run_id": "1788636125670834000-55141-0",
+  "started_unix_ms": 1788636125670,
+  "target": "ReplicationDriver + MemoryStore origin + SQLite destination",
+  "implementation_fingerprint": "fnv1a64:0f50243bf10fd742",
+  "evidence_scope": "Production driver and real isolated SQLite database with injected acknowledgement loss after commit. Includes close/reopen and exact record verification. This is not process-kill or power-loss evidence.",
+  "input": {
+    "fault": "after_remote_commit_before_receipt"
+  },
+  "status": "passed",
+  "elapsed_us": 27479,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "SQLite committed the record but lost its reply. After reopening the database, the same batch returned its receipt and advanced the origin once.",
+    "observations": [
+      {
+        "label": "Reply loss",
+        "expected": "commit unknown; origin remains at 0 with one pending record",
+        "actual": "unknown=true, acknowledged=0, backlog=1",
+        "passed": true
+      },
+      {
+        "label": "Retry after reopen",
+        "expected": "receipt advances origin to 1 and clears backlog",
+        "actual": "acknowledged=1, backlog=0",
+        "passed": true
+      },
+      {
+        "label": "Stored output",
+        "expected": "one exact record at cursor 1",
+        "actual": "records=1, complete=true",
+        "passed": true
+      }
+    ],
+    "output": {
+      "fault": "after_remote_commit_before_receipt",
+      "destination": "SQLite",
+      "reopened": true,
+      "origin_before_retry": {
+        "after": 0,
+        "backlog": 1
+      },
+      "origin_after_retry": {
+        "after": 1,
+        "backlog": 0
+      },
+      "destination_records": [
+        {
+          "cursor": 1,
+          "payload": "one durable record"
+        }
+      ]
+    }
+  }
+}

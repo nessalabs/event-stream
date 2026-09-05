@@ -1,0 +1,305 @@
+{
+  "completion": {
+    "binary_path": "/private/tmp/event-stream-round93-snapshot-target/release/examples/snapshot_resource",
+    "binary_sha256_after": "0c5e65ec2cbc24426ecbf31156c3be690dc39ca54ad6ce05a59adc12d40ed7c2",
+    "binary_sha256_before": "0c5e65ec2cbc24426ecbf31156c3be690dc39ca54ad6ce05a59adc12d40ed7c2",
+    "ended_utc": "2026-09-05T20:32:17.155256+00:00",
+    "failures": 0,
+    "host": "macOS-26.6-arm64-arm-64bit",
+    "kind": "snapshot_resource_completion",
+    "latency_gate_failures": 0,
+    "rows": 48,
+    "rustc_vv": "rustc 1.98.1 (48a229cea 2026-09-01)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8\n",
+    "schedule": "24_full_interleaved_then_24_foreground_interleaved",
+    "source_archive_path": "/Users/nessa/Documents/NessaLabs/event-stream/docs/adr/005-snapshots-and-consumer-recovery/evidence/round93-source.tar",
+    "source_archive_sha256": "bb19cee0ee40a271df15f12f3a7772c48a8f3e12832f453436d61a825e5378aa",
+    "started_utc": "2026-09-05T20:32:08.060500+00:00",
+    "watchdog_seconds": 120
+  },
+  "cells": [
+    {
+      "store": "memory",
+      "mode": "foreground_recovery",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 1203750,
+        "cpu_us_median": 2507,
+        "memory_bytes_median": 5013504,
+        "rust_live_bytes_median": 1141136,
+        "rust_allocated_bytes_median": 3675612,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        0.0555,
+        0.05925,
+        0.049167
+      ]
+    },
+    {
+      "store": "memory",
+      "mode": "foreground_recovery_control",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 816250,
+        "cpu_us_median": 1378,
+        "memory_bytes_median": 5046272,
+        "rust_live_bytes_median": 1141144,
+        "rust_allocated_bytes_median": 512142,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        0.019625,
+        0.02025,
+        0.019
+      ]
+    },
+    {
+      "store": "memory",
+      "mode": "foreground_verify",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 2594125,
+        "cpu_us_median": 3184,
+        "memory_bytes_median": 5210112,
+        "rust_live_bytes_median": 1280684,
+        "rust_allocated_bytes_median": 517731,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        1.795792,
+        1.795833,
+        1.798125
+      ]
+    },
+    {
+      "store": "memory",
+      "mode": "foreground_verify_control",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 620708,
+        "cpu_us_median": 1037,
+        "memory_bytes_median": 4898816,
+        "rust_live_bytes_median": 1140088,
+        "rust_allocated_bytes_median": 513116,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        0.014916,
+        0.0185,
+        0.016917
+      ]
+    },
+    {
+      "store": "memory",
+      "mode": "full",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 8275292,
+        "cpu_us_median": 9217,
+        "memory_bytes_median": 5259264,
+        "rust_live_bytes_median": 1314389,
+        "rust_allocated_bytes_median": 7166923,
+        "agents": null,
+        "accepted": null,
+        "rejected": null,
+        "failed": null,
+        "delivered": null
+      },
+      "p99_ms": null
+    },
+    {
+      "store": "memory",
+      "mode": "full",
+      "snapshot_bytes": 16777216,
+      "metrics": {
+        "runtime_ns_median": 91452541,
+        "cpu_us_median": 93818,
+        "memory_bytes_median": 25100288,
+        "rust_live_bytes_median": 17123660,
+        "rust_allocated_bytes_median": 102108016,
+        "agents": null,
+        "accepted": null,
+        "rejected": null,
+        "failed": null,
+        "delivered": null
+      },
+      "p99_ms": null
+    },
+    {
+      "store": "memory",
+      "mode": "full",
+      "snapshot_bytes": 67108864,
+      "metrics": {
+        "runtime_ns_median": 357267750,
+        "cpu_us_median": 364395,
+        "memory_bytes_median": 88473600,
+        "rust_live_bytes_median": 67505540,
+        "rust_allocated_bytes_median": 405921328,
+        "agents": null,
+        "accepted": null,
+        "rejected": null,
+        "failed": null,
+        "delivered": null
+      },
+      "p99_ms": null
+    },
+    {
+      "store": "sqlite",
+      "mode": "foreground_recovery",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 66256042,
+        "cpu_us_median": 56940,
+        "memory_bytes_median": 7618560,
+        "rust_live_bytes_median": 206088,
+        "rust_allocated_bytes_median": 4778290,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        1.304834,
+        1.302041,
+        1.296542
+      ]
+    },
+    {
+      "store": "sqlite",
+      "mode": "foreground_recovery_control",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 67001375,
+        "cpu_us_median": 55797,
+        "memory_bytes_median": 7569408,
+        "rust_live_bytes_median": 172694,
+        "rust_allocated_bytes_median": 565490,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        1.342958,
+        4.993708,
+        1.333875
+      ]
+    },
+    {
+      "store": "sqlite",
+      "mode": "foreground_verify",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 68387416,
+        "cpu_us_median": 58361,
+        "memory_bytes_median": 7553024,
+        "rust_live_bytes_median": 172377,
+        "rust_allocated_bytes_median": 1620699,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        3.221833,
+        3.120041,
+        3.194583
+      ]
+    },
+    {
+      "store": "sqlite",
+      "mode": "foreground_verify_control",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 64912917,
+        "cpu_us_median": 55491,
+        "memory_bytes_median": 7503872,
+        "rust_live_bytes_median": 171765,
+        "rust_allocated_bytes_median": 565490,
+        "agents": null,
+        "accepted": 256,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": null
+      },
+      "p99_ms": [
+        1.224417,
+        1.2015,
+        1.3275
+      ]
+    },
+    {
+      "store": "sqlite",
+      "mode": "full",
+      "snapshot_bytes": 1048576,
+      "metrics": {
+        "runtime_ns_median": 87198125,
+        "cpu_us_median": 74545,
+        "memory_bytes_median": 7651328,
+        "rust_live_bytes_median": 236628,
+        "rust_allocated_bytes_median": 13720629,
+        "agents": null,
+        "accepted": null,
+        "rejected": null,
+        "failed": null,
+        "delivered": null
+      },
+      "p99_ms": null
+    },
+    {
+      "store": "sqlite",
+      "mode": "full",
+      "snapshot_bytes": 16777216,
+      "metrics": {
+        "runtime_ns_median": 289572000,
+        "cpu_us_median": 262721,
+        "memory_bytes_median": 11419648,
+        "rust_live_bytes_median": 237739,
+        "rust_allocated_bytes_median": 203471579,
+        "agents": null,
+        "accepted": null,
+        "rejected": null,
+        "failed": null,
+        "delivered": null
+      },
+      "p99_ms": null
+    },
+    {
+      "store": "sqlite",
+      "mode": "full",
+      "snapshot_bytes": 67108864,
+      "metrics": {
+        "runtime_ns_median": 955506417,
+        "cpu_us_median": 872693,
+        "memory_bytes_median": 11452416,
+        "rust_live_bytes_median": 237755,
+        "rust_allocated_bytes_median": 810657851,
+        "agents": null,
+        "accepted": null,
+        "rejected": null,
+        "failed": null,
+        "delivered": null
+      },
+      "p99_ms": null
+    }
+  ]
+}

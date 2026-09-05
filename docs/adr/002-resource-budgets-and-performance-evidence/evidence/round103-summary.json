@@ -1,0 +1,64 @@
+[
+  {
+    "store": "memory",
+    "metrics": {
+      "runtime_ns_median": 59997168833,
+      "cpu_us_median": 2096217,
+      "memory_bytes_median": 30572544,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 229270280,
+      "agents": 4,
+      "accepted": 48000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 87042,
+    "receipt_p99_ns_range": [
+      76000,
+      96250
+    ],
+    "schedule_lateness_p99_ns_median": 2858791,
+    "peak_generator_tasks": [
+      8,
+      8,
+      8
+    ],
+    "post_shutdown_rss_bytes": [
+      30474240,
+      30736384,
+      30720000
+    ]
+  },
+  {
+    "store": "sqlite",
+    "metrics": {
+      "runtime_ns_median": 59998318792,
+      "cpu_us_median": 21489817,
+      "memory_bytes_median": 15810560,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 238483924,
+      "agents": 4,
+      "accepted": 48000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 6207084,
+    "receipt_p99_ns_range": [
+      3117208,
+      87173916
+    ],
+    "schedule_lateness_p99_ns_median": 2985042,
+    "peak_generator_tasks": [
+      119,
+      54,
+      31
+    ],
+    "post_shutdown_rss_bytes": [
+      15892480,
+      15450112,
+      15876096
+    ]
+  }
+]

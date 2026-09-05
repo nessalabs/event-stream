@@ -1,0 +1,10 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.20s
+     Running tests/core_replication.rs (target/debug/deps/core_replication-de07635c12035336)
+
+running 2 tests
+test memory_replica_destination_obeys_atomic_batch_contract ... ok
+test memory_replication_origin_obeys_batch_contract ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

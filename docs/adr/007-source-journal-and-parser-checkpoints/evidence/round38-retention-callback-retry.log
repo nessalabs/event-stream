@@ -1,0 +1,48 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+   Compiling event-stream-verification v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream/verification)
+warning: value assigned to `cleanup_remaining` is never read
+   --> src/scenarios.rs:454:37
+    |
+454 |         let mut cleanup_remaining = true;
+    |                                     ^^^^ this value is reassigned later and never used
+...
+469 |             cleanup_remaining = progress.remaining;
+    |             -------------------------------------- `cleanup_remaining` is overwritten here before the previous value is read
+    |
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: `event-stream-verification` (lib) generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.55s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running `verification/target/debug/event-stream-verification --scenario retention-floor`
+
+thread 'main' (5954780) panicked at src/scenarios.rs:463:18:
+called `Result::unwrap()` on an `Err` value: InvalidInput("cleanup byte limit must fit one maximum-size stored record")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+{
+  "format_version": 1,
+  "scenario_id": "retention-floor",
+  "run_id": "1788599230939702000-27534-0",
+  "started_unix_ms": 1788599230939,
+  "target": "Runtime<MemoryStore> retention policy, generated append, floor, expiry, cleanup, and read_after",
+  "implementation_fingerprint": "fnv1a64:5a38d2af31415c88",
+  "evidence_scope": "Production Runtime and MemoryStore retention APIs with bounded deterministic input. This verifies logical floor/expiry behavior and bounded in-memory cleanup; SQLite persistence and fault qualification remain separate.",
+  "input": {
+    "legacy_offset": 1,
+    "generation_one_offset": 2,
+    "floor": 2,
+    "suffix_offset": 3
+  },
+  "status": "failed",
+  "elapsed_us": 11646,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "Scenario callback panicked. No passing evidence recorded.",
+    "observations": [],
+    "output": {
+      "error": "callback_panicked"
+    }
+  }
+}

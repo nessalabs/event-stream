@@ -1,0 +1,41 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused imports: `params_from_iter` and `types::Value`
+  --> src/infrastructure/sqlite_restore.rs:13:13
+   |
+13 |     params, params_from_iter, types::Value, Connection, OpenFlags, OptionalExtension,
+   |             ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `event-stream` (lib) generated 1 warning (run `cargo fix --lib -p event-stream` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.26s
+     Running tests/sqlite_replication_regressions.rs (target/debug/deps/sqlite_replication_regressions-1bb8c78bb6b02993)
+
+running 3 tests
+test sqlite_attach_operation_rejects_changed_limits ... ok
+test sqlite_rejects_acknowledgement_past_exact_prepared_batch ... FAILED
+test sqlite_pending_prepare_retry_does_not_include_later_appends ... FAILED
+
+failures:
+
+---- sqlite_rejects_acknowledgement_past_exact_prepared_batch stdout ----
+
+thread 'sqlite_rejects_acknowledgement_past_exact_prepared_batch' (6076055) panicked at tests/sqlite_replication_regressions.rs:111:5:
+Err(StorageFailure("store acknowledgement receipt: table replication_origin_operations has 15 columns but 10 values were supplied"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- sqlite_pending_prepare_retry_does_not_include_later_appends stdout ----
+
+thread 'sqlite_pending_prepare_retry_does_not_include_later_appends' (6076054) panicked at tests/sqlite_replication_regressions.rs:132:5:
+assertion `left == right` failed: a pending batch and its receipt must remain immutable
+  left: PrepareReplicaBatchReceipt { request: PrepareReplicaBatch { operation_id: ReplicationOperationId("prepare"), batch_id: BatchId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), replica: ReplicaId("remote"), stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, expected_after: ReplicaPosition { stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, offset: 0 }, limits: ReplicaBatchLimits { max_records: 2, max_bytes: 4096 } }, batch: Some(ReplicaBatch { id: BatchId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), destination_epoch: DestinationEpoch([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), after: ReplicaPosition { stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, offset: 0 }, records: [Record { cursor: Cursor { version: 1, stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) }, offset: 1 }, event: NewEvent { id: EventId("a"), schema: SchemaRef { id: SchemaId("bytes"), version: 1 }, payload: Payload([97]) } }, Record { cursor: Cursor { version: 1, stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) }, offset: 2 }, event: NewEvent { id: EventId("b"), schema: SchemaRef { id: SchemaId("bytes"), version: 1 }, payload: Payload([98]) } }] }), status: ReplicaStatus { replica: ReplicaId("remote"), stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, destination_epoch: DestinationEpoch([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), acknowledged: ReplicaPosition { stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, offset: 0 }, backlog_records: 2, backlog_bytes: 526, oldest_backlog_at: Some(DurableTimestampMillis(1788602635272)), mode: Required, pending_batch: Some(BatchId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])) } }
+ right: PrepareReplicaBatchReceipt { request: PrepareReplicaBatch { operation_id: ReplicationOperationId("prepare"), batch_id: BatchId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), replica: ReplicaId("remote"), stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, expected_after: ReplicaPosition { stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, offset: 0 }, limits: ReplicaBatchLimits { max_records: 2, max_bytes: 4096 } }, batch: Some(ReplicaBatch { id: BatchId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), destination_epoch: DestinationEpoch([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), after: ReplicaPosition { stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, offset: 0 }, records: [Record { cursor: Cursor { version: 1, stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) }, offset: 1 }, event: NewEvent { id: EventId("a"), schema: SchemaRef { id: SchemaId("bytes"), version: 1 }, payload: Payload([97]) } }] }), status: ReplicaStatus { replica: ReplicaId("remote"), stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, destination_epoch: DestinationEpoch([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), acknowledged: ReplicaPosition { stream: OriginStream { origin: OriginId([147, 23, 117, 204, 237, 10, 72, 182, 173, 162, 126, 5, 211, 183, 254, 178]), stream: StreamKey { id: StreamId("origin"), incarnation: IncarnationId([212, 129, 78, 166, 255, 27, 69, 168, 161, 47, 192, 127, 71, 104, 205, 142]) } }, offset: 0 }, backlog_records: 1, backlog_bytes: 263, oldest_backlog_at: Some(DurableTimestampMillis(1788602635272)), mode: Required, pending_batch: Some(BatchId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])) } }
+
+
+failures:
+    sqlite_pending_prepare_retry_does_not_include_later_appends
+    sqlite_rejects_acknowledgement_past_exact_prepared_batch
+
+test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+error: test failed, to rerun pass `--test sqlite_replication_regressions`

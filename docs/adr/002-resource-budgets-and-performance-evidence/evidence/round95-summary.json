@@ -1,0 +1,94 @@
+[
+  {
+    "store": "memory",
+    "variant": "baseline",
+    "metrics": {
+      "runtime_ns_median": 489271417,
+      "cpu_us_median": 2023426,
+      "memory_bytes_median": 318029824,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 341818781,
+      "agents": 100000,
+      "accepted": 1026,
+      "rejected": 98974,
+      "failed": 0,
+      "delivered": null
+    },
+    "ready_task_rust_bytes": 155839050,
+    "ready_rss_bytes": 211730432,
+    "accepted_range": [
+      1025,
+      1027
+    ],
+    "success_p99_ns": 308393334
+  },
+  {
+    "store": "memory",
+    "variant": "compact",
+    "metrics": {
+      "runtime_ns_median": 375291958,
+      "cpu_us_median": 1771511,
+      "memory_bytes_median": 203161600,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 218515378,
+      "agents": 100000,
+      "accepted": 1025,
+      "rejected": 98975,
+      "failed": 0,
+      "delivered": null
+    },
+    "ready_task_rust_bytes": 40639050,
+    "ready_rss_bytes": 98598912,
+    "accepted_range": [
+      1025,
+      1025
+    ],
+    "success_p99_ns": 255917000
+  },
+  {
+    "store": "sqlite",
+    "variant": "baseline",
+    "metrics": {
+      "runtime_ns_median": 775473792,
+      "cpu_us_median": 2305156,
+      "memory_bytes_median": 297648128,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 341940329,
+      "agents": 100000,
+      "accepted": 1025,
+      "rejected": 98975,
+      "failed": 0,
+      "delivered": null
+    },
+    "ready_task_rust_bytes": 155839050,
+    "ready_rss_bytes": 182976512,
+    "accepted_range": [
+      1025,
+      1025
+    ],
+    "success_p99_ns": 599495708
+  },
+  {
+    "store": "sqlite",
+    "variant": "compact",
+    "metrics": {
+      "runtime_ns_median": 679995166,
+      "cpu_us_median": 2006843,
+      "memory_bytes_median": 182157312,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 218641590,
+      "agents": 100000,
+      "accepted": 1025,
+      "rejected": 98975,
+      "failed": 0,
+      "delivered": null
+    },
+    "ready_task_rust_bytes": 40639050,
+    "ready_rss_bytes": 69763072,
+    "accepted_range": [
+      1025,
+      1025
+    ],
+    "success_p99_ns": 579557291
+  }
+]

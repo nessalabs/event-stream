@@ -1,0 +1,73 @@
+{
+  "format_version": 1,
+  "scenario_id": "full-recovery",
+  "run_id": "1788640218523438000-20246-0",
+  "started_unix_ms": 1788640218523,
+  "target": "Shared SQLite integration fixture through production runtime, ingestion, retention, and replication APIs",
+  "implementation_fingerprint": "fnv1a64:a9a9ebcb3d925724",
+  "evidence_scope": "Two real isolated SQLite databases and the shared integration fixture. Console uses orderly close/reopen at the output/checkpoint gap. Separate integration tests run three process-kill schedules. This callback does not establish power-loss behavior or release resource budgets.",
+  "input": {
+    "raw_input": "a\nb\n",
+    "restart_after": "first_output_before_checkpoint",
+    "stop": "close_reopen",
+    "late_event": "c-after-completion"
+  },
+  "status": "passed",
+  "elapsed_us": 50775,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "Captured input recovered without duplicate output; snapshot and suffix survived retention and restart; the replica caught up to cursor 3.",
+    "observations": [
+      {
+        "label": "Parser checkpoint",
+        "expected": "byte 4 / item 2 / output 2",
+        "actual": "byte 4 / item 2 / output 2",
+        "passed": true
+      },
+      {
+        "label": "Durable EOF after cleanup and restart",
+        "expected": "sealed at 4 / parser finished",
+        "actual": "sealed at Some(4) / finished true",
+        "passed": true
+      },
+      {
+        "label": "Recovered snapshot",
+        "expected": "state-through-a",
+        "actual": "state-through-a",
+        "passed": true
+      },
+      {
+        "label": "Retained suffix",
+        "expected": "cursor 2",
+        "actual": "cursor 2",
+        "passed": true
+      },
+      {
+        "label": "Physical history cleanup",
+        "expected": "2 records",
+        "actual": "2 records",
+        "passed": true
+      },
+      {
+        "label": "Replica after restart",
+        "expected": "cursor 3 / backlog 0",
+        "actual": "cursor 3 / backlog 0",
+        "passed": true
+      }
+    ],
+    "output": {
+      "captured_bytes": 4,
+      "decoded_items": 2,
+      "snapshot": "state-through-a",
+      "snapshot_suffix_cursor": 2,
+      "removed_source_records": 2,
+      "replica_cursor": 3,
+      "backlog_records": 0,
+      "stop_mode": "close_reopen",
+      "sealed_end": 4,
+      "parser_finished": true,
+      "resource_measurements": null
+    }
+  }
+}

@@ -1,0 +1,10 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests examples/performance_baseline.rs (target/debug/examples/performance_baseline-195a2e325ef4068f)
+
+running 3 tests
+test tests::agent_burst_task_result_stays_compact ... ok
+test tests::sustained_generator_rejects_zero_task_limit ... ok
+test tests::sustained_generator_conserves_offers_at_hard_task_cap ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

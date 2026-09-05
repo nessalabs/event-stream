@@ -1,0 +1,28 @@
+{
+  "binaries": {
+    "control": "/tmp/event-stream-round105-control-target/release/examples/retention_cleanup",
+    "bounded": "/tmp/event-stream-round105-bounded-target/release/examples/retention_cleanup"
+  },
+  "binary_sha256": {
+    "control": "5785d313808ae0c648c839f50f71b73fddcbeaf512ad0c005949549b02d4751b",
+    "bounded": "e7ac42a09d33313a03655d1a9aa0cfc6e4beafbe80d2d2f6e3f6bb7689ec7bd4"
+  },
+  "archive_sha256": {
+    "control": "3b496e9b13376f18ec071b0579888246d74bfba2a6927c8d40f0836f8c59bf60",
+    "bounded": "267ba38d191c7b086efef62250653faa666a0d187713099a5f91dea2315fdd10"
+  },
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t51%; discharging; 2:52 remaining present: true\n",
+  "load": [
+    7.31689453125,
+    5.31494140625,
+    7.8759765625
+  ],
+  "started_utc": "2026-09-05T22:43:28.466864+00:00",
+  "features": "all-features",
+  "records": 100000,
+  "floor": 256,
+  "cleanup_row_limit": 1,
+  "repetitions": 5,
+  "scope": "MemoryStore retention timestamp cleanup only; same public outcome and harness; no release budget qualification"
+}

@@ -1,0 +1,87 @@
+   Compiling event-stream-verification v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream/verification)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.81s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running `verification/target/debug/event-stream-verification --scenario mixed-workload`
+{
+  "format_version": 1,
+  "scenario_id": "mixed-workload",
+  "run_id": "1788644909746245000-2804-0",
+  "started_unix_ms": 1788644909746,
+  "target": "Shared mixed-workload fixture through production runtime, ingestion, retention, snapshot, and replication APIs",
+  "implementation_fingerprint": "fnv1a64:eb87b85722d08d8b",
+  "evidence_scope": "Two real isolated SQLite databases and the shared bounded mixed-workload fixture. This verifies outcome conservation, bounded task and queue counts, foreground progress during maintenance, replay completion, cleanup, restart, and replica retry behavior. Reported wall-clock latency samples are correctness diagnostics only; this scenario does not qualify CPU, memory, latency, throughput, or release resource budgets.",
+  "input": {
+    "mixed": true,
+    "offers": 128,
+    "interval_us": 1250,
+    "snapshot_bytes": 65536
+  },
+  "status": "passed",
+  "elapsed_us": 230423,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "The bounded mixed workload conserved every offer, completed 64 replay calls, and committed foreground receipts during maintenance through production SQLite APIs.",
+    "observations": [
+      {
+        "label": "Offer outcomes",
+        "expected": "128 offered equals accepted + runtime rejected + generator rejected",
+        "actual": "offered=128, accepted=128, runtime_rejected=0, generator_rejected=0",
+        "passed": true
+      },
+      {
+        "label": "Bounded work",
+        "expected": "at most 64 foreground tasks and 1,024 queued runtime appends",
+        "actual": "peak_tasks=3, peak_runtime_queue=2",
+        "passed": true
+      },
+      {
+        "label": "Concurrent progress",
+        "expected": "64 replay pages and at least one foreground receipt during maintenance",
+        "actual": "replay_pages=64, overlap_receipts=55, maintenance_ns=68309167",
+        "passed": true
+      },
+      {
+        "label": "Cleanup and replica recovery",
+        "expected": "32 source records removed and replica caught up through cursor 33",
+        "actual": "removed_records=32, replica_tail=33",
+        "passed": true
+      },
+      {
+        "label": "Latency samples (correctness diagnostic; not resource qualification)",
+        "expected": "one receipt sample per accepted offer and one lateness sample per submitted call",
+        "actual": "receipt_samples=128, lateness_samples=128, receipt_max_ns=2180416, lateness_max_ns=2312958",
+        "passed": true
+      }
+    ],
+    "output": {
+      "outcomes": {
+        "offered": 128,
+        "accepted": 128,
+        "runtime_rejected": 0,
+        "generator_rejected": 0
+      },
+      "bounds": {
+        "peak_tasks": 3,
+        "max_tasks": 64,
+        "peak_runtime_queue": 2,
+        "max_runtime_queue": 1024
+      },
+      "overlap": {
+        "replay_pages": 64,
+        "foreground_receipts_during_maintenance": 55,
+        "maintenance_ns": 68309167
+      },
+      "cleanup_removed_records": 32,
+      "replica_tail": 33,
+      "latency_correctness_diagnostic_not_resource_qualification": {
+        "receipt_samples": 128,
+        "lateness_samples": 128,
+        "receipt_max_ns": 2180416,
+        "lateness_max_ns": 2312958
+      },
+      "resource_measurements": null
+    }
+  }
+}

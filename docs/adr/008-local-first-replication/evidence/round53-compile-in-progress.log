@@ -1,0 +1,35 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+error[E0433]: cannot find type `ReplicaMode` in this scope
+   --> src/infrastructure/memory.rs:946:71
+    |
+946 |                         .is_some_and(|replica| replica.status.mode == ReplicaMode::Required)
+    |                                                                       ^^^^^^^^^^^ use of undeclared type `ReplicaMode`
+    |
+help: a struct with a similar name exists
+    |
+946 -                         .is_some_and(|replica| replica.status.mode == ReplicaMode::Required)
+946 +                         .is_some_and(|replica| replica.status.mode == ReplicaId::Required)
+    |
+help: consider importing this enum through its public re-export
+    |
+  1 + use crate::ReplicaMode;
+    |
+
+error[E0616]: field `status` of struct `MemoryOriginReplica` is private
+   --> src/infrastructure/memory.rs:946:56
+    |
+946 |                         .is_some_and(|replica| replica.status.mode == ReplicaMode::Required)
+    |                                                        ^^^^^^ private field
+
+warning: unused import: `Digest`
+ --> src/infrastructure/memory_replication.rs:4:12
+  |
+4 | use sha2::{Digest, Sha256};
+  |            ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+Some errors have detailed explanations: E0433, E0616.
+For more information about an error, try `rustc --explain E0433`.
+warning: `event-stream` (lib) generated 1 warning
+error: could not compile `event-stream` (lib) due to 2 previous errors; 1 warning emitted

@@ -1,0 +1,212 @@
+[
+  {
+    "store": "memory",
+    "tasks": 1000,
+    "metrics": {
+      "runtime_ns_median": 8475250,
+      "cpu_us_median": 22837,
+      "memory_bytes_median": 9338880,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 5695662,
+      "agents": 1000,
+      "accepted": 1000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      1000,
+      1000
+    ],
+    "successful_p99_ns_median": 3267459,
+    "setup_runtime_ns_median": 13387417,
+    "ready_rust_delta_bytes_median": 1555778,
+    "startup_rss_bytes_median": 4063232,
+    "ready_rss_bytes_median": 5799936,
+    "startup_threads": [
+      11,
+      11,
+      11
+    ],
+    "peak_queue": [
+      999,
+      999,
+      999
+    ]
+  },
+  {
+    "store": "memory",
+    "tasks": 10000,
+    "metrics": {
+      "runtime_ns_median": 48614417,
+      "cpu_us_median": 201763,
+      "memory_bytes_median": 39010304,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 36828995,
+      "agents": 10000,
+      "accepted": 1026,
+      "rejected": 8974,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      1025,
+      1027
+    ],
+    "successful_p99_ns_median": 29069958,
+    "setup_runtime_ns_median": 97770083,
+    "ready_rust_delta_bytes_median": 15601546,
+    "startup_rss_bytes_median": 8568832,
+    "ready_rss_bytes_median": 25296896,
+    "startup_threads": [
+      11,
+      11,
+      11
+    ],
+    "peak_queue": [
+      1024,
+      1024,
+      1024
+    ]
+  },
+  {
+    "store": "memory",
+    "tasks": 100000,
+    "metrics": {
+      "runtime_ns_median": 492954166,
+      "cpu_us_median": 2049262,
+      "memory_bytes_median": 317931520,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 341822472,
+      "agents": 100000,
+      "accepted": 1026,
+      "rejected": 98974,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      1025,
+      1026
+    ],
+    "successful_p99_ns_median": 309836958,
+    "setup_runtime_ns_median": 924386167,
+    "ready_rust_delta_bytes_median": 155839050,
+    "startup_rss_bytes_median": 45481984,
+    "ready_rss_bytes_median": 211730432,
+    "startup_threads": [
+      11,
+      11,
+      11
+    ],
+    "peak_queue": [
+      1024,
+      1024,
+      1024
+    ]
+  },
+  {
+    "store": "sqlite",
+    "tasks": 1000,
+    "metrics": {
+      "runtime_ns_median": 296921208,
+      "cpu_us_median": 250693,
+      "memory_bytes_median": 11075584,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 5802474,
+      "agents": 1000,
+      "accepted": 1000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      1000,
+      1000
+    ],
+    "successful_p99_ns_median": 288284375,
+    "setup_runtime_ns_median": 265656334,
+    "ready_rust_delta_bytes_median": 1555666,
+    "startup_rss_bytes_median": 5685248,
+    "ready_rss_bytes_median": 7421952,
+    "startup_threads": [
+      12,
+      12,
+      12
+    ],
+    "peak_queue": [
+      999,
+      999,
+      999
+    ]
+  },
+  {
+    "store": "sqlite",
+    "tasks": 10000,
+    "metrics": {
+      "runtime_ns_median": 329429583,
+      "cpu_us_median": 420977,
+      "memory_bytes_median": 39600128,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 36943813,
+      "agents": 10000,
+      "accepted": 1025,
+      "rejected": 8975,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      1025,
+      1025
+    ],
+    "successful_p99_ns_median": 307302042,
+    "setup_runtime_ns_median": 2811499334,
+    "ready_rust_delta_bytes_median": 15601546,
+    "startup_rss_bytes_median": 8077312,
+    "ready_rss_bytes_median": 24870912,
+    "startup_threads": [
+      12,
+      12,
+      12
+    ],
+    "peak_queue": [
+      1024,
+      1024,
+      1024
+    ]
+  },
+  {
+    "store": "sqlite",
+    "tasks": 100000,
+    "metrics": {
+      "runtime_ns_median": 817361375,
+      "cpu_us_median": 2257244,
+      "memory_bytes_median": 297566208,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 341933995,
+      "agents": 100000,
+      "accepted": 1025,
+      "rejected": 98975,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      1025,
+      1025
+    ],
+    "successful_p99_ns_median": 616308417,
+    "setup_runtime_ns_median": 30685681750,
+    "ready_rust_delta_bytes_median": 155839050,
+    "startup_rss_bytes_median": 15400960,
+    "ready_rss_bytes_median": 182960128,
+    "startup_threads": [
+      12,
+      12,
+      12
+    ],
+    "peak_queue": [
+      1024,
+      1024,
+      1024
+    ]
+  }
+]

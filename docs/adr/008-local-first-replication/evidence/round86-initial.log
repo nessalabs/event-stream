@@ -1,0 +1,30 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.45s
+     Running tests/sqlite_replica_restore_corruption.rs (target/debug/deps/sqlite_replica_restore_corruption-4d0d2401cd2228da)
+
+running 9 tests
+test restore_rejects_partial_upload_counter_mismatch ... ok
+test restore_rejects_partial_upload_chunk_gap ... ok
+test restore_rejects_corrupt_published_replica_snapshot ... ok
+test restore_rejects_shifted_published_snapshot_chunk ... ok
+test restore_rejects_missing_published_snapshot_chunk ... ok
+test restore_rejects_missing_published_suffix_record ... ok
+test restore_accepts_partial_snapshot_upload ... ok
+test restore_rejects_changed_verified_unpublished_snapshot ... FAILED
+test restore_accepts_verified_unpublished_snapshot ... ok
+
+failures:
+
+---- restore_rejects_changed_verified_unpublished_snapshot stdout ----
+
+thread 'restore_rejects_changed_verified_unpublished_snapshot' (6804233) panicked at tests/sqlite_replica_restore_corruption.rs:221:9:
+corrupt backup was restored after UPDATE replication_destination_bootstrap_chunks SET bytes=zeroblob(length(bytes)): Ok(RestoreReceipt { operation_id: RestoreOperationId("restore-replication-destination"), backup_identity: BackupIdentity([180, 2, 176, 85, 115, 172, 107, 77, 42, 47, 37, 252, 198, 105, 244, 179, 107, 245, 173, 38, 137, 193, 62, 209, 181, 25, 120, 170, 152, 177, 111, 193]), destination: "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/replication-destination-roundtrip-0979375d-cd9b-40c7-9fcc-1941b78981dd/restored.sqlite3", mapping_count: 0 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    restore_rejects_changed_verified_unpublished_snapshot
+
+test result: FAILED. 8 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.33s
+
+error: test failed, to rerun pass `--test sqlite_replica_restore_corruption`

@@ -1,0 +1,17 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.26s
+     Running tests/replication_bootstrap_regressions.rs (target/debug/deps/replication_bootstrap_regressions-eccfe86264f1779a)
+
+running 2 tests
+test snapshot_only_bootstrap_has_its_covered_cursor_as_the_replica_tail ... ok
+test bootstrap_verification_makes_bounded_progress_across_multiple_calls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_origin_bootstrap.rs (target/debug/deps/replication_origin_bootstrap-652fa6af9a9719c6)
+
+running 1 test
+test bootstrap_transfers_real_snapshot_and_suffix_then_drains_new_local_writes ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

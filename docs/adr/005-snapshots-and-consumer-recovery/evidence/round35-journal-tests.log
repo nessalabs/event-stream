@@ -1,0 +1,9 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running tests/core_source_journal.rs (target/debug/deps/core_source_journal-2b1529596f06c7a1)
+
+running 2 tests
+test begin_capture_read_checkpoint_and_explicit_receipt_expiry ... ok
+test multi_output_frame_is_atomic_with_markers_and_pins_its_generation ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

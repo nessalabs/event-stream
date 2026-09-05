@@ -1,0 +1,8 @@
+{
+  "kind": "collector_failure_regression",
+  "passed": true,
+  "failed_children_preserved": 48,
+  "completion_rows": 1,
+  "final_published": false,
+  "scope": "Real collector with /usr/bin/false and a dummy source file; no performance measurements."
+}

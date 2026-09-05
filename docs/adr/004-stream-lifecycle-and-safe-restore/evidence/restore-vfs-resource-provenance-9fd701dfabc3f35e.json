@@ -1,0 +1,14 @@
+{
+  "arch": "arm64",
+  "binary_path": "target/release/examples/restore_resource",
+  "binary_sha256": "e2eb168d0a89776c9d32e7a0e3d821546a494354cea28495a40e313740da4cbe",
+  "captured_utc": "2026-09-05T07:18:19.064946+00:00",
+  "input_count": 24,
+  "kind": "restore_vfs_resource_provenance_before_run",
+  "os": "Darwin",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "source_archive": "restore-vfs-resource-source-9fd701dfabc3f35ee1a02cfa62c3e4b9867de152795f2bcc3d2130371ff2adc9.tar",
+  "source_archive_sha256": "a84a29f801c92f08642f6077322079052e2d30f48fc35f89b082147c6b55efc1",
+  "source_manifest": "restore-vfs-resource-source-9fd701dfabc3f35ee1a02cfa62c3e4b9867de152795f2bcc3d2130371ff2adc9.manifest",
+  "source_manifest_sha256": "9fd701dfabc3f35ee1a02cfa62c3e4b9867de152795f2bcc3d2130371ff2adc9"
+}

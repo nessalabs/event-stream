@@ -1,0 +1,40 @@
+    Blocking waiting for file lock on build directory
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:113:9
+    |
+112 |     CleanupOrigin(
+    |     ------------- field in this variant
+113 |         ReplicaCleanupLimits,
+    |         ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+113 -         ReplicaCleanupLimits,
+113 +         (),
+    |
+
+warning: `event-stream` (lib) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.13s
+     Running tests/sqlite_bootstrap_driver.rs (target/debug/deps/sqlite_bootstrap_driver-e29e43e189e15a73)
+
+running 2 tests
+test sqlite_destination_publishes_real_bootstrap_and_reopens_snapshot_and_suffix ... ok
+test sqlite_both_stores_reopen_and_retry_completed_bootstrap ... FAILED
+
+failures:
+
+---- sqlite_both_stores_reopen_and_retry_completed_bootstrap stdout ----
+
+thread 'sqlite_both_stores_reopen_and_retry_completed_bootstrap' (6673340) panicked at tests/sqlite_bootstrap_driver.rs:345:10:
+called `Result::unwrap()` on an `Err` value: CorruptStorage("bootstrap backlog row underflow")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    sqlite_both_stores_reopen_and_retry_completed_bootstrap
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--test sqlite_bootstrap_driver`

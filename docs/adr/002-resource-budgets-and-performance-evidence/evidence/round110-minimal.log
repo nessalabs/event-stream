@@ -1,0 +1,10 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.24s
+     Running tests/sqlite_batch_crash.rs (target/debug/deps/sqlite_batch_crash-5d24fcf6234090d1)
+
+running 2 tests
+test grouped_crash_child ... ok
+test process_kill_on_both_sides_of_group_commit_preserves_exact_history ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+

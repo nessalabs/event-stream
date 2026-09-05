@@ -1,0 +1,12 @@
+765e5dfcb69807722888bb0bcefeaf24f434b2846393d2eed304b87ef83587dd  ./Cargo.lock
+4851e044c02da6fe93fed4f965c4f87164c2ecd734e66ae611c6f9b803e69f1c  ./Cargo.toml
+15473b6fc50256dc1754d362412aac89d384848d335ca49f4d878ec229b56718  ./src/application/config.rs
+3c42b965a38e9963e8e5eabe0d08e9f723a851046b70348f1b2bc44f0753b7c2  ./src/application/mod.rs
+41d5f9c5b2c28e89916b176339611de7e095a658cc15fb26d3dee7ec8a1ac3a4  ./src/application/ports.rs
+98d2dcaf1669658c2487e91861dbda5f4cd94fc52b7993ba343313a47c455183  ./src/application/runtime.rs
+61293fa2b182b037cde79cf06bd857ca137b1a233bc13e3c2169361c423b42df  ./src/application/types.rs
+8879922d5bc91f2d468d302f05f36c2cd5ede7554cfd50aa695e7fb4d097f435  ./src/domain/mod.rs
+3a387ec71cf4ea6fdfc6ab4e63b38329fbdc1ee746d8ecb7a656aa19dd2f4bbf  ./src/domain/model.rs
+3bceb5182670e992f3c0213c23f08e17597038928a31d8af76f64e326eb896ee  ./src/infrastructure/mod.rs
+a8c11fdd9fcf8aa99ce3a23defb61d58aece3fb892678796877838b10aa02be8  ./src/infrastructure/sqlite.rs
+d6b6eeaeb80a9b3d3adf0858f0252959c9f4e43b62dab99c28fe350920a401ed  ./src/lib.rs

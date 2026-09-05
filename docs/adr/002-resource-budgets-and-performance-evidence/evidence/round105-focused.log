@@ -1,0 +1,65 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.65s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-7a5dc866188ad24a)
+
+running 32 tests
+test application::config::tests::grouped_defaults_preserve_the_finite_runtime_policy ... ok
+test application::restore::tests::limits_and_paths_are_rejected_before_backend_admission ... ok
+test application::runtime::tests::ending_subscription_releases_page_capacity_and_allocation ... ok
+test application::restore::tests::malformed_mapping_page_is_rejected_at_the_application_boundary ... ok
+test application::restore::tests::cancelled_restore_keeps_its_owned_slot_until_backend_finishes ... ok
+test application::runtime::tests::shutdown_owns_live_and_pending_membership_exactly_once ... ok
+test application::runtime::tests::indexed_membership_removal_reuses_the_stable_slot ... ok
+test application::runtime::tests::cancelled_and_closed_journal_waiters_release_all_permits ... ok
+test application::runtime::tests::complete_empty_page_is_terminal_and_releases_subscription_quota ... ok
+test domain::lifecycle::tests::lifecycle_operation_ids_use_the_shared_utf8_byte_limit ... ok
+test domain::replication::tests::replica_identifiers_are_bounded ... ok
+test domain::restore::tests::backup_identity_hex_is_canonical_and_bounded ... ok
+test domain::restore::tests::restore_operation_id_uses_identifier_byte_limit ... ok
+test domain::retention::tests::operation_id_and_generation_boundaries_are_explicit ... ok
+test application::runtime::tests::stable_sweep_cursor_visits_survivors_during_slot_zero_churn ... ok
+test application::runtime::tests::journal_permit_keeps_its_queue_position_across_unrelated_notifications ... ok
+test infrastructure::memory::tests::append_rejects_offset_overflow_without_mutating_history ... ok
+test infrastructure::memory::tests::range_read_reports_middle_and_suffix_holes ... ok
+test infrastructure::memory_replication::tests::destination_accepts_a_final_max_offset_and_reads_at_tail ... ok
+test infrastructure::memory_replication::tests::destination_commits_one_exact_bounded_batch_and_reconciles_it ... ok
+test application::restore::tests::restore_panic_is_an_exact_uncertain_publication ... ok
+test application::runtime::tests::draining_last_record_releases_page_capacity_and_allocation ... ok
+test infrastructure::memory_replication::tests::origin_bootstrap_binds_published_snapshot_attempt_and_captured_tail ... ok
+test infrastructure::memory_replication::tests::origin_prepares_one_stable_batch_and_acknowledges_exact_receipt ... ok
+test infrastructure::memory_replication::tests::destination_bootstrap_verifies_in_steps_and_publishes_snapshot_plus_suffix ... ok
+test infrastructure::memory_replication::tests::required_replica_backlog_rejects_a_new_local_commit_atomically ... ok
+test infrastructure::sqlite_test_vfs::tests::unavailable_optional_methods_are_not_advertised ... ok
+test infrastructure::memory_source_journal::tests::marker_retry_does_not_recreate_a_missing_generated_identity ... ok
+test infrastructure::memory_replication::tests::application_driver_transfers_snapshot_and_suffix_between_real_stores ... ok
+test application::runtime::tests::indexed_membership_matches_reference_set_across_generated_removals ... ok
+test infrastructure::sqlite::retention_query_plan_tests::production_merged_replay_uses_both_offset_indexes_without_temp_sort ... ok
+test infrastructure::memory_retention::timestamp_cleanup_tests::one_row_cleanup_preserves_timestamp_suffix_and_unreclaimed_prefix ... ok
+
+test result: ok. 32 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/core_retention.rs (target/debug/deps/core_retention-9d3354f4ec6d47b1)
+
+running 9 tests
+test operation_ids_return_exact_receipts_and_reject_reuse ... ok
+test close_rejects_queued_retention_cleanup ... ok
+test retry_expiry_and_floor_cleanup_are_logical_before_physical ... ok
+test enabling_generations_preserves_legacy_and_qualifies_reused_ids ... ok
+test floor_cleanup_retains_retry_until_a_later_expiry ... ok
+test generated_retained_retry_cleanup_checks_bytes_before_each_mutation ... ok
+test lifecycle_cleanup_releases_retained_retry_capacity_in_bounded_turns ... ok
+test runtime_generated_append_wakes_live_subscription_and_honors_event_limit ... ok
+test floor_publication_ends_a_subscriber_with_buffered_removed_history ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_resource_regressions.rs (target/debug/deps/replication_resource_regressions-60f189c0b224405e)
+
+running 4 tests
+test destination_floor_cannot_exceed_combined_receipt_count_limit ... ok
+test attaching_existing_history_preserves_original_commit_age ... ok
+test closed_origin_rejects_exact_attach_retry_and_detach ... ok
+test partial_ack_uses_remaining_record_age_and_moves_retention_protection ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

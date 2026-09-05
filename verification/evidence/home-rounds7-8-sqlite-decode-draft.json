@@ -1,0 +1,192 @@
+{
+  "rounds": [
+    {
+      "number": 7,
+      "status": "measured",
+      "build_id": "a54c735c03ad00e8e6853fd0e46593e0a390d54b1c83f2de7ce2812a20e5f2f6",
+      "experiments": [
+        {
+          "id": "f59a0146a0f34efd",
+          "label": "Controlled baseline before borrowed SQLite row decoding \u00b7 store \u00b7 100,000",
+          "status": "measured",
+          "comparison_key": {
+            "workload": "sqlite_decode_borrowed_ab",
+            "store": "event-stream-sqlite-store",
+            "durability": "ProcessRestart",
+            "payload_bytes": 128,
+            "population": 100000,
+            "producers": 0,
+            "streams": 1,
+            "subscribers": 0,
+            "concurrency": 1,
+            "page_records": 256,
+            "page_bytes": 1048576,
+            "instrumentation": "Rust_System_GlobalAlloc_atomic_counters",
+            "config_fingerprint": "4084df625e7c252f5b7f62231111af98adb8138acc8a9bdaa74e519630e687da",
+            "measurement_phase": "adapter_replay_with_open_close",
+            "memory_scope": "process_lifetime_peak_RSS",
+            "cpu_scope": "process_user_plus_system"
+          },
+          "sample_count": 3,
+          "metrics": {
+            "runtime_ns_median": 24140497334,
+            "cpu_us_median": 24077064,
+            "memory_bytes_median": 4653056,
+            "rust_live_bytes_median": null,
+            "rust_allocated_bytes_median": 11883611825,
+            "agents": 100000,
+            "accepted": null,
+            "rejected": null,
+            "failed": null,
+            "delivered": 25600000
+          },
+          "provenance": {
+            "source_path": "docs/adr/002-resource-budgets-and-performance-evidence/evidence/sqlite-decode-borrowed-ab-100k.jsonl",
+            "source_sha256": "481bfbbfdb4d3f7875dd0327b0e32ee9de94ce231a3ea1b29c3f2913ec95c29d",
+            "sample_key": "{\"lines\":[1,6,9],\"aggregation\":\"median_per_metric\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"workload\":\"sqlite_decode_borrowed_ab\",\"store\":\"event-stream-sqlite-store\",\"durability\":\"ProcessRestart\",\"payload_bytes\":128,\"population\":100000,\"records_per_consumer\":256,\"producers\":0,\"streams\":1,\"subscribers\":0,\"concurrency\":1,\"page_records\":256,\"page_bytes\":1048576,\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters\",\"measurement_phase\":\"adapter_replay_with_open_close\",\"memory_scope\":\"process_lifetime_peak_RSS\",\"cpu_scope\":\"process_user_plus_system\",\"watchdog_seconds\":300,\"store_config\":\"SqliteOptions::new defaults at source epoch\"}}",
+            "source_epoch": "a54c735c03ad00e8e6853fd0e46593e0a390d54b1c83f2de7ce2812a20e5f2f6"
+          },
+          "note": "Timer includes SqliteStore open, stream lookup, all guarded reads and close. Rust allocation traffic covers the whole Rust process and excludes SQLite C. RSS is lifetime peak including setup. Three fresh processes were interleaved across source epochs."
+        },
+        {
+          "id": "4e7b0e6ea21d2e06",
+          "label": "Controlled baseline before borrowed SQLite row decoding \u00b7 runtime \u00b7 100,000",
+          "status": "measured",
+          "comparison_key": {
+            "workload": "sqlite_decode_borrowed_ab",
+            "store": "event-stream-runtime-sqlite",
+            "durability": "ProcessRestart",
+            "payload_bytes": 128,
+            "population": 100000,
+            "producers": 0,
+            "streams": 1,
+            "subscribers": 100000,
+            "concurrency": 1,
+            "page_records": 256,
+            "page_bytes": 1048576,
+            "instrumentation": "Rust_System_GlobalAlloc_atomic_counters",
+            "config_fingerprint": "f71ce9fadfd883772f004b2724d48f61eb0af9e1a9fe27eb4a3994710bb71ab5",
+            "measurement_phase": "complete_replay_lifecycle",
+            "memory_scope": "process_lifetime_peak_RSS",
+            "cpu_scope": "process_user_plus_system"
+          },
+          "sample_count": 3,
+          "metrics": {
+            "runtime_ns_median": 38005928625,
+            "cpu_us_median": 39478845,
+            "memory_bytes_median": 88080384,
+            "rust_live_bytes_median": null,
+            "rust_allocated_bytes_median": 24784167931,
+            "agents": 100000,
+            "accepted": null,
+            "rejected": null,
+            "failed": null,
+            "delivered": 25600000
+          },
+          "provenance": {
+            "source_path": "docs/adr/002-resource-budgets-and-performance-evidence/evidence/sqlite-decode-borrowed-ab-100k.jsonl",
+            "source_sha256": "481bfbbfdb4d3f7875dd0327b0e32ee9de94ce231a3ea1b29c3f2913ec95c29d",
+            "sample_key": "{\"lines\":[3,8,11],\"aggregation\":\"median_per_metric\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"workload\":\"sqlite_decode_borrowed_ab\",\"store\":\"event-stream-runtime-sqlite\",\"durability\":\"ProcessRestart\",\"payload_bytes\":128,\"population\":100000,\"records_per_consumer\":256,\"producers\":0,\"streams\":1,\"subscribers\":100000,\"concurrency\":1,\"page_records\":256,\"page_bytes\":1048576,\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters\",\"measurement_phase\":\"complete_replay_lifecycle\",\"memory_scope\":\"process_lifetime_peak_RSS\",\"cpu_scope\":\"process_user_plus_system\",\"watchdog_seconds\":300,\"runtime_overrides\":{\"subscriptions.max_total\":100000,\"subscriptions.max_per_stream\":100000,\"reads.admission_timeout_seconds\":60}}}",
+            "source_epoch": "a54c735c03ad00e8e6853fd0e46593e0a390d54b1c83f2de7ce2812a20e5f2f6"
+          },
+          "note": "Timer includes runtime open, all subscription registration, all drains, drop and shutdown; it is not a warmed-drain-only metric. Rust allocation traffic covers the whole Rust process and excludes SQLite C. RSS is lifetime peak including setup. Three fresh processes were interleaved across source epochs."
+        }
+      ],
+      "summary": "Controlled baseline before borrowed SQLite row decoding. Three interleaved fresh-process repetitions replayed 25.6 million exact records per path. Metrics include each path\u2019s documented open/registration/drain/close boundary."
+    },
+    {
+      "number": 8,
+      "status": "measured",
+      "build_id": "334fdc3c0d6cf90ee1d548e8bf515bf530b04549b8823284172bb862e431151e",
+      "experiments": [
+        {
+          "id": "b0dc3f36e44b629a",
+          "label": "Borrowed SQLite row decoding \u00b7 store \u00b7 100,000",
+          "status": "measured",
+          "comparison_key": {
+            "workload": "sqlite_decode_borrowed_ab",
+            "store": "event-stream-sqlite-store",
+            "durability": "ProcessRestart",
+            "payload_bytes": 128,
+            "population": 100000,
+            "producers": 0,
+            "streams": 1,
+            "subscribers": 0,
+            "concurrency": 1,
+            "page_records": 256,
+            "page_bytes": 1048576,
+            "instrumentation": "Rust_System_GlobalAlloc_atomic_counters",
+            "config_fingerprint": "4084df625e7c252f5b7f62231111af98adb8138acc8a9bdaa74e519630e687da",
+            "measurement_phase": "adapter_replay_with_open_close",
+            "memory_scope": "process_lifetime_peak_RSS",
+            "cpu_scope": "process_user_plus_system"
+          },
+          "sample_count": 3,
+          "metrics": {
+            "runtime_ns_median": 23457158708,
+            "cpu_us_median": 23303050,
+            "memory_bytes_median": 4653056,
+            "rust_live_bytes_median": null,
+            "rust_allocated_bytes_median": 7915611825,
+            "agents": 100000,
+            "accepted": null,
+            "rejected": null,
+            "failed": null,
+            "delivered": 25600000
+          },
+          "provenance": {
+            "source_path": "docs/adr/002-resource-budgets-and-performance-evidence/evidence/sqlite-decode-borrowed-ab-100k.jsonl",
+            "source_sha256": "481bfbbfdb4d3f7875dd0327b0e32ee9de94ce231a3ea1b29c3f2913ec95c29d",
+            "sample_key": "{\"lines\":[2,5,10],\"aggregation\":\"median_per_metric\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"workload\":\"sqlite_decode_borrowed_ab\",\"store\":\"event-stream-sqlite-store\",\"durability\":\"ProcessRestart\",\"payload_bytes\":128,\"population\":100000,\"records_per_consumer\":256,\"producers\":0,\"streams\":1,\"subscribers\":0,\"concurrency\":1,\"page_records\":256,\"page_bytes\":1048576,\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters\",\"measurement_phase\":\"adapter_replay_with_open_close\",\"memory_scope\":\"process_lifetime_peak_RSS\",\"cpu_scope\":\"process_user_plus_system\",\"watchdog_seconds\":300,\"store_config\":\"SqliteOptions::new defaults at source epoch\"}}",
+            "source_epoch": "334fdc3c0d6cf90ee1d548e8bf515bf530b04549b8823284172bb862e431151e"
+          },
+          "note": "Timer includes SqliteStore open, stream lookup, all guarded reads and close. Rust allocation traffic covers the whole Rust process and excludes SQLite C. RSS is lifetime peak including setup. Three fresh processes were interleaved across source epochs."
+        },
+        {
+          "id": "684462f0b527e587",
+          "label": "Borrowed SQLite row decoding \u00b7 runtime \u00b7 100,000",
+          "status": "measured",
+          "comparison_key": {
+            "workload": "sqlite_decode_borrowed_ab",
+            "store": "event-stream-runtime-sqlite",
+            "durability": "ProcessRestart",
+            "payload_bytes": 128,
+            "population": 100000,
+            "producers": 0,
+            "streams": 1,
+            "subscribers": 100000,
+            "concurrency": 1,
+            "page_records": 256,
+            "page_bytes": 1048576,
+            "instrumentation": "Rust_System_GlobalAlloc_atomic_counters",
+            "config_fingerprint": "f71ce9fadfd883772f004b2724d48f61eb0af9e1a9fe27eb4a3994710bb71ab5",
+            "measurement_phase": "complete_replay_lifecycle",
+            "memory_scope": "process_lifetime_peak_RSS",
+            "cpu_scope": "process_user_plus_system"
+          },
+          "sample_count": 3,
+          "metrics": {
+            "runtime_ns_median": 36184391292,
+            "cpu_us_median": 37748630,
+            "memory_bytes_median": 87097344,
+            "rust_live_bytes_median": null,
+            "rust_allocated_bytes_median": 20816159771,
+            "agents": 100000,
+            "accepted": null,
+            "rejected": null,
+            "failed": null,
+            "delivered": 25600000
+          },
+          "provenance": {
+            "source_path": "docs/adr/002-resource-budgets-and-performance-evidence/evidence/sqlite-decode-borrowed-ab-100k.jsonl",
+            "source_sha256": "481bfbbfdb4d3f7875dd0327b0e32ee9de94ce231a3ea1b29c3f2913ec95c29d",
+            "sample_key": "{\"lines\":[4,7,12],\"aggregation\":\"median_per_metric\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"workload\":\"sqlite_decode_borrowed_ab\",\"store\":\"event-stream-runtime-sqlite\",\"durability\":\"ProcessRestart\",\"payload_bytes\":128,\"population\":100000,\"records_per_consumer\":256,\"producers\":0,\"streams\":1,\"subscribers\":100000,\"concurrency\":1,\"page_records\":256,\"page_bytes\":1048576,\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters\",\"measurement_phase\":\"complete_replay_lifecycle\",\"memory_scope\":\"process_lifetime_peak_RSS\",\"cpu_scope\":\"process_user_plus_system\",\"watchdog_seconds\":300,\"runtime_overrides\":{\"subscriptions.max_total\":100000,\"subscriptions.max_per_stream\":100000,\"reads.admission_timeout_seconds\":60}}}",
+            "source_epoch": "334fdc3c0d6cf90ee1d548e8bf515bf530b04549b8823284172bb862e431151e"
+          },
+          "note": "Timer includes runtime open, all subscription registration, all drains, drop and shutdown; it is not a warmed-drain-only metric. Rust allocation traffic covers the whole Rust process and excludes SQLite C. RSS is lifetime peak including setup. Three fresh processes were interleaved across source epochs."
+        }
+      ],
+      "summary": "Borrowed SQLite row decoding. Three interleaved fresh-process repetitions replayed 25.6 million exact records per path. Metrics include each path\u2019s documented open/registration/drain/close boundary."
+    }
+  ]
+}

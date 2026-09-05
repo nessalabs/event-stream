@@ -1,0 +1,10 @@
+{
+  "captured_utc": "2026-09-05T08:28:14.004380+00:00",
+  "platform": "macOS-26.6-arm64-arm-64bit",
+  "cpu": "Apple M5",
+  "memory_bytes": 25769803776,
+  "cpus": 10,
+  "load": "{ 3.82 4.18 4.92 }",
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t76%; discharging; 5:10 remaining present: true",
+  "build_log": "not persisted; agent tool output reported warning-free exit0"
+}

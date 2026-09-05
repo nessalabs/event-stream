@@ -1,0 +1,53 @@
+name: Event stream contracts
+"on":
+  push:
+    paths: ['src/**', 'tests/**', 'examples/**', 'verification/fixtures/**', 'Cargo.toml', 'Cargo.lock', '.github/workflows/core.yml']
+  pull_request:
+    paths: ['src/**', 'tests/**', 'examples/**', 'verification/fixtures/**', 'Cargo.toml', 'Cargo.lock', '.github/workflows/core.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: core-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            rust: stable
+          - os: macos-latest
+            rust: stable
+          - os: ubuntu-latest
+            rust: '1.85.0'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install Rust
+        run: rustup toolchain install ${{ matrix.rust }} --profile minimal
+      - name: Compile domain independently
+        run: rustup run ${{ matrix.rust }} rustc --edition=2021 --crate-type lib --crate-name event_stream_domain src/domain/mod.rs -o /tmp/libevent_stream_domain.rlib
+      - name: Test core without optional adapters
+        run: cargo +${{ matrix.rust }} test --locked --no-default-features --lib --tests
+      - name: Test all contracts and crash scenarios
+        run: cargo +${{ matrix.rust }} test --locked --all-features --all-targets
+      - name: Run external-use examples
+        run: |
+          cargo +${{ matrix.rust }} run --locked --example custom_store
+          cargo +${{ matrix.rust }} run --locked --example projection_reconnect
+          cargo +${{ matrix.rust }} run --locked --features codec --example custom_decoder
+      - name: Run durable recovery walkthroughs
+        run: |
+          cargo +${{ matrix.rust }} run --locked --features sqlite --example local_recovery -- "$RUNNER_TEMP/event-stream-local-recovery"
+          cargo +${{ matrix.rust }} run --locked --features sqlite,replication --example replicated_recovery -- "$RUNNER_TEMP/event-stream-replicated-recovery"
+  style:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+      - run: cargo +stable fmt --all -- --check
+      - run: cargo +stable clippy --locked --all-features --all-targets -- -D warnings

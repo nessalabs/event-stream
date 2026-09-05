@@ -1,0 +1,61 @@
+{
+  "format_version": 1,
+  "scenario_id": "parser-checkpoint",
+  "run_id": "1788600689394502000-32493-0",
+  "started_unix_ms": 1788600689394,
+  "target": "JournalIngestionService + Runtime<MemoryStore>",
+  "implementation_fingerprint": "fnv1a64:096700ff3e346efb",
+  "evidence_scope": "Production Runtime, MemoryStore source journal, NewlineFramer checkpoint decoder, and JournalIngestionService with bounded deterministic input. The interruption boundary is constructed through public atomic output and checkpoint APIs. SQLite crash durability remains a separate gate.",
+  "input": {
+    "fault": "after_output_commit_before_checkpoint",
+    "rotate_generation_before_resume": true,
+    "stable_output_ids": true
+  },
+  "status": "passed",
+  "elapsed_us": 11835,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "Captured bytes recovered across an output-before-checkpoint interruption without a missing or duplicate record.",
+    "observations": [
+      {
+        "label": "Interruption boundary",
+        "expected": "first output committed with no checkpoint",
+        "actual": "checkpoint=None",
+        "passed": true
+      },
+      {
+        "label": "Stable recovery output",
+        "expected": "exact payloads at offsets 1 and 2",
+        "actual": "offsets=[1, 2]",
+        "passed": true
+      },
+      {
+        "label": "Generation rotation",
+        "expected": "retry item 0 in generation 1; new item 1 in generation 2",
+        "actual": "generation_one=true, generation_two=true",
+        "passed": true
+      },
+      {
+        "label": "Published checkpoint",
+        "expected": "captured byte 8, next item 2, committed output 2",
+        "actual": "byte=8, next_item=2, committed=Some(2)",
+        "passed": true
+      }
+    ],
+    "output": {
+      "checkpoint_before_resume": false,
+      "record_offsets": [
+        1,
+        2
+      ],
+      "generation_one_retry": true,
+      "generation_two_new_output": true,
+      "checkpoint": {
+        "source_offset": 8,
+        "next_item_index": 2,
+        "committed_output": 2
+      }
+    }
+  }
+}

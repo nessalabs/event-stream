@@ -1,0 +1,50 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+error[E0425]: cannot find type `MemoryReplicaReadLease` in module `super::memory_replication`
+   --> src/infrastructure/memory.rs:263:64
+    |
+263 |         HashMap<ReplicaReadLeaseId, super::memory_replication::MemoryReplicaReadLease>,
+    |                                                                ^^^^^^^^^^^^^^^^^^^^^^ not found in `super::memory_replication`
+
+error[E0053]: method `read_replica_bootstrap_bytes` has an incompatible type for trait
+    --> src/infrastructure/memory_replication.rs:1989:13
+     |
+1989 |         id: BootstrapId,
+     |             ^^^^^^^^^^^ expected `domain::replication::ReplicaReadLeaseId`, found `domain::replication::BootstrapId`
+     |
+note: type in trait
+    --> src/application/replication.rs:651:16
+     |
+ 651 |         lease: ReplicaReadLeaseId,
+     |                ^^^^^^^^^^^^^^^^^^
+     = note: expected signature `fn(&'life0 memory::MemoryStore, domain::replication::ReplicaReadLeaseId, _, _) -> Pin<_>`
+                found signature `fn(&'life0 memory::MemoryStore, domain::replication::BootstrapId, _, _) -> Pin<_>`
+help: change the parameter type to match the trait
+     |
+1989 -         id: BootstrapId,
+1989 +         id: domain::replication::ReplicaReadLeaseId,
+     |
+
+error[E0046]: not all trait items implemented, missing: `acquire_replica_bootstrap_read`, `release_replica_bootstrap_read`
+    --> src/infrastructure/memory_replication.rs:1467:1
+     |
+1467 |   impl ReplicaDestinationStore for MemoryStore {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing `acquire_replica_bootstrap_read`, `release_replica_bootstrap_read` in implementation
+     |
+    ::: src/application/replication.rs:644:5
+     |
+ 644 | /     async fn acquire_replica_bootstrap_read(
+ 645 | |         &self,
+ 646 | |         stream: &OriginStream,
+ 647 | |         lifetime: Duration,
+ 648 | |     ) -> ReplicationResult<ReplicaBootstrapReadPlan>;
+     | |_____________________________________________________- `acquire_replica_bootstrap_read` from trait
+...
+ 655 | /     async fn release_replica_bootstrap_read(
+ 656 | |         &self,
+ 657 | |         lease: ReplicaReadLeaseId,
+ 658 | |     ) -> ReplicationResult<ReplicaReadRelease>;
+     | |_______________________________________________- `release_replica_bootstrap_read` from trait
+
+Some errors have detailed explanations: E0046, E0053, E0425.
+For more information about an error, try `rustc --explain E0046`.
+error: could not compile `event-stream` (lib) due to 3 previous errors

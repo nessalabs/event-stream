@@ -1,0 +1,20 @@
+{
+  "binary": "/tmp/event-stream-round93-snapshot-target/release/examples/performance_baseline",
+  "binary_sha256": "2698fa44f8feae629837693031a0c41127e8c8e790e40712acb03841fb2db0df",
+  "source_archive": "docs/adr/005-snapshots-and-consumer-recovery/evidence/round93-source.tar",
+  "source_archive_sha256": "bb19cee0ee40a271df15f12f3a7772c48a8f3e12832f453436d61a825e5378aa",
+  "features": [
+    "sqlite",
+    "snapshots",
+    "test-support"
+  ],
+  "started_utc": "2026-09-05T20:36:09.547120+00:00",
+  "load": [
+    4.052734375,
+    3.03564453125,
+    3.0693359375
+  ],
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t97%; discharging; 8:49 remaining present: true\n",
+  "scope": "One try_append task per stream released together, finite1024append queue; not sustained100kproducers. No project builds/tests concurrent."
+}

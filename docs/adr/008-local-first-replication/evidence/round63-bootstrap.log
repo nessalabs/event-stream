@@ -1,0 +1,22 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.07s
+     Running tests/replication_driver_regressions.rs (target/debug/deps/replication_driver_regressions-4dceb38f1bbb7896)
+
+running 5 tests
+test invalid_transport_receipt_does_not_advance_origin ... ok
+test lost_transport_reply_retries_exact_destination_commit ... ok
+test cancelled_caller_does_not_release_capacity_while_transport_owns_batch ... ok
+test retry_policy_resends_unknown_commit_and_shutdown_drains_owned_work ... ok
+test deadline_preserves_owned_transport_until_graceful_shutdown_finishes ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/replication_origin_bootstrap.rs (target/debug/deps/replication_origin_bootstrap-652fa6af9a9719c6)
+
+running 3 tests
+test origin_rejects_bootstrap_ack_at_its_protection_deadline ... ok
+test bootstrap_transfers_real_snapshot_and_suffix_then_drains_new_local_writes ... ok
+test driver_bootstrap_transfers_real_pages_and_retries_exact_completion ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

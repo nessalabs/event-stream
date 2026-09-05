@@ -1,0 +1,13 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.81s
+     Running unittests examples/performance_baseline.rs (target/debug/examples/performance_baseline-195a2e325ef4068f)
+
+running 6 tests
+test tests::agent_burst_task_result_stays_compact ... ok
+test tests::population_expected_records_follow_receipt_cursor_order ... ok
+test tests::population_record_verifier_rejects_wrong_cursor_id_and_payload ... ok
+test tests::population_mapping_covers_every_stream_once_per_cycle_with_nondivisible_width ... ok
+test tests::sustained_generator_rejects_zero_task_limit ... ok
+test tests::sustained_generator_conserves_offers_at_hard_task_cap ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

@@ -1,0 +1,29 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.44s
+     Running tests/runtime_replication.rs (target/debug/deps/runtime_replication-1458925b8f3adb85)
+
+running 7 tests
+test invalid_runtime_replication_budgets_fail_before_open ... ok
+test transfer_byte_budget_rejects_before_transport_io ... ok
+test memory_runtime_replicates_its_own_appends_and_retries_exactly ... ok
+test panicking_transport_reports_unknown_and_exact_retry_reuses_capacity ... ok
+test memory_runtime_bootstraps_snapshot_and_suffix ... ok
+test cancelled_transfer_keeps_its_slot_and_prevents_premature_shutdown ... ok
+test sqlite_runtime_replication_and_bootstrap_survive_origin_reopen ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/sqlite_journal_replication.rs (target/debug/deps/sqlite_journal_replication-2e85fff83fd53470)
+
+running 1 test
+test journal_recovery_to_replica_survives_both_sqlite_restarts ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running unittests examples/replicated_recovery.rs (target/debug/examples/replicated_recovery-a4ed02cbbb53bc98)
+
+running 1 test
+test tests::bounded_backlog_restart_catchup_and_retry_keep_exact_history ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

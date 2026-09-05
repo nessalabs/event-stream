@@ -1,0 +1,37 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.41s
+     Running tests/sqlite_origin_restore.rs (target/debug/deps/sqlite_origin_restore-1ffd3c74c114d187)
+
+running 4 tests
+test restore_pending_origin_preserves_history_and_requires_new_bootstrap ... ok
+test restore_rejects_understated_origin_backlog ... FAILED
+test restore_rejects_foreign_origin_operation_receipt ... FAILED
+test restore_rejects_foreign_origin_attachment ... FAILED
+
+failures:
+
+---- restore_rejects_understated_origin_backlog stdout ----
+
+thread 'restore_rejects_understated_origin_backlog' (6741302) panicked at tests/sqlite_origin_restore.rs:256:5:
+corrupt origin metadata accepted after UPDATE replication_origin_replicas SET backlog_records=0: Ok(RestoreReceipt { operation_id: RestoreOperationId("restore-replication-boundary"), backup_identity: BackupIdentity([218, 56, 189, 164, 176, 91, 20, 237, 0, 149, 32, 86, 242, 249, 20, 235, 217, 242, 250, 107, 127, 122, 79, 165, 47, 159, 87, 21, 149, 116, 238, 128]), destination: "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/replication-restore-boundary-201d20ea-f16d-4700-b86c-ae851144f97e/restored.sqlite3", mapping_count: 1 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- restore_rejects_foreign_origin_operation_receipt stdout ----
+
+thread 'restore_rejects_foreign_origin_operation_receipt' (6741301) panicked at tests/sqlite_origin_restore.rs:256:5:
+corrupt origin metadata accepted after UPDATE replication_origin_operations SET origin_id=zeroblob(16): Ok(RestoreReceipt { operation_id: RestoreOperationId("restore-replication-boundary"), backup_identity: BackupIdentity([45, 198, 95, 170, 175, 144, 197, 186, 222, 83, 93, 120, 83, 176, 240, 158, 202, 236, 186, 146, 90, 217, 162, 164, 199, 130, 211, 37, 128, 12, 31, 35]), destination: "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/replication-restore-boundary-67477087-cb42-4478-8aed-318451661468/restored.sqlite3", mapping_count: 1 })
+
+---- restore_rejects_foreign_origin_attachment stdout ----
+
+thread 'restore_rejects_foreign_origin_attachment' (6741300) panicked at tests/sqlite_origin_restore.rs:256:5:
+corrupt origin metadata accepted after UPDATE replication_origin_replicas SET origin_id=zeroblob(16): Ok(RestoreReceipt { operation_id: RestoreOperationId("restore-replication-boundary"), backup_identity: BackupIdentity([164, 195, 80, 247, 229, 210, 159, 104, 208, 89, 141, 236, 186, 139, 168, 199, 102, 47, 4, 26, 191, 167, 54, 39, 14, 151, 52, 145, 120, 42, 198, 61]), destination: "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/replication-restore-boundary-248f0ba9-d185-4cc6-a664-5e43233201df/restored.sqlite3", mapping_count: 1 })
+
+
+failures:
+    restore_rejects_foreign_origin_attachment
+    restore_rejects_foreign_origin_operation_receipt
+    restore_rejects_understated_origin_backlog
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+error: test failed, to rerun pass `--test sqlite_origin_restore`

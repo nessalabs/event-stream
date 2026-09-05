@@ -1,0 +1,29 @@
+   Compiling event-stream-verification v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream/verification)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.39s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (verification/target/debug/deps/event_stream_verification-5318eabed38d0f9b)
+
+running 19 tests
+test performance::tests::oversized_catalog_is_refused_before_json_parsing ... ok
+test performance::tests::duplicate_artifact_is_reported_and_excluded_from_chart ... ok
+test performance::tests::zero_baseline_has_no_percentage_delta ... ok
+test performance::tests::ambiguous_source_epochs_in_one_round_are_rejected ... ok
+test performance::tests::charts_require_exact_workload_and_config_and_preserve_nulls ... ok
+test performance::tests::default_selection_prefers_latest_comparable_registration_at_highest_population ... ok
+test runner::contract_tests::unknown_scenario_is_rejected_before_execution ... ok
+test runner::tests::duplicate_registry_ids_fail ... ok
+test runner::tests::existing_unowned_temporary_file_is_never_removed_or_truncated ... ok
+test performance::tests::checked_in_home_catalog_loads_bounded_historical_evidence ... ok
+test runner::contract_tests::injected_save_failure_preserves_execution_result ... ok
+test runner::contract_tests::production_callback_rejects_a_mismatched_displayed_fixture ... ok
+test runner::contract_tests::every_generated_duplicate_id_is_rejected ... ok
+test runner::tests::unavailable_target_never_passes ... ok
+test runner::tests::changed_fixture_invalidates_saved_result ... ok
+test runner::tests::roadmap_uses_real_files_and_reports_missing_file ... ok
+test runner::tests::saved_reports_are_separate_and_corruption_is_visible ... ok
+test runner::tests::concurrent_same_scenario_saves_use_distinct_temporary_files ... ok
+test runner::contract_tests::every_registered_callback_passes_headlessly ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.41s
+

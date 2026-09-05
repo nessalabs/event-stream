@@ -1,0 +1,18 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused imports: `SystemTime` and `UNIX_EPOCH`
+  --> src/infrastructure/memory.rs:25:12
+   |
+25 |     time::{SystemTime, UNIX_EPOCH},
+   |            ^^^^^^^^^^  ^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `event-stream` (lib) generated 1 warning (run `cargo fix --lib -p event-stream` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.27s
+     Running tests/sqlite_restore.rs (target/debug/deps/sqlite_restore-c63b0179cc040b35)
+
+running 1 test
+test journal_restore_rejects_forged_zero_charge_with_matching_counters ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 34 filtered out; finished in 0.07s
+

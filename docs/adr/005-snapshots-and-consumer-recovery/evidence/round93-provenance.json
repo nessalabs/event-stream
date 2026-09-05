@@ -1,0 +1,19 @@
+{
+  "features": [
+    "sqlite",
+    "snapshots",
+    "test-support"
+  ],
+  "source_files_verified": 46,
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "cpu": "Apple M5",
+  "memory_bytes": 25769803776,
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t98%; discharging; 8:49 remaining present: true\n",
+  "load": [
+    3.3857421875,
+    3.22216796875,
+    3.17626953125
+  ],
+  "started_utc": "2026-09-05T20:32:08.022369+00:00",
+  "scope": "Fixed48process snapshot matrix with existing p99/max/overlap gates; no changes to thresholds. No project builds or tests run concurrently. Ambient desktop applications remain open."
+}

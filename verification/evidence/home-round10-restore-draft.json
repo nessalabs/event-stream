@@ -1,0 +1,266 @@
+{
+  "number": 10,
+  "status": "measured",
+  "build_id": "54c7fee887437c6d2f9db6b3d320eb58c3fd904f6e191e5f39298be9847b7fcb",
+  "experiments": [
+    {
+      "id": "4fb6a0d70d2f197c",
+      "label": "SQLite controlled restore \u00b7 instrumented \u00b7 1,000 streams",
+      "status": "measured",
+      "comparison_key": {
+        "workload": "sqlite_controlled_restore_one_record_per_stream",
+        "store": "event-stream-sqlite-restore",
+        "durability": "ProcessRestart_DELETE_FULL",
+        "payload_bytes": 128,
+        "population": 1000,
+        "producers": 0,
+        "streams": 1000,
+        "subscribers": 0,
+        "concurrency": 1,
+        "page_records": 256,
+        "page_bytes": 2097152,
+        "measurement_phase": "logical_restore_publish_and_receipt",
+        "instrumentation": "Rust_System_GlobalAlloc_atomic_counters+1ms_sampler+stage_observer",
+        "memory_scope": "sampled_peak_process_RSS_during_restore",
+        "cpu_scope": "process_user_plus_system_restore_call",
+        "config_fingerprint": "de3aafaeb85247d4f3d937166f543d7b6b20a1e5ceb9c361ceb98bd85f41e416"
+      },
+      "sample_count": 3,
+      "metrics": {
+        "runtime_ns_median": 81923750,
+        "cpu_us_median": 36088,
+        "memory_bytes_median": 5701632,
+        "rust_live_bytes_median": 86427,
+        "rust_allocated_bytes_median": 891693,
+        "agents": null,
+        "accepted": 1,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": 1000
+      },
+      "provenance": {
+        "source_path": "docs/adr/004-stream-lifecycle-and-safe-restore/evidence/restore-resource-bba90501e0df45be.jsonl",
+        "source_sha256": "c005e658ff6e3d44e1136ab064618d1e6c1e6fce761d3f7a71851b5480ea7e31",
+        "sample_key": "{\"aggregation\":\"median_per_metric\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"config\":{\"allocator_counters_enabled\":true,\"concurrency\":1,\"copy_buffer_bytes\":65536,\"correctness\":\"exact_mapping_replay_retry_source_identity\",\"cpu_scope\":\"process_user_plus_system_restore_call\",\"durability\":\"ProcessRestart_DELETE_FULL\",\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters+1ms_sampler+stage_observer\",\"max_operations\":1,\"max_source_bytes\":536870912,\"max_staging_page_bytes\":536870912,\"measurement_phase\":\"logical_restore_publish_and_receipt\",\"memory_scope\":\"sampled_peak_process_RSS_during_restore\",\"page_bytes\":2097152,\"page_records\":256,\"payload_bytes\":128,\"population\":1000,\"producers\":0,\"records\":1000,\"sampler_enabled\":true,\"store\":\"event-stream-sqlite-restore\",\"streams\":1000,\"subscribers\":0,\"tokio_worker_threads\":2,\"watchdog_seconds\":900,\"workload\":\"sqlite_controlled_restore_one_record_per_stream\"},\"environment\":{\"arch\":\"arm64\",\"cpu_model\":\"Apple M5\",\"filesystem_block_size_bytes\":4096,\"fresh_process_per_sample\":true,\"host_context_scope\":\"captured_after_run_same_host_load_and_power_uncaptured\",\"kernel_release\":\"25.6.0\",\"logical_cpu_count\":10,\"memory_bytes\":25769803776,\"os\":\"Darwin\",\"os_build_version\":\"25G72\",\"os_product_version\":\"26.6\",\"physical_cpu_count\":10,\"rustc\":\"rustc 1.98.1 (48a229cea 2026-09-01)\",\"temporary_filesystem_type\":\"APFS\"}},\"lines\":[2,8,11],\"raw_execution_indexes\":[1,7,10]}",
+        "source_epoch": "bba90501e0df45be4601f5666c25430fe8f626817a92867ebb77bd8807d9d330"
+      },
+      "note": "Restore call includes logical import, validation, no-clobber publication and receipt return; fixture creation and replay validation are outside the timer. accepted/rejected/failed count restore operations; delivered counts records verified by exact replay after restore. RSS is the 1 ms sampled process value during restore. rust_live_bytes_median is the median sampled peak, not a settled value. Rust metrics exclude SQLite C allocations. Three fresh-process repetitions; stage observer enabled."
+    },
+    {
+      "id": "cb4612e3f06a5499",
+      "label": "SQLite controlled restore \u00b7 observer-disabled control \u00b7 1,000 streams",
+      "status": "measured",
+      "comparison_key": {
+        "workload": "sqlite_controlled_restore_one_record_per_stream",
+        "store": "event-stream-sqlite-restore",
+        "durability": "ProcessRestart_DELETE_FULL",
+        "payload_bytes": 128,
+        "population": 1000,
+        "producers": 0,
+        "streams": 1000,
+        "subscribers": 0,
+        "concurrency": 1,
+        "page_records": 256,
+        "page_bytes": 2097152,
+        "measurement_phase": "logical_restore_publish_and_receipt",
+        "instrumentation": "Rust_System_GlobalAlloc_atomic_counters+1ms_sampler",
+        "memory_scope": "sampled_peak_process_RSS_during_restore",
+        "cpu_scope": "process_user_plus_system_restore_call",
+        "config_fingerprint": "8769f110c9c8900d83652024c14106c1dc73c62a8cd8f29d6e4e7102f26a9494"
+      },
+      "sample_count": 1,
+      "metrics": {
+        "runtime_ns_median": 65516750,
+        "cpu_us_median": 31863,
+        "memory_bytes_median": 5619712,
+        "rust_live_bytes_median": 86427,
+        "rust_allocated_bytes_median": 817074,
+        "agents": null,
+        "accepted": 1,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": 1000
+      },
+      "provenance": {
+        "source_path": "docs/adr/004-stream-lifecycle-and-safe-restore/evidence/restore-resource-bba90501e0df45be.jsonl",
+        "source_sha256": "c005e658ff6e3d44e1136ab064618d1e6c1e6fce761d3f7a71851b5480ea7e31",
+        "sample_key": "{\"aggregation\":\"single_control\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"config\":{\"allocator_counters_enabled\":true,\"concurrency\":1,\"copy_buffer_bytes\":65536,\"correctness\":\"exact_mapping_replay_retry_source_identity\",\"cpu_scope\":\"process_user_plus_system_restore_call\",\"durability\":\"ProcessRestart_DELETE_FULL\",\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters+1ms_sampler\",\"max_operations\":1,\"max_source_bytes\":536870912,\"max_staging_page_bytes\":536870912,\"measurement_phase\":\"logical_restore_publish_and_receipt\",\"memory_scope\":\"sampled_peak_process_RSS_during_restore\",\"page_bytes\":2097152,\"page_records\":256,\"payload_bytes\":128,\"population\":1000,\"producers\":0,\"records\":1000,\"sampler_enabled\":true,\"store\":\"event-stream-sqlite-restore\",\"streams\":1000,\"subscribers\":0,\"tokio_worker_threads\":2,\"watchdog_seconds\":900,\"workload\":\"sqlite_controlled_restore_one_record_per_stream\"},\"environment\":{\"arch\":\"arm64\",\"cpu_model\":\"Apple M5\",\"filesystem_block_size_bytes\":4096,\"fresh_process_per_sample\":true,\"host_context_scope\":\"captured_after_run_same_host_load_and_power_uncaptured\",\"kernel_release\":\"25.6.0\",\"logical_cpu_count\":10,\"memory_bytes\":25769803776,\"os\":\"Darwin\",\"os_build_version\":\"25G72\",\"os_product_version\":\"26.6\",\"physical_cpu_count\":10,\"rustc\":\"rustc 1.98.1 (48a229cea 2026-09-01)\",\"temporary_filesystem_type\":\"APFS\"}},\"lines\":[5],\"raw_execution_indexes\":[4]}",
+        "source_epoch": "bba90501e0df45be4601f5666c25430fe8f626817a92867ebb77bd8807d9d330"
+      },
+      "note": "Restore call includes logical import, validation, no-clobber publication and receipt return; fixture creation and replay validation are outside the timer. accepted/rejected/failed count restore operations; delivered counts records verified by exact replay after restore. RSS is the 1 ms sampled process value during restore. rust_live_bytes_median is the median sampled peak, not a settled value. Rust metrics exclude SQLite C allocations. One fresh-process control; stage observer disabled while sampler and allocator counters remain enabled, so it is not a repeated baseline. Host hardware/filesystem context was captured after the run; load and power state are unavailable."
+    },
+    {
+      "id": "0cde4b0637a6f3fe",
+      "label": "SQLite controlled restore \u00b7 instrumented \u00b7 10,000 streams",
+      "status": "measured",
+      "comparison_key": {
+        "workload": "sqlite_controlled_restore_one_record_per_stream",
+        "store": "event-stream-sqlite-restore",
+        "durability": "ProcessRestart_DELETE_FULL",
+        "payload_bytes": 128,
+        "population": 10000,
+        "producers": 0,
+        "streams": 10000,
+        "subscribers": 0,
+        "concurrency": 1,
+        "page_records": 256,
+        "page_bytes": 2097152,
+        "measurement_phase": "logical_restore_publish_and_receipt",
+        "instrumentation": "Rust_System_GlobalAlloc_atomic_counters+1ms_sampler+stage_observer",
+        "memory_scope": "sampled_peak_process_RSS_during_restore",
+        "cpu_scope": "process_user_plus_system_restore_call",
+        "config_fingerprint": "34b48dfd3eb3e4e54f859ec7c8186a287a74c678eb422d5a79907b431643b22f"
+      },
+      "sample_count": 3,
+      "metrics": {
+        "runtime_ns_median": 320157625,
+        "cpu_us_median": 265204,
+        "memory_bytes_median": 8372224,
+        "rust_live_bytes_median": 87411,
+        "rust_allocated_bytes_median": 6119081,
+        "agents": null,
+        "accepted": 1,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": 10000
+      },
+      "provenance": {
+        "source_path": "docs/adr/004-stream-lifecycle-and-safe-restore/evidence/restore-resource-bba90501e0df45be.jsonl",
+        "source_sha256": "c005e658ff6e3d44e1136ab064618d1e6c1e6fce761d3f7a71851b5480ea7e31",
+        "sample_key": "{\"aggregation\":\"median_per_metric\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"config\":{\"allocator_counters_enabled\":true,\"concurrency\":1,\"copy_buffer_bytes\":65536,\"correctness\":\"exact_mapping_replay_retry_source_identity\",\"cpu_scope\":\"process_user_plus_system_restore_call\",\"durability\":\"ProcessRestart_DELETE_FULL\",\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters+1ms_sampler+stage_observer\",\"max_operations\":1,\"max_source_bytes\":536870912,\"max_staging_page_bytes\":536870912,\"measurement_phase\":\"logical_restore_publish_and_receipt\",\"memory_scope\":\"sampled_peak_process_RSS_during_restore\",\"page_bytes\":2097152,\"page_records\":256,\"payload_bytes\":128,\"population\":10000,\"producers\":0,\"records\":10000,\"sampler_enabled\":true,\"store\":\"event-stream-sqlite-restore\",\"streams\":10000,\"subscribers\":0,\"tokio_worker_threads\":2,\"watchdog_seconds\":900,\"workload\":\"sqlite_controlled_restore_one_record_per_stream\"},\"environment\":{\"arch\":\"arm64\",\"cpu_model\":\"Apple M5\",\"filesystem_block_size_bytes\":4096,\"fresh_process_per_sample\":true,\"host_context_scope\":\"captured_after_run_same_host_load_and_power_uncaptured\",\"kernel_release\":\"25.6.0\",\"logical_cpu_count\":10,\"memory_bytes\":25769803776,\"os\":\"Darwin\",\"os_build_version\":\"25G72\",\"os_product_version\":\"26.6\",\"physical_cpu_count\":10,\"rustc\":\"rustc 1.98.1 (48a229cea 2026-09-01)\",\"temporary_filesystem_type\":\"APFS\"}},\"lines\":[3,6,12],\"raw_execution_indexes\":[2,5,11]}",
+        "source_epoch": "bba90501e0df45be4601f5666c25430fe8f626817a92867ebb77bd8807d9d330"
+      },
+      "note": "Restore call includes logical import, validation, no-clobber publication and receipt return; fixture creation and replay validation are outside the timer. accepted/rejected/failed count restore operations; delivered counts records verified by exact replay after restore. RSS is the 1 ms sampled process value during restore. rust_live_bytes_median is the median sampled peak, not a settled value. Rust metrics exclude SQLite C allocations. Three fresh-process repetitions; stage observer enabled."
+    },
+    {
+      "id": "50940431c6a3b238",
+      "label": "SQLite controlled restore \u00b7 observer-disabled control \u00b7 10,000 streams",
+      "status": "measured",
+      "comparison_key": {
+        "workload": "sqlite_controlled_restore_one_record_per_stream",
+        "store": "event-stream-sqlite-restore",
+        "durability": "ProcessRestart_DELETE_FULL",
+        "payload_bytes": 128,
+        "population": 10000,
+        "producers": 0,
+        "streams": 10000,
+        "subscribers": 0,
+        "concurrency": 1,
+        "page_records": 256,
+        "page_bytes": 2097152,
+        "measurement_phase": "logical_restore_publish_and_receipt",
+        "instrumentation": "Rust_System_GlobalAlloc_atomic_counters+1ms_sampler",
+        "memory_scope": "sampled_peak_process_RSS_during_restore",
+        "cpu_scope": "process_user_plus_system_restore_call",
+        "config_fingerprint": "df5ad56a742e7e1613cdb07495ce4eb90333fe72ab1bd9103e8ac2b9121e06d7"
+      },
+      "sample_count": 1,
+      "metrics": {
+        "runtime_ns_median": 367448667,
+        "cpu_us_median": 302141,
+        "memory_bytes_median": 8355840,
+        "rust_live_bytes_median": 87411,
+        "rust_allocated_bytes_median": 6083756,
+        "agents": null,
+        "accepted": 1,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": 10000
+      },
+      "provenance": {
+        "source_path": "docs/adr/004-stream-lifecycle-and-safe-restore/evidence/restore-resource-bba90501e0df45be.jsonl",
+        "source_sha256": "c005e658ff6e3d44e1136ab064618d1e6c1e6fce761d3f7a71851b5480ea7e31",
+        "sample_key": "{\"aggregation\":\"single_control\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"config\":{\"allocator_counters_enabled\":true,\"concurrency\":1,\"copy_buffer_bytes\":65536,\"correctness\":\"exact_mapping_replay_retry_source_identity\",\"cpu_scope\":\"process_user_plus_system_restore_call\",\"durability\":\"ProcessRestart_DELETE_FULL\",\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters+1ms_sampler\",\"max_operations\":1,\"max_source_bytes\":536870912,\"max_staging_page_bytes\":536870912,\"measurement_phase\":\"logical_restore_publish_and_receipt\",\"memory_scope\":\"sampled_peak_process_RSS_during_restore\",\"page_bytes\":2097152,\"page_records\":256,\"payload_bytes\":128,\"population\":10000,\"producers\":0,\"records\":10000,\"sampler_enabled\":true,\"store\":\"event-stream-sqlite-restore\",\"streams\":10000,\"subscribers\":0,\"tokio_worker_threads\":2,\"watchdog_seconds\":900,\"workload\":\"sqlite_controlled_restore_one_record_per_stream\"},\"environment\":{\"arch\":\"arm64\",\"cpu_model\":\"Apple M5\",\"filesystem_block_size_bytes\":4096,\"fresh_process_per_sample\":true,\"host_context_scope\":\"captured_after_run_same_host_load_and_power_uncaptured\",\"kernel_release\":\"25.6.0\",\"logical_cpu_count\":10,\"memory_bytes\":25769803776,\"os\":\"Darwin\",\"os_build_version\":\"25G72\",\"os_product_version\":\"26.6\",\"physical_cpu_count\":10,\"rustc\":\"rustc 1.98.1 (48a229cea 2026-09-01)\",\"temporary_filesystem_type\":\"APFS\"}},\"lines\":[9],\"raw_execution_indexes\":[8]}",
+        "source_epoch": "bba90501e0df45be4601f5666c25430fe8f626817a92867ebb77bd8807d9d330"
+      },
+      "note": "Restore call includes logical import, validation, no-clobber publication and receipt return; fixture creation and replay validation are outside the timer. accepted/rejected/failed count restore operations; delivered counts records verified by exact replay after restore. RSS is the 1 ms sampled process value during restore. rust_live_bytes_median is the median sampled peak, not a settled value. Rust metrics exclude SQLite C allocations. One fresh-process control; stage observer disabled while sampler and allocator counters remain enabled, so it is not a repeated baseline. Host hardware/filesystem context was captured after the run; load and power state are unavailable."
+    },
+    {
+      "id": "fb2b71e391e6e66e",
+      "label": "SQLite controlled restore \u00b7 instrumented \u00b7 100,000 streams",
+      "status": "measured",
+      "comparison_key": {
+        "workload": "sqlite_controlled_restore_one_record_per_stream",
+        "store": "event-stream-sqlite-restore",
+        "durability": "ProcessRestart_DELETE_FULL",
+        "payload_bytes": 128,
+        "population": 100000,
+        "producers": 0,
+        "streams": 100000,
+        "subscribers": 0,
+        "concurrency": 1,
+        "page_records": 256,
+        "page_bytes": 2097152,
+        "measurement_phase": "logical_restore_publish_and_receipt",
+        "instrumentation": "Rust_System_GlobalAlloc_atomic_counters+1ms_sampler+stage_observer",
+        "memory_scope": "sampled_peak_process_RSS_during_restore",
+        "cpu_scope": "process_user_plus_system_restore_call",
+        "config_fingerprint": "957f1b0c36461adbcfe481c7ae6b2ef858b97ed77daa9bec82806504a44c3aeb"
+      },
+      "sample_count": 3,
+      "metrics": {
+        "runtime_ns_median": 3328224167,
+        "cpu_us_median": 3157889,
+        "memory_bytes_median": 9158656,
+        "rust_live_bytes_median": 87426,
+        "rust_allocated_bytes_median": 59493238,
+        "agents": null,
+        "accepted": 1,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": 100000
+      },
+      "provenance": {
+        "source_path": "docs/adr/004-stream-lifecycle-and-safe-restore/evidence/restore-resource-bba90501e0df45be.jsonl",
+        "source_sha256": "c005e658ff6e3d44e1136ab064618d1e6c1e6fce761d3f7a71851b5480ea7e31",
+        "sample_key": "{\"aggregation\":\"median_per_metric\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"config\":{\"allocator_counters_enabled\":true,\"concurrency\":1,\"copy_buffer_bytes\":65536,\"correctness\":\"exact_mapping_replay_retry_source_identity\",\"cpu_scope\":\"process_user_plus_system_restore_call\",\"durability\":\"ProcessRestart_DELETE_FULL\",\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters+1ms_sampler+stage_observer\",\"max_operations\":1,\"max_source_bytes\":536870912,\"max_staging_page_bytes\":536870912,\"measurement_phase\":\"logical_restore_publish_and_receipt\",\"memory_scope\":\"sampled_peak_process_RSS_during_restore\",\"page_bytes\":2097152,\"page_records\":256,\"payload_bytes\":128,\"population\":100000,\"producers\":0,\"records\":100000,\"sampler_enabled\":true,\"store\":\"event-stream-sqlite-restore\",\"streams\":100000,\"subscribers\":0,\"tokio_worker_threads\":2,\"watchdog_seconds\":900,\"workload\":\"sqlite_controlled_restore_one_record_per_stream\"},\"environment\":{\"arch\":\"arm64\",\"cpu_model\":\"Apple M5\",\"filesystem_block_size_bytes\":4096,\"fresh_process_per_sample\":true,\"host_context_scope\":\"captured_after_run_same_host_load_and_power_uncaptured\",\"kernel_release\":\"25.6.0\",\"logical_cpu_count\":10,\"memory_bytes\":25769803776,\"os\":\"Darwin\",\"os_build_version\":\"25G72\",\"os_product_version\":\"26.6\",\"physical_cpu_count\":10,\"rustc\":\"rustc 1.98.1 (48a229cea 2026-09-01)\",\"temporary_filesystem_type\":\"APFS\"}},\"lines\":[4,7,10],\"raw_execution_indexes\":[3,6,9]}",
+        "source_epoch": "bba90501e0df45be4601f5666c25430fe8f626817a92867ebb77bd8807d9d330"
+      },
+      "note": "Restore call includes logical import, validation, no-clobber publication and receipt return; fixture creation and replay validation are outside the timer. accepted/rejected/failed count restore operations; delivered counts records verified by exact replay after restore. RSS is the 1 ms sampled process value during restore. rust_live_bytes_median is the median sampled peak, not a settled value. Rust metrics exclude SQLite C allocations. Three fresh-process repetitions; stage observer enabled."
+    },
+    {
+      "id": "61b5cfff888c751e",
+      "label": "SQLite controlled restore \u00b7 observer-disabled control \u00b7 100,000 streams",
+      "status": "measured",
+      "comparison_key": {
+        "workload": "sqlite_controlled_restore_one_record_per_stream",
+        "store": "event-stream-sqlite-restore",
+        "durability": "ProcessRestart_DELETE_FULL",
+        "payload_bytes": 128,
+        "population": 100000,
+        "producers": 0,
+        "streams": 100000,
+        "subscribers": 0,
+        "concurrency": 1,
+        "page_records": 256,
+        "page_bytes": 2097152,
+        "measurement_phase": "logical_restore_publish_and_receipt",
+        "instrumentation": "Rust_System_GlobalAlloc_atomic_counters+1ms_sampler",
+        "memory_scope": "sampled_peak_process_RSS_during_restore",
+        "cpu_scope": "process_user_plus_system_restore_call",
+        "config_fingerprint": "4da69dbc1c019e11aabaa1c65020bb13bb667b4c00e2de05fda4fd27385cd164"
+      },
+      "sample_count": 1,
+      "metrics": {
+        "runtime_ns_median": 3730048375,
+        "cpu_us_median": 3587137,
+        "memory_bytes_median": 9158656,
+        "rust_live_bytes_median": 87411,
+        "rust_allocated_bytes_median": 59393891,
+        "agents": null,
+        "accepted": 1,
+        "rejected": 0,
+        "failed": 0,
+        "delivered": 100000
+      },
+      "provenance": {
+        "source_path": "docs/adr/004-stream-lifecycle-and-safe-restore/evidence/restore-resource-bba90501e0df45be.jsonl",
+        "source_sha256": "c005e658ff6e3d44e1136ab064618d1e6c1e6fce761d3f7a71851b5480ea7e31",
+        "sample_key": "{\"aggregation\":\"single_control\",\"config_fingerprint_algorithm\":\"sha256(canonical JSON: sorted keys, compact separators)\",\"config_fingerprint_input\":{\"config\":{\"allocator_counters_enabled\":true,\"concurrency\":1,\"copy_buffer_bytes\":65536,\"correctness\":\"exact_mapping_replay_retry_source_identity\",\"cpu_scope\":\"process_user_plus_system_restore_call\",\"durability\":\"ProcessRestart_DELETE_FULL\",\"instrumentation\":\"Rust_System_GlobalAlloc_atomic_counters+1ms_sampler\",\"max_operations\":1,\"max_source_bytes\":536870912,\"max_staging_page_bytes\":536870912,\"measurement_phase\":\"logical_restore_publish_and_receipt\",\"memory_scope\":\"sampled_peak_process_RSS_during_restore\",\"page_bytes\":2097152,\"page_records\":256,\"payload_bytes\":128,\"population\":100000,\"producers\":0,\"records\":100000,\"sampler_enabled\":true,\"store\":\"event-stream-sqlite-restore\",\"streams\":100000,\"subscribers\":0,\"tokio_worker_threads\":2,\"watchdog_seconds\":900,\"workload\":\"sqlite_controlled_restore_one_record_per_stream\"},\"environment\":{\"arch\":\"arm64\",\"cpu_model\":\"Apple M5\",\"filesystem_block_size_bytes\":4096,\"fresh_process_per_sample\":true,\"host_context_scope\":\"captured_after_run_same_host_load_and_power_uncaptured\",\"kernel_release\":\"25.6.0\",\"logical_cpu_count\":10,\"memory_bytes\":25769803776,\"os\":\"Darwin\",\"os_build_version\":\"25G72\",\"os_product_version\":\"26.6\",\"physical_cpu_count\":10,\"rustc\":\"rustc 1.98.1 (48a229cea 2026-09-01)\",\"temporary_filesystem_type\":\"APFS\"}},\"lines\":[13],\"raw_execution_indexes\":[12]}",
+        "source_epoch": "bba90501e0df45be4601f5666c25430fe8f626817a92867ebb77bd8807d9d330"
+      },
+      "note": "Restore call includes logical import, validation, no-clobber publication and receipt return; fixture creation and replay validation are outside the timer. accepted/rejected/failed count restore operations; delivered counts records verified by exact replay after restore. RSS is the 1 ms sampled process value during restore. rust_live_bytes_median is the median sampled peak, not a settled value. Rust metrics exclude SQLite C allocations. One fresh-process control; stage observer disabled while sampler and allocator counters remain enabled, so it is not a repeated baseline. Host hardware/filesystem context was captured after the run; load and power state are unavailable."
+    }
+  ],
+  "summary": "Controlled SQLite restore completed at 1,000, 10,000 and 100,000 one-record streams. Three instrumented fresh processes and one observer-disabled control per size preserved exact mapping, replay, retry, source identity, bounded pages and cleanup; control comparisons remain single-sample diagnostics."
+}

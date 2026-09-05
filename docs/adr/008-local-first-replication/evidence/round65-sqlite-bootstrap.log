@@ -1,0 +1,65 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+error[E0277]: can't compare `[u8; 16]` with `Vec<u8>`
+    --> src/infrastructure/sqlite_replication.rs:3347:56
+     |
+3347 |         && request.receipt.request.destination_epoch.0 == epoch
+     |                                                        ^^ no implementation for `[u8; 16] == Vec<u8>`
+     |
+     = help: the trait `PartialEq<Vec<u8>>` is not implemented for `[u8; 16]`
+     = note: `Vec<u8>` implements `PartialEq<[u8; 16]>`
+help: consider dereferencing here
+     |
+3347 |         && request.receipt.request.destination_epoch.0 == *epoch
+     |                                                           +
+help: consider swapping the equality
+     |
+3347 -         && request.receipt.request.destination_epoch.0 == epoch
+3347 +         && epoch == request.receipt.request.destination_epoch.0
+     |
+
+error[E0277]: can't compare `[u8; 16]` with `Vec<u8>`
+    --> src/infrastructure/sqlite_replication.rs:3348:50
+     |
+3348 |         && request.receipt.request.snapshot.id.0 == snapshot
+     |                                                  ^^ no implementation for `[u8; 16] == Vec<u8>`
+     |
+     = help: the trait `PartialEq<Vec<u8>>` is not implemented for `[u8; 16]`
+     = note: `Vec<u8>` implements `PartialEq<[u8; 16]>`
+help: consider dereferencing here
+     |
+3348 |         && request.receipt.request.snapshot.id.0 == *snapshot
+     |                                                     +
+help: consider swapping the equality
+     |
+3348 -         && request.receipt.request.snapshot.id.0 == snapshot
+3348 +         && snapshot == request.receipt.request.snapshot.id.0
+     |
+
+error[E0277]: can't compare `[u8; 32]` with `Vec<u8>`
+    --> src/infrastructure/sqlite_replication.rs:3354:54
+     |
+3354 |         && request.receipt.request.snapshot.digest.0 == digest
+     |                                                      ^^ no implementation for `[u8; 32] == Vec<u8>`
+     |
+     = help: the trait `PartialEq<Vec<u8>>` is not implemented for `[u8; 32]`
+     = note: `Vec<u8>` implements `PartialEq<[u8; 32]>`
+help: consider dereferencing here
+     |
+3354 |         && request.receipt.request.snapshot.digest.0 == *digest
+     |                                                         +
+help: consider swapping the equality
+     |
+3354 -         && request.receipt.request.snapshot.digest.0 == digest
+3354 +         && digest == request.receipt.request.snapshot.digest.0
+     |
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `FromResidual`)
+    --> src/infrastructure/sqlite_replication.rs:3415:155
+     |
+3414 | ...rr(|_|ReplicationError::BootstrapDriveUnknown(Box::new(BeginOriginBootstrap {
+     |       --- this function should return `Result` or `Option` to accept `?`
+3415 | ... ReplicationOperationId::new(begin_operation).map_err(|_|ReplicationError::CorruptStorage("invalid begin operation identity".into()))?,
+     |                                                                                                                                         ^ cannot use the `?` operator in a closure that returns `application::replication::ReplicationError`
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `event-stream` (lib) due to 4 previous errors

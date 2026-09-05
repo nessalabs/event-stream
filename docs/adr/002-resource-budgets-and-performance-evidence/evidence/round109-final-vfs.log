@@ -1,0 +1,9 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.55s
+     Running tests/sqlite_faults.rs (target/debug/deps/sqlite_faults-9a69124c1b0bf5c0)
+
+running 1 test
+test grouped_append_vfs_faults_recover_all_records_or_none ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.05s
+

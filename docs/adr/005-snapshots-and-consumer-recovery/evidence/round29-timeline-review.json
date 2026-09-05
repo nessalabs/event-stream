@@ -1,0 +1,9 @@
+{
+  "kind": "timeline_smoke_structure_review",
+  "append_intervals": 256,
+  "sync_intervals": 777,
+  "dropped": 0,
+  "exact_latency_multiset": true,
+  "overlap_recomputed": true,
+  "scope": "debug instrumentation structure only; no performance qualification"
+}

@@ -1,0 +1,11 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.12s
+     Running tests/sqlite.rs (target/debug/deps/sqlite-fc429182fd501d63)
+
+running 3 tests
+test sqlite_retention_merged_replay_uses_both_offset_indexes_without_temp_sort ... ok
+test sqlite_retention_floor_respects_active_snapshot_recovery_lease ... ok
+test sqlite_retention_reuses_ids_across_generations_and_cleans_only_after_both_bounds ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 43 filtered out; finished in 0.03s
+

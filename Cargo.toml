@@ -1,0 +1,55 @@
+[package]
+name = "event-stream"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+publish = false
+
+[features]
+default = []
+codec = []
+sqlite = ["dep:rusqlite", "dep:fs2", "dep:sha2"]
+snapshots = ["dep:sha2"]
+retention = ["snapshots"]
+source-journal = ["codec", "retention"]
+replication = ["snapshots", "retention"]
+test-support = []
+
+[dependencies]
+async-trait = "=0.1.92"
+tokio = { version = "=1.53.1", features = ["rt-multi-thread", "sync", "time", "macros"] }
+uuid = { version = "=1.26.0", features = ["v4"] }
+rusqlite = { version = "=0.32.1", features = ["bundled"], optional = true }
+
+fs2 = { version = "=0.4.3", optional = true }
+sha2 = { version = "=0.10.9", optional = true }
+
+[dev-dependencies]
+libc = "=0.2.189"
+
+[[example]]
+name = "snapshot_recovery"
+required-features = ["snapshots"]
+
+[[example]]
+name = "snapshot_resource"
+required-features = ["snapshots"]
+
+[[example]]
+name = "local_recovery"
+required-features = ["sqlite"]
+
+[[example]]
+name = "replicated_recovery"
+required-features = ["sqlite", "replication"]
+
+[[example]]
+name = "mixed_resource"
+required-features = ["sqlite", "source-journal", "replication"]
+
+[[example]]
+name = "retention_cleanup"
+required-features = ["retention", "replication"]
+
+[workspace]
+exclude = ["verification"]

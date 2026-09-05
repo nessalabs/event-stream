@@ -1,0 +1,67 @@
+{
+  "format_version": 1,
+  "scenario_id": "retention-floor",
+  "run_id": "1788599337786931000-27871-0",
+  "started_unix_ms": 1788599337786,
+  "target": "Runtime<MemoryStore> retention policy, generated append, floor, expiry, cleanup, and read_after",
+  "implementation_fingerprint": "fnv1a64:23232febfcb52634",
+  "evidence_scope": "Production Runtime and MemoryStore retention APIs with bounded deterministic input. This verifies logical floor/expiry behavior and bounded in-memory cleanup; SQLite persistence and fault qualification remain separate.",
+  "input": {
+    "legacy_offset": 1,
+    "generation_one_offset": 2,
+    "floor": 2,
+    "suffix_offset": 3
+  },
+  "status": "passed",
+  "elapsed_us": 7237,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "The production Memory runtime kept retry identity and replay history as separate, explicit horizons.",
+    "observations": [
+      {
+        "label": "Generated identity reuse",
+        "expected": "legacy offset 1 and generation-one offset 2",
+        "actual": "legacy=1, generation_one=2",
+        "passed": true
+      },
+      {
+        "label": "Retry horizon",
+        "expected": "generation-one retry survives floor movement, then expires explicitly",
+        "actual": "survived_floor=true, expired=true",
+        "passed": true
+      },
+      {
+        "label": "Bounded cleanup",
+        "expected": "finite turns complete with at most one event row, one retry row, and 1 MiB per turn",
+        "actual": "turns=2, rows=[2, 2], bytes=[860, 434], remaining=false",
+        "passed": true
+      },
+      {
+        "label": "Replay suffix",
+        "expected": "exactly offset 3 after floor 2",
+        "actual": "offsets=[3], complete=true",
+        "passed": true
+      }
+    ],
+    "output": {
+      "legacy_offset": 1,
+      "generation_one_offset": 2,
+      "retry_survived_floor": true,
+      "retry_expired": true,
+      "cleanup_turns": 2,
+      "removed_rows_per_turn": [
+        2,
+        2
+      ],
+      "removed_bytes_per_turn": [
+        860,
+        434
+      ],
+      "cleanup_remaining": false,
+      "suffix_offsets": [
+        3
+      ]
+    }
+  }
+}

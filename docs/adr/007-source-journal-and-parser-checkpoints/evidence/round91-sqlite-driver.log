@@ -1,0 +1,9 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.36s
+     Running tests/sqlite_ingestion_finalization.rs (target/debug/deps/sqlite_ingestion_finalization-f22eb882496afa92)
+
+running 1 test
+test sqlite_finalization_is_bounded_and_survives_reopen ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+

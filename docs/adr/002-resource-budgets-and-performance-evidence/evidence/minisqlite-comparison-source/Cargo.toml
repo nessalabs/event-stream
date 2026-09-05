@@ -1,0 +1,12 @@
+[package]
+name = "event-stream-minisqlite-diagnostic"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+event-stream = { path = "/Users/nessa/Documents/NessaLabs/event-stream", features = ["sqlite"] }
+libc = "=0.2.189"
+minisqlite = { git = "https://github.com/cursor/minisqlite", rev = "4a5c1341fdde38beaf438e0241c9f45833c4b870" }
+rusqlite = { version = "=0.32.1", features = ["bundled"] }
+tokio = { version = "=1.53.1", features = ["rt-multi-thread", "macros", "time"] }

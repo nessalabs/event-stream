@@ -1,0 +1,123 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused import: `Digest`
+ --> src/infrastructure/memory_replication.rs:4:12
+  |
+4 | use sha2::{Digest, Sha256};
+  |            ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: multiple fields are never read
+   --> src/infrastructure/memory.rs:247:16
+    |
+140 | pub(super) struct State {
+    |                   ----- fields in this struct
+...
+247 |     pub(super) replica_bootstraps:
+    |                ^^^^^^^^^^^^^^^^^^
+...
+250 |     pub(super) published_replica_bootstraps: HashMap<OriginStream, BootstrapId>,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+251 |     #[cfg(feature = "replication")]
+252 |     pub(super) replica_staging_chunks: usize,
+    |                ^^^^^^^^^^^^^^^^^^^^^^
+253 |     #[cfg(feature = "replication")]
+254 |     pub(super) replica_staging_bytes: u64,
+    |                ^^^^^^^^^^^^^^^^^^^^^
+255 |     #[cfg(feature = "replication")]
+256 |     pub(super) replica_staging_records: usize,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^
+257 |     #[cfg(feature = "replication")]
+258 |     pub(super) replica_staging_record_bytes: u64,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+263 |     pub(super) origin_replicas_by_stream: HashMap<StreamKey, Vec<(ReplicaId, OriginStream)>>,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `State` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `replication_commit_times` is never read
+   --> src/infrastructure/memory.rs:295:16
+    |
+277 | pub(super) struct StreamHistory {
+    |                   ------------- field in this struct
+...
+295 |     pub(super) replication_commit_times: BTreeMap<u64, DurableTimestampMillis>,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `StreamHistory` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: multiple fields are never read
+  --> src/infrastructure/memory_replication.rs:28:5
+   |
+27 | pub(super) struct MemoryReplicaBootstrap {
+   |                   ---------------------- fields in this struct
+28 |     request: ReplicaBootstrap,
+   |     ^^^^^^^
+29 |     state: ReplicaBootstrapState,
+   |     ^^^^^
+30 |     chunks: BTreeMap<u64, Payload>,
+   |     ^^^^^^
+31 |     accepted_bytes: u64,
+   |     ^^^^^^^^^^^^^^
+32 |     suffix_records: BTreeMap<u64, Arc<Record>>,
+   |     ^^^^^^^^^^^^^^
+33 |     suffix_batches: std::collections::HashMap<BatchId, ReplicaBatch>,
+   |     ^^^^^^^^^^^^^^
+34 |     suffix_bytes: u64,
+   |     ^^^^^^^^^^^^
+35 |     verification: Option<MemoryReplicaBootstrapVerification>,
+   |     ^^^^^^^^^^^^
+36 |     publish: Option<(PublishReplicaBootstrap, ReplicaBootstrapReceipt)>,
+   |     ^^^^^^^
+   |
+   = note: `MemoryReplicaBootstrap` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: fields `snapshot_offset`, `suffix_offset`, `suffix_records`, `suffix_bytes`, and `hasher` are never read
+  --> src/infrastructure/memory_replication.rs:41:5
+   |
+40 | struct MemoryReplicaBootstrapVerification {
+   |        ---------------------------------- fields in this struct
+41 |     snapshot_offset: u64,
+   |     ^^^^^^^^^^^^^^^
+42 |     suffix_offset: u64,
+   |     ^^^^^^^^^^^^^
+43 |     suffix_records: usize,
+   |     ^^^^^^^^^^^^^^
+44 |     suffix_bytes: u64,
+   |     ^^^^^^^^^^^^
+45 |     hasher: Sha256,
+   |     ^^^^^^
+   |
+   = note: `MemoryReplicaBootstrapVerification` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: `event-stream` (lib) generated 5 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.44s
+     Running tests/replication_resource_regressions.rs (target/debug/deps/replication_resource_regressions-e5329f98299b98a7)
+
+running 2 tests
+test closed_origin_rejects_exact_attach_retry_and_detach ... FAILED
+test destination_floor_cannot_exceed_combined_receipt_count_limit ... FAILED
+
+failures:
+
+---- closed_origin_rejects_exact_attach_retry_and_detach stdout ----
+
+thread 'closed_origin_rejects_exact_attach_retry_and_detach' (6060780) panicked at tests/replication_resource_regressions.rs:85:5:
+Ok(AttachReplicaReceipt { request: AttachReplica { operation_id: ReplicationOperationId("attach"), replica: ReplicaId("destination"), stream: OriginStream { origin: OriginId([175, 173, 69, 111, 223, 66, 74, 211, 157, 78, 160, 199, 178, 3, 175, 63]), stream: StreamKey { id: StreamId("closed"), incarnation: IncarnationId([36, 143, 65, 222, 128, 92, 68, 225, 176, 145, 164, 19, 154, 236, 8, 27]) } }, destination_epoch: DestinationEpoch([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]), max_backlog_bytes: 4096, max_backlog_age: 60s, start: FromBeginning }, status: ReplicaStatus { replica: ReplicaId("destination"), stream: OriginStream { origin: OriginId([175, 173, 69, 111, 223, 66, 74, 211, 157, 78, 160, 199, 178, 3, 175, 63]), stream: StreamKey { id: StreamId("closed"), incarnation: IncarnationId([36, 143, 65, 222, 128, 92, 68, 225, 176, 145, 164, 19, 154, 236, 8, 27]) } }, destination_epoch: DestinationEpoch([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]), acknowledged: ReplicaPosition { stream: OriginStream { origin: OriginId([175, 173, 69, 111, 223, 66, 74, 211, 157, 78, 160, 199, 178, 3, 175, 63]), stream: StreamKey { id: StreamId("closed"), incarnation: IncarnationId([36, 143, 65, 222, 128, 92, 68, 225, 176, 145, 164, 19, 154, 236, 8, 27]) } }, offset: 0 }, backlog_records: 0, backlog_bytes: 0, oldest_backlog_at: None, mode: Required, pending_batch: None } })
+
+---- destination_floor_cannot_exceed_combined_receipt_count_limit stdout ----
+
+thread 'destination_floor_cannot_exceed_combined_receipt_count_limit' (6060781) panicked at tests/replication_resource_regressions.rs:52:5:
+Ok(AdvanceReplicaReceiptFloorReceipt { request: AdvanceReplicaReceiptFloor { operation_id: ReplicationOperationId("floor"), stream: OriginStream { origin: OriginId([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), stream: StreamKey { id: StreamId("bounded"), incarnation: IncarnationId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]) } }, destination_epoch: DestinationEpoch([238, 186, 173, 213, 23, 165, 64, 147, 177, 171, 170, 100, 91, 139, 168, 146]), expected_floor: ReplicaPosition { stream: OriginStream { origin: OriginId([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), stream: StreamKey { id: StreamId("bounded"), incarnation: IncarnationId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]) } }, offset: 0 }, new_floor: ReplicaPosition { stream: OriginStream { origin: OriginId([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), stream: StreamKey { id: StreamId("bounded"), incarnation: IncarnationId([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]) } }, offset: 1 } } })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    closed_origin_rejects_exact_attach_retry_and_detach
+    destination_floor_cannot_exceed_combined_receipt_count_limit
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test replication_resource_regressions`

@@ -1,0 +1,29 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused imports: `params_from_iter` and `types::Value`
+  --> src/infrastructure/sqlite_restore.rs:13:13
+   |
+13 |     params, params_from_iter, types::Value, Connection, OpenFlags, OptionalExtension,
+   |             ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `event-stream` (lib) generated 1 warning (run `cargo fix --lib -p event-stream` to apply 1 suggestion)
+error[E0277]: `SqliteStore` doesn't implement `Debug`
+   --> tests/sqlite_replication_regressions.rs:190:29
+    |
+190 |     let observed = format!("{result:?}");
+    |                             ^^^^^^^^^^ `SqliteStore` cannot be formatted using `{:?}` because it doesn't implement `Debug`
+    |
+    = help: the trait `Debug` is not implemented for `SqliteStore`
+help: the trait `Debug` is conditionally implemented for `Result<T, E>`
+   --> /Users/nessa/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/result.rs:552:16
+    |
+552 | #[derive(Copy, Debug, Hash)]
+    |                ^^^^^
+...
+557 | pub enum Result<T, E> {
+    |                 - unsatisfied requirement introduced here: `SqliteStore: Debug`
+    = note: required for `Result<SqliteStore, event_stream::Error>` to implement `Debug`
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `event-stream` (test "sqlite_replication_regressions") due to 1 previous error

@@ -1,0 +1,54 @@
+   Compiling version_check v0.9.5
+   Compiling cfg-if v1.0.4
+   Compiling libc v0.2.189
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling zerocopy v0.8.56
+   Compiling unicode-ident v1.0.24
+   Compiling find-msvc-tools v0.1.12
+   Compiling shlex v2.0.1
+   Compiling typenum v1.20.1
+   Compiling pkg-config v0.3.34
+   Compiling once_cell v1.21.4
+   Compiling cc v1.4.5
+   Compiling vcpkg v0.2.15
+   Compiling getrandom v0.4.3
+   Compiling generic-array v0.14.7
+   Compiling ahash v0.8.12
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling smallvec v1.16.0
+   Compiling pin-project-lite v0.2.17
+   Compiling fallible-iterator v0.3.0
+   Compiling bitflags v2.13.1
+   Compiling libsqlite3-sys v0.30.1
+   Compiling syn v3.0.5
+   Compiling cpufeatures v0.2.17
+   Compiling fs2 v0.4.3
+   Compiling uuid v1.26.0
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling digest v0.10.7
+   Compiling sha2 v0.10.9
+   Compiling tokio-macros v2.7.2
+   Compiling async-trait v0.1.92
+   Compiling tokio v1.53.1
+   Compiling hashbrown v0.14.5
+   Compiling hashlink v0.9.1
+   Compiling rusqlite v0.32.1
+   Compiling event-stream v0.1.0 (/tmp/event-stream-round51-snapshot-source)
+warning: unused imports: `SystemTime` and `UNIX_EPOCH`
+  --> src/infrastructure/memory.rs:25:12
+   |
+25 |     time::{SystemTime, UNIX_EPOCH},
+   |            ^^^^^^^^^^  ^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `params_from_iter` and `types::Value`
+  --> src/infrastructure/sqlite_restore.rs:13:13
+   |
+13 |     params, params_from_iter, types::Value, Connection, OpenFlags, OptionalExtension,
+   |             ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^
+
+warning: `event-stream` (lib) generated 2 warnings (run `cargo fix --lib -p event-stream` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 20.40s

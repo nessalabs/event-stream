@@ -1,0 +1,28 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.18s
+     Running tests/core_replication.rs (target/debug/deps/core_replication-de07635c12035336)
+
+running 2 tests
+test memory_replica_destination_obeys_atomic_batch_contract ... ok
+test memory_replication_origin_obeys_batch_contract ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_bootstrap_regressions.rs (target/debug/deps/replication_bootstrap_regressions-eccfe86264f1779a)
+
+running 2 tests
+test snapshot_only_bootstrap_has_its_covered_cursor_as_the_replica_tail ... ok
+test bootstrap_verification_makes_bounded_progress_across_multiple_calls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_resource_regressions.rs (target/debug/deps/replication_resource_regressions-e5329f98299b98a7)
+
+running 4 tests
+test closed_origin_rejects_exact_attach_retry_and_detach ... ok
+test attaching_existing_history_preserves_original_commit_age ... ok
+test destination_floor_cannot_exceed_combined_receipt_count_limit ... ok
+test partial_ack_uses_remaining_record_age_and_moves_retention_protection ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

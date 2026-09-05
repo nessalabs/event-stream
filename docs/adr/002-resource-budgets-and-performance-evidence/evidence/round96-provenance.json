@@ -1,0 +1,29 @@
+{
+  "binary": "/tmp/event-stream-round95-burst-target/release/examples/performance_baseline",
+  "binary_sha256": "2b5c4222740e337edfb20c559b029e48ea8740c7b5aa9eb11b4403be4503d3b3",
+  "archive": "docs/adr/002-resource-budgets-and-performance-evidence/evidence/round95-source.tar",
+  "archive_sha256": "0853473f1aed97defe3e48e92c9d594a7debff28db976e1390efdde51c78586d",
+  "features": [
+    "sqlite",
+    "snapshots",
+    "test-support"
+  ],
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "load": [
+    2.9541015625,
+    2.908203125,
+    3.0751953125
+  ],
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t92%; discharging; 7:39 remaining present: true\n",
+  "scope": "Diagnostic scheduled arrivals, four producers on four streams. No release latency gate claimed. No builds or tests run concurrently. Ambient desktop remains open.",
+  "profiles": {
+    "800_per_second": {
+      "events": 1000,
+      "interval_us": 5000
+    },
+    "16000_per_second": {
+      "events": 4096,
+      "interval_us": 250
+    }
+  }
+}

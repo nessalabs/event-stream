@@ -1,0 +1,114 @@
+[
+  {
+    "store": "memory",
+    "variant": "control",
+    "metrics": {
+      "runtime_ns_median": 4997886042,
+      "cpu_us_median": 158092,
+      "memory_bytes_median": 14090240,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 19477444,
+      "agents": 4,
+      "accepted": 4000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 81625,
+    "schedule_lateness_p99_ns_median": 2839750,
+    "generator_rejected": [
+      0,
+      0,
+      0
+    ],
+    "peak_generator_tasks": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "store": "memory",
+    "variant": "bounded",
+    "metrics": {
+      "runtime_ns_median": 4997004292,
+      "cpu_us_median": 160188,
+      "memory_bytes_median": 6586368,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 19159000,
+      "agents": 4,
+      "accepted": 4000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 90458,
+    "schedule_lateness_p99_ns_median": 2537583,
+    "generator_rejected": [
+      0,
+      0,
+      0
+    ],
+    "peak_generator_tasks": [
+      4,
+      4,
+      4
+    ]
+  },
+  {
+    "store": "sqlite",
+    "variant": "control",
+    "metrics": {
+      "runtime_ns_median": 4998086625,
+      "cpu_us_median": 1587033,
+      "memory_bytes_median": 16089088,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 20136216,
+      "agents": 4,
+      "accepted": 4000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 2932292,
+    "schedule_lateness_p99_ns_median": 2911541,
+    "generator_rejected": [
+      0,
+      0,
+      0
+    ],
+    "peak_generator_tasks": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "store": "sqlite",
+    "variant": "bounded",
+    "metrics": {
+      "runtime_ns_median": 4998563166,
+      "cpu_us_median": 1537831,
+      "memory_bytes_median": 8323072,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 19794028,
+      "agents": 4,
+      "accepted": 4000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 5080625,
+    "schedule_lateness_p99_ns_median": 2991208,
+    "generator_rejected": [
+      0,
+      0,
+      0
+    ],
+    "peak_generator_tasks": [
+      15,
+      8,
+      10
+    ]
+  }
+]

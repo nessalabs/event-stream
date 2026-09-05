@@ -1,0 +1,10 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.09s
+     Running tests/sqlite.rs (target/debug/deps/sqlite-c470c7352bfee284)
+
+running 2 tests
+test sqlite_journal_receipt_cleanup_does_not_strand_raw_bytes_before_checkpoint ... ok
+test shared_source_journal_store_contract ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 46 filtered out; finished in 0.01s
+

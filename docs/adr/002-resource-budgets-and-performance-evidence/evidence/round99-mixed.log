@@ -1,0 +1,17 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.34s
+     Running tests/mixed_workload.rs (target/debug/deps/mixed_workload-33ef5ae4adcd8cec)
+
+running 1 test
+test scheduled_foreground_and_replay_survive_mixed_recovery_and_reply_loss ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.45s
+
+     Running tests/replication_bootstrap_accounting.rs (target/debug/deps/replication_bootstrap_accounting-d0456b827d272243)
+
+running 2 tests
+test maximum_identifiers_are_charged_before_bootstrap_io ... ok
+test bounded_bootstrap_still_retries_the_exact_completed_receipt ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

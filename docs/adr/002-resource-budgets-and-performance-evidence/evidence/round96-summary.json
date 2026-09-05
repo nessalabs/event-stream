@@ -1,0 +1,106 @@
+[
+  {
+    "store": "memory",
+    "profile": "16000_per_second",
+    "offered": 16384,
+    "metrics": {
+      "runtime_ns_median": 1034724542,
+      "cpu_us_median": 535093,
+      "memory_bytes_median": 43859968,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 69613144,
+      "agents": 4,
+      "accepted": 16384,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      16384,
+      16384
+    ],
+    "successful_receipt_p99_ns_median": 403792,
+    "schedule_lateness_p99_ns_median": 2139584,
+    "queue_wait_p99_ns_median": 384750,
+    "store_service_p99_ns_median": 11833,
+    "maximum_observed_queue": 58
+  },
+  {
+    "store": "memory",
+    "profile": "800_per_second",
+    "offered": 4000,
+    "metrics": {
+      "runtime_ns_median": 4999220875,
+      "cpu_us_median": 201629,
+      "memory_bytes_median": 13729792,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 19307688,
+      "agents": 4,
+      "accepted": 4000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      4000,
+      4000
+    ],
+    "successful_receipt_p99_ns_median": 91042,
+    "schedule_lateness_p99_ns_median": 2833417,
+    "queue_wait_p99_ns_median": 65542,
+    "store_service_p99_ns_median": 19833,
+    "maximum_observed_queue": 4
+  },
+  {
+    "store": "sqlite",
+    "profile": "16000_per_second",
+    "offered": 16384,
+    "metrics": {
+      "runtime_ns_median": 1173173833,
+      "cpu_us_median": 1128385,
+      "memory_bytes_median": 40599552,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 53154293,
+      "agents": 4,
+      "accepted": 4063,
+      "rejected": 12321,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      4039,
+      4160
+    ],
+    "successful_receipt_p99_ns_median": 154169709,
+    "schedule_lateness_p99_ns_median": 2130250,
+    "queue_wait_p99_ns_median": 153855667,
+    "store_service_p99_ns_median": 398875,
+    "maximum_observed_queue": 512
+  },
+  {
+    "store": "sqlite",
+    "profile": "800_per_second",
+    "offered": 4000,
+    "metrics": {
+      "runtime_ns_median": 4999186625,
+      "cpu_us_median": 1823075,
+      "memory_bytes_median": 14778368,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 19943792,
+      "agents": 4,
+      "accepted": 4000,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "accepted_range": [
+      4000,
+      4000
+    ],
+    "successful_receipt_p99_ns_median": 12173083,
+    "schedule_lateness_p99_ns_median": 2752875,
+    "queue_wait_p99_ns_median": 10918833,
+    "store_service_p99_ns_median": 1032167,
+    "maximum_observed_queue": 26
+  }
+]

@@ -1,0 +1,40 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.56s
+     Running tests/sqlite_replica_restore_corruption.rs (target/debug/deps/sqlite_replica_restore_corruption-4d0d2401cd2228da)
+
+running 7 tests
+test restore_rejects_missing_published_suffix_record ... ok
+test restore_rejects_partial_upload_counter_mismatch ... FAILED
+test restore_accepts_partial_snapshot_upload ... FAILED
+test restore_rejects_corrupt_published_replica_snapshot ... ok
+test restore_rejects_shifted_published_snapshot_chunk ... ok
+test restore_rejects_missing_published_snapshot_chunk ... ok
+test restore_rejects_partial_upload_chunk_gap ... FAILED
+
+failures:
+
+---- restore_rejects_partial_upload_counter_mismatch stdout ----
+
+thread 'restore_rejects_partial_upload_counter_mismatch' (6767103) panicked at tests/sqlite_replica_restore_corruption.rs:183:5:
+corrupt backup was restored after UPDATE replication_destination_bootstraps SET accepted_bytes=zeroblob(8): Ok(RestoreReceipt { operation_id: RestoreOperationId("restore-replication-destination"), backup_identity: BackupIdentity([215, 120, 169, 40, 15, 62, 149, 151, 130, 162, 212, 255, 129, 129, 51, 177, 118, 146, 2, 102, 188, 244, 165, 165, 163, 93, 166, 190, 241, 237, 240, 182]), destination: "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/replication-destination-roundtrip-b8cdf132-b7f8-4e73-aa23-7e1efbe96d72/restored.sqlite3", mapping_count: 0 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- restore_accepts_partial_snapshot_upload stdout ----
+
+thread 'restore_accepts_partial_snapshot_upload' (6767098) panicked at tests/sqlite_replica_restore_corruption.rs:194:72:
+called `Result::unwrap()` on an `Err` value: DestinationReplaced { current: DestinationEpoch([240, 187, 129, 66, 182, 99, 78, 245, 148, 21, 174, 103, 159, 89, 208, 102]) }
+
+---- restore_rejects_partial_upload_chunk_gap stdout ----
+
+thread 'restore_rejects_partial_upload_chunk_gap' (6767102) panicked at tests/sqlite_replica_restore_corruption.rs:183:5:
+corrupt backup was restored after UPDATE replication_destination_bootstrap_chunks SET offset=x'0000000000000001': Ok(RestoreReceipt { operation_id: RestoreOperationId("restore-replication-destination"), backup_identity: BackupIdentity([45, 200, 31, 211, 44, 27, 55, 11, 237, 185, 35, 165, 113, 17, 102, 232, 83, 48, 51, 162, 234, 252, 192, 18, 43, 104, 172, 46, 190, 106, 140, 2]), destination: "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/replication-destination-roundtrip-5c1fb054-7b9f-4a33-b38b-a2a9cbdf9bbf/restored.sqlite3", mapping_count: 0 })
+
+
+failures:
+    restore_accepts_partial_snapshot_upload
+    restore_rejects_partial_upload_chunk_gap
+    restore_rejects_partial_upload_counter_mismatch
+
+test result: FAILED. 4 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s
+
+error: test failed, to rerun pass `--test sqlite_replica_restore_corruption`

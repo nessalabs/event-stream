@@ -1,0 +1,8 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running tests/sqlite.rs (target/debug/deps/sqlite-c470c7352bfee284)
+
+running 1 test
+test sqlite_journal_marker_retry_does_not_recreate_a_missing_output ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 48 filtered out; finished in 0.01s
+

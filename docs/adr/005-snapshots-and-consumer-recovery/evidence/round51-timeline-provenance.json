@@ -1,0 +1,24 @@
+{
+  "purpose": "Diagnostic chronology only; does not supersede round25 failed qualification",
+  "binary_sha256": "ee46f588135bfc4b711def9fd4e764f823ae0154d385166390e3c282eff098e9",
+  "source_archive_sha256": "0882155840c4a5d325a7a6c9c418cfc25bbd360d0678b7868d92c0556a18f57d",
+  "runner_sha256": "7fc328d7dedd4d7189213e1a3a19d0289b7368659f00364ab0834f9e4e92d331",
+  "features": [
+    "sqlite",
+    "snapshots",
+    "test-support"
+  ],
+  "platform": "macOS-26.6-arm64-arm-64bit",
+  "load_average": [
+    4.29345703125,
+    3.9853515625,
+    3.95556640625
+  ],
+  "cpu": "Apple M5",
+  "memory_bytes": 25769803776,
+  "started_utc": "2026-09-05T09:45:41.513140+00:00",
+  "repetitions": 3,
+  "snapshot_bytes": 1048576,
+  "instrumented": true,
+  "quiet_window": "Both implementation agents confirmed no active build/test processes; source edits allowed"
+}

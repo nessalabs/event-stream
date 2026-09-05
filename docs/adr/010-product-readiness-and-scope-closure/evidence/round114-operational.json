@@ -1,0 +1,46 @@
+[
+  {
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--example",
+      "projection_reconnect"
+    ],
+    "exit_code": 0,
+    "stdout": "live and replay agree at offset 2; failed apply kept offset 2\n",
+    "stderr": "   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.68s\n     Running `target/debug/examples/projection_reconnect`\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--features",
+      "sqlite",
+      "--example",
+      "local_recovery",
+      "--",
+      "/tmp/event-stream-round114-local-b9299f0a-0e49-474c-986b-3e3f00f3b940"
+    ],
+    "exit_code": 0,
+    "stdout": "Verified 16 exact records through capacity rejection, reopen and controlled restore.\nExact retry deduplicated; old cursor rejected; restored append resumed at 17.\n",
+    "stderr": "   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.41s\n     Running `target/debug/examples/local_recovery /tmp/event-stream-round114-local-b9299f0a-0e49-474c-986b-3e3f00f3b940`\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--features",
+      "sqlite,replication",
+      "--example",
+      "replicated_recovery",
+      "--",
+      "/tmp/event-stream-round114-replica-b9299f0a-0e49-474c-986b-3e3f00f3b940"
+    ],
+    "exit_code": 0,
+    "stdout": "Verified 4 exact replica records after backlog rejection, restart, catch-up and retry.\n",
+    "stderr": "   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.75s\n     Running `target/debug/examples/replicated_recovery /tmp/event-stream-round114-replica-b9299f0a-0e49-474c-986b-3e3f00f3b940`\n"
+  }
+]

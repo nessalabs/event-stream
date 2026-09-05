@@ -1,0 +1,10 @@
+    Blocking waiting for file lock on build directory
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.48s
+     Running unittests examples/local_recovery.rs (target/debug/examples/local_recovery-29a424e75194792b)
+
+running 1 test
+test tests::full_store_backup_reopen_and_restore_preserve_exact_history ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+

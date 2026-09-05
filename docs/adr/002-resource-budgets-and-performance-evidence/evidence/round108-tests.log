@@ -1,0 +1,93 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.33s
+     Running tests/append_batch.rs (target/debug/deps/append_batch-e5bd013930c88545)
+
+running 5 tests
+test malformed_outcomes_cannot_pass_identity_validation ... ok
+test capacity_and_bytes_are_checked_before_store_use ... ok
+test capacity_failure_does_not_erase_earlier_receipt_or_later_retry ... ok
+test memory_fallback_preserves_order_and_individual_errors ... ok
+test sqlite_fallback_survives_reopen ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/sqlite.rs (target/debug/deps/sqlite-b6886d1891135665)
+
+running 61 tests
+test corrupt_format_one_input_fails_migration_without_partial_schema_change ... ok
+test committed_data_recovers_after_process_kill ... ok
+test dropping_store_releases_ownership_after_accepted_work_stops ... ok
+test corrupt_stream_metadata_lengths_fail_before_blob_allocation ... ok
+test database_quota_failure_rolls_back_record_and_tail ... ok
+test corrupt_active_name_pointer_cannot_retire_another_lifetime ... ok
+test corrupt_record_payload_is_bounded_before_result_materialization ... ok
+test corrupt_record_offset_is_rejected_before_blob_allocation ... ok
+test format_one_migration_preserves_record_table_and_exact_bytes ... ok
+test dropped_close_future_still_closes_after_a_full_queue_drains ... ok
+test in_process_ownership_lasts_until_worker_stops ... ok
+test internally_inconsistent_lifecycle_receipt_is_rejected_on_open ... ok
+test corrupt_scalar_types_are_rejected_before_result_materialization ... ok
+test lifecycle_quotas_are_atomic_and_identical_retries_bypass_capacity ... ok
+test injected_migration_failure_preserves_valid_format_one_then_retries ... ok
+test lifecycle_receipts_and_unavailable_name_survive_restart_and_cleanup ... ok
+test injected_transaction_boundaries_preserve_atomic_state_and_resolve_unknown_commit ... ok
+test malformed_or_foreign_formats_fail_without_partial_initialization ... ok
+test ordered_replay_and_retry_lookup_use_declared_indexes ... ok
+test metadata_rejects_floor_above_tail ... ok
+test ownership_rejects_hardlinks_symlinks_and_normalizes_parent_aliases ... ok
+test lifecycle_and_cleanup_failure_boundaries_are_atomic_and_retryable ... ok
+test newer_format_is_rejected_without_migration ... ok
+test corrupt_record_identifiers_are_bounded_by_utf8_bytes_before_allocation ... ok
+test process_kill_after_commit_before_receipt_deduplicates_retry ... ok
+test positive_but_forged_snapshot_accounting_is_rejected_on_open ... ok
+test process_kill_before_commit_rolls_back_record_and_tail ... ok
+test process_kill_after_journal_output_commit_resolves_exact_content_retry ... ok
+test malformed_snapshot_identifier_and_partial_schema_are_rejected_on_open ... ok
+test separate_process_cannot_take_ownership ... ok
+test recovery_lease_keeps_retired_suffix_readable_until_release ... ok
+test restart_preserves_records_deduplication_and_incarnation ... ok
+test published_snapshot_bytes_and_upload_state_survive_restart ... ok
+test shared_lifecycle_store_contract ... ok
+test process_kill_after_snapshot_publication_commit_resolves_exact_retry ... ok
+test sqlite_child ... ok
+test shared_source_journal_store_contract ... ok
+test retired_cleanup_rejects_history_holes_and_rolls_back_prior_deletes ... ok
+test shared_sqlite_replica_batch_destination_contract ... ok
+test shared_sqlite_replication_origin_batch_contract ... ok
+test snapshot_page_limit_above_sqlite_integer_range_is_rejected ... ok
+test shared_snapshot_store_contract ... ok
+test sqlite_journal_marker_retry_does_not_recreate_a_missing_output ... ok
+test replay_rejects_internal_holes_and_missing_tail_rows ... ok
+test sqlite_journal_receipt_cleanup_does_not_strand_raw_bytes_before_checkpoint ... ok
+test sqlite_journal_parser_recovers_output_before_checkpoint_after_restart ... ok
+test sqlite_journal_capture_and_checkpoint_lost_ack_resolve_after_restart ... ok
+test sqlite_replica_backlog_counters_and_oldest_age_advance_by_exact_batch ... ok
+test shared_event_store_contract ... ok
+test sqlite_rejects_understated_replica_backlog_counter_on_open ... ok
+test sqlite_journal_output_transaction_rolls_back_or_resolves_exact_retry ... ok
+test sqlite_replica_commit_lost_ack_resolves_exactly_after_restart ... ok
+test sqlite_replica_bootstrap_publishes_exact_snapshot_and_suffix_after_restart ... ok
+test sqlite_retention_floor_respects_active_snapshot_recovery_lease ... ok
+test sqlite_replication_includes_generated_history_and_survives_reopen ... ok
+test sqlite_retention_reuses_ids_across_generations_and_cleans_only_after_both_bounds ... ok
+test understated_lifecycle_counters_are_rejected_on_open ... ok
+test unsigned_offset_representation_crosses_signed_boundary_on_a_forged_tail ... ok
+test sqlite_replica_destination_quotas_are_atomic_and_counters_are_audited ... ok
+test sqlite_retention_commit_failures_roll_back_and_lost_acks_resolve_after_restart ... ok
+test snapshot_commit_faults_preserve_identity_and_retry_outcomes ... ok
+
+test result: ok. 61 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.76s
+
+     Running tests/sqlite_faults.rs (target/debug/deps/sqlite_faults-9a69124c1b0bf5c0)
+
+running 7 tests
+test failed_main_file_write_and_rollback_recover_to_one_atomic_state ... ok
+test private_bounded_filesystem_exhaustion_preserves_history_and_retry ... ok
+test logical_sqlite_page_quota_reports_full_without_losing_prior_history ... ok
+test successful_append_reports_normal_vfs_write_and_sync_scope ... ok
+test failed_rollback_truncate_reports_failure_and_preserves_committed_history ... ok
+test restore_on_a_real_full_filesystem_keeps_destination_unpublished_and_retries ... ok
+test forwarding_vfs_write_and_sync_faults_leave_resolvable_atomic_state ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 16.96s
+

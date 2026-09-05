@@ -1,0 +1,12 @@
+{
+  "input_manifest_sha256": "d85c4020281e8f02a1c52950189e3dafc5beca998ec1395c554b18d0c2ef047b",
+  "harness_sha256": "9c118bab40a8645ff0015c6e1c4a332bbbe6a4179ff11c6de67305c2d317dbaa",
+  "instrumented_binary_sha256": "55d37056f46c0aef81bbf61305706971aba1ac48a0219c260086c2d295a4c59e",
+  "control_binary_sha256": "a4971c3065277880e3a4638f58db6c932dd761978de1ea074c0f01dd5339087b",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)",
+  "profile": "release",
+  "features": "all-features",
+  "control_rustc_cfg": "performance_no_alloc",
+  "built_before_measurement": true
+}

@@ -1,0 +1,10 @@
+{
+  "scope": "Post-test review snapshot; concurrent runtime and SQLite edits are excluded. Not a benchmark build identity.",
+  "sha256": {
+    "src/application/source_journal.rs": "233e567a4e61fec0e7a488800b5f6ba9ba13cef68f6dadf6e7fb85f555164067",
+    "src/infrastructure/memory_source_journal.rs": "18b644c5b25c71eb2f332fd829c04206881c6c9ef60cfb6f2039788cb2491052",
+    "src/domain/source_journal.rs": "ad667cc53b9b7f6cb3c5c55a7ab9b3428da69b4fe8489545e732c7e4ed1af374",
+    "tests/core_source_journal.rs": "bdf14c148a6846677c612c0d8acc90e9bb05f37c7b26745e8a3ef3ebd08df620",
+    "tests/common/mod.rs": "a6088e3ee737b0de2bffa9048dc4412a2e91fd86ef8d9c1daf71644d238de78d"
+  }
+}

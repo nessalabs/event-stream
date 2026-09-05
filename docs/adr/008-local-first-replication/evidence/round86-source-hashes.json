@@ -1,0 +1,6 @@
+{
+  "src/infrastructure/sqlite_replication.rs": "bed24db84ad74e1eff2255826297609710cc08dcc8cab3bd0de5ac82e42026f0",
+  "src/infrastructure/sqlite_restore.rs": "6c3201c5e9a4c1963881b74cb74c7413060966f57f905cd4fe851d713cc5a363",
+  "tests/sqlite_replica_restore_corruption.rs": "75e731a15931bb7ab85bb2acff6913344e986956eef7ecb7f520431ba8927bb7",
+  "tests/sqlite_replication_chunk_quota.rs": "9bf5a38a236cbefd32eb46460862129205db64468cec6b4b43266f5813103d57"
+}

@@ -1,0 +1,22 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.35s
+     Running tests/sqlite.rs (target/debug/deps/sqlite-c470c7352bfee284)
+
+running 1 test
+test sqlite_journal_marker_retry_does_not_recreate_a_missing_output ... FAILED
+
+failures:
+
+---- sqlite_journal_marker_retry_does_not_recreate_a_missing_output stdout ----
+
+thread 'sqlite_journal_marker_retry_does_not_recreate_a_missing_output' (6020857) panicked at tests/sqlite.rs:327:68:
+called `Result::unwrap()` on an `Err` value: StoreCorrupt("retention counters do not match stored rows")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    sqlite_journal_marker_retry_does_not_recreate_a_missing_output
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 48 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test sqlite`

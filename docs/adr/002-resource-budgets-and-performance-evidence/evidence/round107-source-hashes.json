@@ -1,0 +1,6 @@
+{
+  "src/application/append_batch.rs": "3f10b0b8b4ddcba5d1cf710d3d8e0e2b4de7e78d2fc40def745602393d96c86f",
+  "src/application/mod.rs": "1dd4b8aa8e2bb2ca047608e5d1a433fd7d60b51f380c3f860c0393444a70464a",
+  "src/application/ports.rs": "fe679d2e6c69ee0ec2774eab0ccf68db74e9fd4f895e09d1e856b85fdeaf22f7",
+  "tests/append_batch.rs": "5762b8cdc4b608e1e47f45e12b8228df0886cbcc738209023bd537d00833622b"
+}

@@ -1,0 +1,9 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+error[E0425]: cannot find function `import_journal` in this scope
+   --> src/infrastructure/sqlite_restore.rs:954:5
+    |
+954 |     import_journal(source, target, config)?;
+    |     ^^^^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `event-stream` (lib) due to 1 previous error

@@ -1,0 +1,28 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.63s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-c07e4cedd427ee44)
+
+running 20 tests
+test application::config::tests::grouped_defaults_preserve_the_finite_runtime_policy ... ok
+test application::restore::tests::limits_and_paths_are_rejected_before_backend_admission ... ok
+test application::runtime::tests::ending_subscription_releases_page_capacity_and_allocation ... ok
+test application::restore::tests::cancelled_restore_keeps_its_owned_slot_until_backend_finishes ... ok
+test application::restore::tests::malformed_mapping_page_is_rejected_at_the_application_boundary ... ok
+test application::runtime::tests::shutdown_owns_live_and_pending_membership_exactly_once ... ok
+test application::runtime::tests::complete_empty_page_is_terminal_and_releases_subscription_quota ... ok
+test application::runtime::tests::cancelled_and_closed_journal_waiters_release_all_permits ... ok
+test application::runtime::tests::indexed_membership_removal_reuses_the_stable_slot ... ok
+test application::runtime::tests::draining_last_record_releases_page_capacity_and_allocation ... ok
+test domain::lifecycle::tests::lifecycle_operation_ids_use_the_shared_utf8_byte_limit ... ok
+test domain::restore::tests::backup_identity_hex_is_canonical_and_bounded ... ok
+test domain::restore::tests::restore_operation_id_uses_identifier_byte_limit ... ok
+test domain::retention::tests::operation_id_and_generation_boundaries_are_explicit ... ok
+test application::restore::tests::restore_panic_is_an_exact_uncertain_publication ... ok
+test application::runtime::tests::stable_sweep_cursor_visits_survivors_during_slot_zero_churn ... ok
+test infrastructure::memory::tests::append_rejects_offset_overflow_without_mutating_history ... ok
+test application::runtime::tests::journal_permit_keeps_its_queue_position_across_unrelated_notifications ... ok
+test infrastructure::memory::tests::range_read_reports_middle_and_suffix_holes ... ok
+test application::runtime::tests::indexed_membership_matches_reference_set_across_generated_removals ... ok
+
+test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

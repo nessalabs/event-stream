@@ -1,0 +1,5 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.73s
+     Running `target/debug/examples/local_recovery /tmp/event-stream-round97-local-final`
+Verified 16 exact records through capacity rejection, reopen and controlled restore.
+Exact retry deduplicated; old cursor rejected; restored append resumed at 17.

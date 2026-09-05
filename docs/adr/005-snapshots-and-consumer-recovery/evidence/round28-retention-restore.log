@@ -1,0 +1,8 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running tests/sqlite_restore.rs (target/debug/deps/sqlite_restore-37a0e5ed618a9d5f)
+
+running 1 test
+test controlled_restore_preserves_generated_retry_identity_and_merged_history ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 29 filtered out; finished in 0.10s
+

@@ -1,0 +1,5 @@
+{
+  "src/infrastructure/sqlite_restore.rs": "c97bbd272e08a8528bc1b7002e3216f9e8b95aff28fa40143733424f18736bfe",
+  "tests/sqlite_replica_restore_corruption.rs": "f0520236a91891945dcaef7b1242970dffade385653eb7e1185ddfe428afccad",
+  "tests/sqlite_replication_restore_receipts.rs": "980fb59c096a43a22d952d028056c787c084664f2c377bef2b7e5450b80ec2c7"
+}

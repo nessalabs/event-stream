@@ -1,0 +1,4 @@
+bcf5f059a581662bbac29d29a938de6e0ab416f9f4476c6489bf0656c2ede1f3  docs/adr/002-resource-budgets-and-performance-evidence/evidence/minisqlite-comparison-source/Cargo.toml
+eaf417420785ed3aab394f3460507aef6d7265d7e12b85dcd1c50307da4b26eb  docs/adr/002-resource-budgets-and-performance-evidence/evidence/minisqlite-comparison-source/Cargo.lock
+c6b2ad891d6a21e355302f7c7c7dc5d1e185eca2826388b447c6fae0c930bbbf  docs/adr/002-resource-budgets-and-performance-evidence/evidence/minisqlite-comparison-source/main.rs
+37d3853a49b0dfa2183080a263839731817a8d88dd0462ed00b6a66a9a91dc9e  docs/adr/002-resource-budgets-and-performance-evidence/evidence/minisqlite-comparison-source/README.md

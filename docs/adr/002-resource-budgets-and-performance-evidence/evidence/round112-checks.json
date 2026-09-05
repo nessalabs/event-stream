@@ -1,0 +1,13 @@
+{
+  "all_accepted": true,
+  "no_rejected_or_failed": true,
+  "all_streams": true,
+  "receipt_ledger": true,
+  "cycles": true,
+  "bounded_tasks": true,
+  "bounded_queue": true,
+  "shutdown": true,
+  "rss_screen": true,
+  "latency_screen": true,
+  "binary_unchanged": true
+}

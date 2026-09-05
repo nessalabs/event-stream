@@ -1,0 +1,40 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running tests/sqlite_restore.rs (target/debug/deps/sqlite_restore-c1998ee5c5b13ee2)
+
+running 33 tests
+test backup_inspection_rejects_oversized_replacement_before_import ... ok
+test controlled_restore_rejects_snapshot_payload_that_does_not_match_digest ... ok
+test cleanup_removes_owned_completed_staging_without_source ... ok
+test corrupt_completed_mapping_count_is_rejected_before_publication ... ok
+test completed_unpublished_restore_retries_without_source ... ok
+test controlled_restore_preserves_snapshot_bytes_and_remaps_stream_identity ... ok
+test dangling_symlinked_request_binding_is_rejected_and_preserved ... ok
+test controlled_restore_preserves_generated_retry_identity_and_merged_history ... ok
+test cleanup_reports_exact_unlink_and_directory_sync_failures ... ok
+test operation_id_cannot_escape_or_lengthen_staging_name ... ok
+test logical_restore_rewrites_full_identity_union_and_survives_restart ... ok
+test mapping_reader_rejects_an_incarnation_that_was_not_refreshed ... ok
+test mapping_reader_guards_malformed_large_columns_before_materialization ... ok
+test restore_process_kill_child ... ok
+test operation_reservation_rejects_conflicts_and_preserves_unknown_entries ... ok
+test legacy_format_two_is_inspected_read_only_restored_and_extended_on_normal_open ... ok
+test linked_restore_retries_each_publication_boundary_without_source ... ok
+test restore_rejects_a_missing_record_before_the_declared_tail ... ok
+test controlled_restore_accepts_partial_and_complete_aborted_cleanup_states ... ok
+test record_page_byte_limit_flushes_across_streams ... ok
+test restore_rejects_records_outside_declared_lifetime_extent ... ok
+test restore_keeps_published_snapshot_after_its_retired_lifetime_was_cleaned ... ok
+test record_pages_batch_across_streams_and_skip_empty_lifetimes ... ok
+test symlinked_operation_owner_is_rejected_and_preserved ... ok
+test unbound_empty_staging_is_preserved_and_not_adopted ... ok
+test restore_rejects_schema_versions_outside_the_domain_range ... ok
+test staging_symlink_and_hardlink_are_rejected_before_sqlite_open ... ok
+test retention_restore_accepts_expired_prefix_between_bounded_cleanup_turns ... ok
+test abrupt_process_kill_recovers_bootstrap_and_publication_boundaries ... ok
+test published_receipt_rejects_malformed_types_counts_and_accounting ... ok
+test retention_restore_rejects_oversized_receipt_and_honors_page_byte_limit ... ok
+test staging_quota_failure_never_publishes_the_destination ... ok
+test retention_restore_keyset_pages_many_pending_cleanup_ranges ... ok
+
+test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.60s
+

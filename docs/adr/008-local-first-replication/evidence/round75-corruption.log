@@ -1,0 +1,11 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running tests/sqlite_replica_restore_corruption.rs (target/debug/deps/sqlite_replica_restore_corruption-4d0d2401cd2228da)
+
+running 4 tests
+test restore_rejects_missing_published_snapshot_chunk ... ok
+test restore_rejects_corrupt_published_replica_snapshot ... ok
+test restore_rejects_shifted_published_snapshot_chunk ... ok
+test restore_rejects_missing_published_suffix_record ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+

@@ -1,0 +1,10 @@
+{
+  "input_manifest_sha256": "bd1051715ca9c7e527e1343c1d5afea83750b5af9c84c2956869d53b3cc70f25",
+  "harness_sha256": "5018e43ab2015cc0448143cdc38dff54577b6acc16ecd07f5471f144c99d7462",
+  "binary_sha256": "84572e2f657756cf2a3f88cc6d2f787a91d565c6a298c6642dcaa2d2eef61311",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)",
+  "profile": "release",
+  "features": "all-features",
+  "built_before_measurement": true
+}

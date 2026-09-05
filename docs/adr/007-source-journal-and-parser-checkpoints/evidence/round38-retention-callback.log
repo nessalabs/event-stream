@@ -1,0 +1,32 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+   Compiling event-stream-verification v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream/verification)
+error[E0061]: this method takes 3 arguments but 2 arguments were supplied
+   --> src/scenarios.rs:475:14
+    |
+475 |               .read_after(
+    |  ______________^^^^^^^^^^-
+476 | |                 &Cursor::new(stream.clone(), 2),
+477 | |                 PageLimits {
+478 | |                     max_records: 4,
+479 | |                     max_bytes: 1024 * 1024,
+480 | |                 },
+481 | |             )
+    | |_____________- argument #3 of type `std::option::Option<&event_stream::Cursor>` is missing
+    |
+note: method defined here
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/application/ports.rs:47:14
+    |
+ 47 |     async fn read_after(
+    |              ^^^^^^^^^^
+help: provide the argument
+    |
+475 |             .read_after(
+...
+480 |                 },
+481 ~                 /* std::option::Option<&event_stream::Cursor> */,
+482 ~             )
+    |
+
+For more information about this error, try `rustc --explain E0061`.
+error: could not compile `event-stream-verification` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

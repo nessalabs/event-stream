@@ -1,0 +1,5 @@
+    Blocking waiting for file lock on build directory
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.43s
+     Running `target/debug/examples/replicated_recovery /tmp/event-stream-round97-replica-final`
+Verified 4 exact replica records after backlog rejection, restart, catch-up and retry.

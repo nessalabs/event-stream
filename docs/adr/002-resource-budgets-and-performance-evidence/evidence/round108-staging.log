@@ -1,0 +1,10 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.87s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-7a5dc866188ad24a)
+
+running 2 tests
+test infrastructure::sqlite::append_staging_tests::failure_after_replication_clock_write_rolls_back_record_tail_and_clock ... ok
+test infrastructure::sqlite::append_staging_tests::staging_dedup_and_conflict_leave_outer_transaction_in_control ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 32 filtered out; finished in 0.03s
+

@@ -1,0 +1,67 @@
+   Compiling event-stream-verification v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream/verification)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 10.91s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running `verification/target/debug/event-stream-verification --scenario snapshot-partial`
+{
+  "format_version": 1,
+  "scenario_id": "snapshot-partial",
+  "run_id": "1788645256741958000-55062-0",
+  "started_unix_ms": 1788645256741,
+  "target": "Shared production SQLite snapshot fixture",
+  "implementation_fingerprint": "fnv1a64:2243ccecdf0a8e99",
+  "evidence_scope": "Real SQLite close/reopen and production snapshot APIs. This is not process-kill, power-loss or resource qualification.",
+  "input": {
+    "stop": "close_reopen_during_upload",
+    "chunk_bytes": 4,
+    "cleanup_rows_per_call": 1
+  },
+  "status": "passed",
+  "elapsed_us": 57980,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "Partial uploads survived reopening without becoming visible; one resumed exactly and the other was reclaimed in bounded steps.",
+    "observations": [
+      {
+        "label": "Unpublished uploads",
+        "expected": "12 staged bytes; only the baseline published",
+        "actual": "staged_bytes=12, published=1",
+        "passed": true
+      },
+      {
+        "label": "Exact chunk retry",
+        "expected": "4 accepted bytes after retry",
+        "actual": "4",
+        "passed": true
+      },
+      {
+        "label": "Recovered contents",
+        "expected": "baseline unchanged and resumed bytes exact",
+        "actual": "baseline=published-baseline, resumed=resume-after-reopen",
+        "passed": true
+      },
+      {
+        "label": "Bounded cleanup",
+        "expected": "2 chunks and 1 upload removed in at most 8 calls; no uploads remain",
+        "actual": "calls=3, chunks=2, uploads_removed=1, uploads_remaining=0",
+        "passed": true
+      }
+    ],
+    "output": {
+      "stop_mode": "close_reopen",
+      "staged_bytes": 12,
+      "published_while_interrupted": 1,
+      "retry_accepted_bytes": 4,
+      "baseline": "published-baseline",
+      "resumed": "resume-after-reopen",
+      "cleanup": {
+        "calls": 3,
+        "chunks": 2,
+        "uploads": 1,
+        "remaining": 0
+      },
+      "resource_measurements": null
+    }
+  }
+}

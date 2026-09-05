@@ -1,0 +1,23 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.60s
+     Running tests/sqlite_restore.rs (target/debug/deps/sqlite_restore-eea4f63f2208f4bf)
+
+running 2 tests
+test retention_restore_keyset_pages_many_pending_cleanup_ranges ... FAILED
+test retention_restore_rejects_oversized_receipt_and_honors_page_byte_limit ... ok
+
+failures:
+
+---- retention_restore_keyset_pages_many_pending_cleanup_ranges stdout ----
+
+thread 'retention_restore_keyset_pages_many_pending_cleanup_ranges' (5909280) panicked at tests/sqlite_restore.rs:400:50:
+called `Result::unwrap()` on an `Err` value: CorruptBackup("invalid or noncontiguous record history")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    retention_restore_keyset_pages_many_pending_cleanup_ranges
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.22s
+
+error: test failed, to rerun pass `--test sqlite_restore`

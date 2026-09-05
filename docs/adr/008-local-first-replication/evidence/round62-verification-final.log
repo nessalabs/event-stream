@@ -1,0 +1,210 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: fields `bootstrap`, `published`, and `expires_at` are never read
+  --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:46:5
+   |
+45 | struct ReplicaReadLease {
+   |        ---------------- fields in this struct
+46 |     bootstrap: BootstrapId,
+   |     ^^^^^^^^^
+47 |     published: PublishedReplicaBootstrap,
+   |     ^^^^^^^^^
+48 |     expires_at: DurableTimestampMillis,
+   |     ^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `readers` is never read
+  --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:53:5
+   |
+51 | pub(super) struct SqliteReplicationState {
+   |                   ---------------------- field in this struct
+52 |     verifications: HashMap<BootstrapId, BootstrapVerification>,
+53 |     readers: HashMap<ReplicaReadLeaseId, ReplicaReadLease>,
+   |     ^^^^^^^
+
+warning: field `0` is never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:109:9
+    |
+108 |     AcknowledgeOriginBootstrap(
+    |     -------------------------- field in this variant
+109 |         AcknowledgeOriginBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+109 -         AcknowledgeOriginBootstrap,
+109 +         (),
+    |
+
+warning: field `0` is never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:113:9
+    |
+112 |     CleanupOrigin(
+    |     ------------- field in this variant
+113 |         ReplicaCleanupLimits,
+    |         ^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+113 -         ReplicaCleanupLimits,
+113 +         (),
+    |
+
+warning: field `0` is never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:133:9
+    |
+132 |     PublishBootstrap(
+    |     ---------------- field in this variant
+133 |         PublishReplicaBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+133 -         PublishReplicaBootstrap,
+133 +         (),
+    |
+
+warning: field `0` is never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:137:9
+    |
+136 |     PublishedBootstrap(
+    |     ------------------ field in this variant
+137 |         OriginStream,
+    |         ^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+137 -         OriginStream,
+137 +         (),
+    |
+
+warning: fields `0` and `1` are never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:141:9
+    |
+140 |     AcquireBootstrapRead(
+    |     -------------------- fields in this variant
+141 |         OriginStream,
+    |         ^^^^^^^^^^^^
+142 |         Duration,
+    |         ^^^^^^^^
+    |
+help: consider changing the fields to be of unit type to suppress this warning while preserving the field numbering, or remove the fields
+    |
+141 ~         (),
+142 ~         (),
+    |
+
+warning: fields `0`, `1`, and `2` are never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:146:9
+    |
+145 |     ReadBootstrapBytes(
+    |     ------------------ fields in this variant
+146 |         ReplicaReadLeaseId,
+    |         ^^^^^^^^^^^^^^^^^^
+147 |         u64,
+    |         ^^^
+148 |         usize,
+    |         ^^^^^
+    |
+help: consider changing the fields to be of unit type to suppress this warning while preserving the field numbering, or remove the fields
+    |
+146 ~         (),
+147 ~         (),
+148 ~         (),
+    |
+
+warning: field `0` is never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:152:9
+    |
+151 |     ReleaseBootstrapRead(
+    |     -------------------- field in this variant
+152 |         ReplicaReadLeaseId,
+    |         ^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+152 -         ReplicaReadLeaseId,
+152 +         (),
+    |
+
+warning: field `0` is never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:156:9
+    |
+155 |     AbortBootstrap(
+    |     -------------- field in this variant
+156 |         AbortReplicaBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+156 -         AbortReplicaBootstrap,
+156 +         (),
+    |
+
+warning: field `0` is never read
+   --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:160:9
+    |
+159 |     CleanupDestination(
+    |     ------------------ field in this variant
+160 |         ReplicaCleanupLimits,
+    |         ^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+160 -         ReplicaCleanupLimits,
+160 +         (),
+    |
+
+warning: fields `publish_operation` and `abort_operation` are never read
+    --> /Users/nessa/Documents/NessaLabs/event-stream/src/infrastructure/sqlite_replication.rs:2203:5
+     |
+2197 | struct StoredDestinationBootstrap {
+     |        -------------------------- fields in this struct
+...
+2203 |     publish_operation: Option<String>,
+     |     ^^^^^^^^^^^^^^^^^
+2204 |     abort_operation: Option<String>,
+     |     ^^^^^^^^^^^^^^^
+
+   Compiling event-stream-verification v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream/verification)
+warning: `event-stream` (lib) generated 12 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.16s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (verification/target/debug/deps/event_stream_verification-5318eabed38d0f9b)
+
+running 19 tests
+test performance::tests::oversized_catalog_is_refused_before_json_parsing ... ok
+test performance::tests::duplicate_artifact_is_reported_and_excluded_from_chart ... ok
+test performance::tests::default_selection_prefers_latest_comparable_registration_at_highest_population ... ok
+test performance::tests::charts_require_exact_workload_and_config_and_preserve_nulls ... ok
+test runner::contract_tests::unknown_scenario_is_rejected_before_execution ... ok
+test performance::tests::ambiguous_source_epochs_in_one_round_are_rejected ... ok
+test runner::tests::duplicate_registry_ids_fail ... ok
+test runner::tests::existing_unowned_temporary_file_is_never_removed_or_truncated ... ok
+test performance::tests::zero_baseline_has_no_percentage_delta ... ok
+test performance::tests::checked_in_home_catalog_loads_bounded_historical_evidence ... ok
+test runner::contract_tests::production_callback_rejects_a_mismatched_displayed_fixture ... ok
+test runner::contract_tests::injected_save_failure_preserves_execution_result ... ok
+test runner::tests::unavailable_target_never_passes ... ok
+test runner::contract_tests::every_generated_duplicate_id_is_rejected ... ok
+test runner::tests::roadmap_uses_real_files_and_reports_missing_file ... ok
+test runner::tests::changed_fixture_invalidates_saved_result ... ok
+test runner::tests::saved_reports_are_separate_and_corruption_is_visible ... ok
+test runner::tests::concurrent_same_scenario_saves_use_distinct_temporary_files ... ok
+test runner::contract_tests::every_registered_callback_passes_headlessly ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+
+     Running unittests src/main.rs (verification/target/debug/deps/event_stream_verification-ce1eb2ad319c6f01)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests event_stream_verification
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

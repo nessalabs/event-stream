@@ -1,0 +1,27 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+error[E0609]: no field `replication_commit_times` on type `&mut memory::StreamHistory`
+    --> src/infrastructure/memory.rs:1130:25
+     |
+1130 |                 history.replication_commit_times.remove(&offset);
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^ unknown field
+     |
+     = note: available fields are: `key`, `records`, `event_offsets`, `tail`, `floor` ... and 5 others
+
+error[E0425]: cannot find function `request_floor_for_cleanup` in this scope
+   --> src/infrastructure/memory_retention.rs:726:48
+    |
+726 |             times.retain(|offset, _| *offset > request_floor_for_cleanup(&state, &stream));
+    |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+warning: unused variable: `history`
+   --> src/infrastructure/memory_replication.rs:685:13
+    |
+685 |         let history = origin_history(
+    |             ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_history`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+Some errors have detailed explanations: E0425, E0609.
+For more information about an error, try `rustc --explain E0425`.
+warning: `event-stream` (lib test) generated 1 warning
+error: could not compile `event-stream` (lib test) due to 2 previous errors; 1 warning emitted

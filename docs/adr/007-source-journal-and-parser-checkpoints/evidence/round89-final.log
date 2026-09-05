@@ -1,0 +1,54 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.04s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-1340059f80c17a88)
+
+running 21 tests
+test application::config::tests::grouped_defaults_preserve_the_finite_runtime_policy ... ok
+test application::runtime::tests::ending_subscription_releases_page_capacity_and_allocation ... ok
+test application::restore::tests::limits_and_paths_are_rejected_before_backend_admission ... ok
+test application::restore::tests::malformed_mapping_page_is_rejected_at_the_application_boundary ... ok
+test application::restore::tests::cancelled_restore_keeps_its_owned_slot_until_backend_finishes ... ok
+test application::runtime::tests::cancelled_and_closed_journal_waiters_release_all_permits ... ok
+test application::runtime::tests::shutdown_owns_live_and_pending_membership_exactly_once ... ok
+test application::runtime::tests::indexed_membership_removal_reuses_the_stable_slot ... ok
+test application::runtime::tests::complete_empty_page_is_terminal_and_releases_subscription_quota ... ok
+test application::runtime::tests::draining_last_record_releases_page_capacity_and_allocation ... ok
+test domain::lifecycle::tests::lifecycle_operation_ids_use_the_shared_utf8_byte_limit ... ok
+test domain::restore::tests::restore_operation_id_uses_identifier_byte_limit ... ok
+test domain::restore::tests::backup_identity_hex_is_canonical_and_bounded ... ok
+test domain::retention::tests::operation_id_and_generation_boundaries_are_explicit ... ok
+test application::runtime::tests::journal_permit_keeps_its_queue_position_across_unrelated_notifications ... ok
+test application::restore::tests::restore_panic_is_an_exact_uncertain_publication ... ok
+test infrastructure::memory::tests::append_rejects_offset_overflow_without_mutating_history ... ok
+test infrastructure::memory::tests::range_read_reports_middle_and_suffix_holes ... ok
+test application::runtime::tests::stable_sweep_cursor_visits_survivors_during_slot_zero_churn ... ok
+test infrastructure::memory_source_journal::tests::marker_retry_does_not_recreate_a_missing_generated_identity ... ok
+test application::runtime::tests::indexed_membership_matches_reference_set_across_generated_removals ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/core_source_journal.rs (target/debug/deps/core_source_journal-2b1529596f06c7a1)
+
+running 10 tests
+test cleanup_budget_must_fit_every_accepted_journal_row_shape ... ok
+test newline_checkpoint_rejects_impossible_partial_without_mutating_decoder ... ok
+test runtime_rejects_journal_semaphore_ranges_before_opening_store ... ok
+test aggregate_checkpoint_bytes_reject_growth_without_replacing_old_state ... ok
+test begin_capture_read_checkpoint_and_explicit_receipt_expiry ... ok
+test multi_output_frame_is_atomic_with_markers_and_pins_its_generation ... ok
+test shared_source_journal_contract ... ok
+test runtime_composes_capture_and_atomic_output_with_bounded_admission ... ok
+test journal_ingestion_drains_valid_zero_consumption_buffered_outputs ... ok
+test journal_ingestion_replays_after_output_before_checkpoint_and_restores_split_frame ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/source_finalization.rs (target/debug/deps/source_finalization-7d81f77b36ce613c)
+
+running 3 tests
+test newline_finished_checkpoint_replays_eof_without_reemitting_output ... ok
+test memory_seal_and_finish_preserve_exact_retries_and_reject_new_work ... ok
+test runtime_routes_finalization_and_rejects_work_after_shutdown ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,23 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.65s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-7a5dc866188ad24a)
+
+running 3 tests
+test infrastructure::sqlite::append_staging_tests::closed_batch_reply_retains_each_uncertain_identity ... ok
+test infrastructure::sqlite::append_staging_tests::staging_dedup_and_conflict_leave_outer_transaction_in_control ... ok
+test infrastructure::sqlite::append_staging_tests::failure_after_replication_clock_write_rolls_back_record_tail_and_clock ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 32 filtered out; finished in 0.04s
+
+     Running tests/sqlite_append_batch.rs (target/debug/deps/sqlite_append_batch-c08a8aa15583586a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+     Running tests/sqlite_batch_sync.rs (target/debug/deps/sqlite_batch_sync-b651027401a2b619)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+

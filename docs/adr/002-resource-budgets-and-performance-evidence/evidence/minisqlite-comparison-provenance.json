@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "diagnostic_single_run",
+  "run_started_utc": "2026-09-05T05:28:10.410903Z",
+  "run_ended_utc": "2026-09-05T05:31:05.553482Z",
+  "host": "Nessas-MacBook-Air.local",
+  "os": "macOS 26.6 (25G72), Darwin 25.6.0 arm64",
+  "rustc": "1.98.1 (48a229cea 2026-09-01)",
+  "minisqlite": {
+    "remote": "https://github.com/cursor/minisqlite",
+    "commit": "4a5c1341fdde38beaf438e0241c9f45833c4b870",
+    "source_archive": "minisqlite-source-4a5c1341.tar.gz",
+    "source_archive_sha256": "0f5f4846775245eee17f715bd99d9ed99d53bbcdb5a22efff95e8be0e543ef86"
+  },
+  "harness": {
+    "source": "minisqlite-comparison-source/main.rs",
+    "cargo_manifest": "minisqlite-comparison-source/Cargo.toml",
+    "cargo_lock": "minisqlite-comparison-source/Cargo.lock",
+    "binary_path_at_run": "/tmp/event-stream-minisqlite-target/release/event-stream-minisqlite-diagnostic",
+    "binary_sha256": "2540572419c8c3e5190b9e6bbbee060d36f676e1b4d19e7b9b146d9e0b901f94"
+  },
+  "event_stream_relevant_source": {
+    "archive": "minisqlite-event-stream-relevant-source.tar",
+    "archive_sha256": "15aef43cba726ac350be7b6e1af51f51e473e7432e926dce2c6e0d5c059e0385",
+    "manifest": "minisqlite-event-stream-relevant-source.sha256",
+    "scope": "Production manifest, runtime, domain model, ports/types/config, SQLite adapter, and module roots used by measured paths. Restore backend source is excluded because no measured path calls it."
+  },
+  "results": {
+    "path": "minisqlite-comparison.jsonl",
+    "sha256": "4acd3b9e279b33fde70b35f242b4d22a32a3ae0c09206210df91987c2a157906",
+    "runs": 15,
+    "repetitions_per_mode_population": 1,
+    "watchdog_seconds": 300
+  },
+  "contention": {
+    "accepted_rows": "The first fourteen rows ran without another known Cargo or benchmark process. The original runtime/100000 process overlapped a Cargo build and was discarded.",
+    "replacement_row": "runtime/100000 was rerun alone from 2026-09-05T05:30:35.752396Z through 2026-09-05T05:31:05.553482Z using the identical binary."
+  }
+}

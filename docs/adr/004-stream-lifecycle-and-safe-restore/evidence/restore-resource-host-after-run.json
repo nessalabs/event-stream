@@ -1,0 +1,20 @@
+{
+  "architecture": "arm64",
+  "captured_utc": "2026-09-05T06:49:54.443888Z",
+  "cpu_model": "Apple M5",
+  "filesystem_block_size_bytes": 4096,
+  "kernel_release": "25.6.0",
+  "kind": "restore_resource_host_provenance_after_run",
+  "logical_cpu_count": 10,
+  "memory_bytes": 25769803776,
+  "os_build_version": "25G72",
+  "os_product_name": "macOS",
+  "os_product_version": "26.6",
+  "physical_cpu_count": 10,
+  "relationship_to_measurement": "captured_after_run_on_same_host; raw rows remain authoritative; load and power state were not captured",
+  "temporary_directory": "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T",
+  "temporary_filesystem_device": "/dev/disk3s5",
+  "temporary_filesystem_mount_options": "apfs, local, journaled, nobrowse, protect, root data",
+  "temporary_filesystem_mount_point": "/System/Volumes/Data",
+  "temporary_filesystem_type": "APFS"
+}

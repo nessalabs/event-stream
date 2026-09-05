@@ -1,0 +1,128 @@
+[
+  {
+    "repetition": 0,
+    "mode": "foreground_verify_control",
+    "p99_ns": 1153000,
+    "max_ns": 1172125,
+    "snapshot_ns": 42,
+    "overlap_appends": 1,
+    "outside_phase_max_ns": 1172125,
+    "sync_count": 768,
+    "sync_dropped": 0,
+    "longest_sync_ns": 76584,
+    "longest_append_sync_union_ns": 394626,
+    "longest_append": {
+      "producer": 2,
+      "sequence": 0,
+      "begin_ns": 39250,
+      "end_ns": 1211375
+    },
+    "cpu_us": 56582,
+    "peak_rss_bytes": 7503872
+  },
+  {
+    "repetition": 0,
+    "mode": "foreground_verify",
+    "p99_ns": 3190625,
+    "max_ns": 3757125,
+    "snapshot_ns": 3750875,
+    "overlap_appends": 8,
+    "outside_phase_max_ns": 1187625,
+    "sync_count": 777,
+    "sync_dropped": 0,
+    "longest_sync_ns": 76083,
+    "longest_append_sync_union_ns": 602541,
+    "longest_append": {
+      "producer": 2,
+      "sequence": 1,
+      "begin_ns": 263750,
+      "end_ns": 4020875
+    },
+    "cpu_us": 57867,
+    "peak_rss_bytes": 7503872
+  },
+  {
+    "repetition": 1,
+    "mode": "foreground_verify",
+    "p99_ns": 3445458,
+    "max_ns": 3974667,
+    "snapshot_ns": 4017167,
+    "overlap_appends": 8,
+    "outside_phase_max_ns": 1476708,
+    "sync_count": 777,
+    "sync_dropped": 0,
+    "longest_sync_ns": 73583,
+    "longest_append_sync_union_ns": 632456,
+    "longest_append": {
+      "producer": 2,
+      "sequence": 1,
+      "begin_ns": 297125,
+      "end_ns": 4271792
+    },
+    "cpu_us": 59807,
+    "peak_rss_bytes": 7602176
+  },
+  {
+    "repetition": 1,
+    "mode": "foreground_verify_control",
+    "p99_ns": 1192458,
+    "max_ns": 1199958,
+    "snapshot_ns": 125,
+    "overlap_appends": 1,
+    "outside_phase_max_ns": 1199958,
+    "sync_count": 768,
+    "sync_dropped": 0,
+    "longest_sync_ns": 80584,
+    "longest_append_sync_union_ns": 430751,
+    "longest_append": {
+      "producer": 0,
+      "sequence": 61,
+      "begin_ns": 61035208,
+      "end_ns": 62235166
+    },
+    "cpu_us": 55505,
+    "peak_rss_bytes": 7438336
+  },
+  {
+    "repetition": 2,
+    "mode": "foreground_verify_control",
+    "p99_ns": 1106542,
+    "max_ns": 1135083,
+    "snapshot_ns": 83,
+    "overlap_appends": 1,
+    "outside_phase_max_ns": 1135083,
+    "sync_count": 768,
+    "sync_dropped": 0,
+    "longest_sync_ns": 73208,
+    "longest_append_sync_union_ns": 390459,
+    "longest_append": {
+      "producer": 1,
+      "sequence": 16,
+      "begin_ns": 15028125,
+      "end_ns": 16163208
+    },
+    "cpu_us": 55070,
+    "peak_rss_bytes": 7553024
+  },
+  {
+    "repetition": 2,
+    "mode": "foreground_verify",
+    "p99_ns": 3199708,
+    "max_ns": 3679625,
+    "snapshot_ns": 3724166,
+    "overlap_appends": 8,
+    "outside_phase_max_ns": 1140709,
+    "sync_count": 777,
+    "sync_dropped": 0,
+    "longest_sync_ns": 74625,
+    "longest_append_sync_union_ns": 594918,
+    "longest_append": {
+      "producer": 2,
+      "sequence": 1,
+      "begin_ns": 279542,
+      "end_ns": 3959167
+    },
+    "cpu_us": 57393,
+    "peak_rss_bytes": 7487488
+  }
+]

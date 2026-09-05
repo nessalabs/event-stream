@@ -1,0 +1,31 @@
+{
+  "binaries": {
+    "control": "/tmp/event-stream-round100-target/release/examples/performance_baseline",
+    "bounded": "/tmp/event-stream-round102-target/release/examples/performance_baseline"
+  },
+  "binary_sha256": {
+    "control": "6e3bb26dfe4f187017a5daa1a1d4cfd4daf4f6beada070fdb1a4964e2ed9f2d8",
+    "bounded": "a372b94e9bf61853bcd58fd0e949ee0dfef4f85728effcde0fa81a621a0ba9a9"
+  },
+  "archive_sha256": {
+    "control": "99640ffb3cca89a26527d3b36a006733192eb0711e3a5f6034551b2d61175ead",
+    "bounded": "856e7c65b55ada3af423a97f64e36c6bc149d40524473d552d10bdf84adc4502"
+  },
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "load": [
+    6.61767578125,
+    5.6025390625,
+    4.8310546875
+  ],
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t68%; discharging; 3:44 remaining present: true\n",
+  "features": "all-features",
+  "started_utc": "2026-09-05T22:02:24.395455+00:00",
+  "profile": {
+    "events": 1000,
+    "interval_us": 5000,
+    "producers": 4,
+    "streams": 4,
+    "payload_bytes": 128
+  },
+  "scope": "three interleaved diagnostic samples per store/generator; no release gate; builds and tests paused"
+}

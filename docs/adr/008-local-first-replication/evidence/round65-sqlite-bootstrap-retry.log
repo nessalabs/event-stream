@@ -1,0 +1,62 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:113:9
+    |
+112 |     CleanupOrigin(
+    |     ------------- field in this variant
+113 |         ReplicaCleanupLimits,
+    |         ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+113 -         ReplicaCleanupLimits,
+113 +         (),
+    |
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:156:9
+    |
+155 |     AbortBootstrap(
+    |     -------------- field in this variant
+156 |         AbortReplicaBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+156 -         AbortReplicaBootstrap,
+156 +         (),
+    |
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:160:9
+    |
+159 |     CleanupDestination(
+    |     ------------------ field in this variant
+160 |         ReplicaCleanupLimits,
+    |         ^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+160 -         ReplicaCleanupLimits,
+160 +         (),
+    |
+
+warning: field `abort_operation` is never read
+    --> src/infrastructure/sqlite_replication.rs:2228:5
+     |
+2221 | struct StoredDestinationBootstrap {
+     |        -------------------------- field in this struct
+...
+2228 |     abort_operation: Option<String>,
+     |     ^^^^^^^^^^^^^^^
+
+warning: `event-stream` (lib) generated 4 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.73s
+     Running tests/sqlite_bootstrap_driver.rs (target/debug/deps/sqlite_bootstrap_driver-e29e43e189e15a73)
+
+running 1 test
+test sqlite_destination_publishes_real_bootstrap_and_reopens_snapshot_and_suffix ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

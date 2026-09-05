@@ -1,0 +1,32 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.89s
+     Running tests/append_batch.rs (target/debug/deps/append_batch-e5bd013930c88545)
+
+running 5 tests
+test capacity_and_bytes_are_checked_before_store_use ... ok
+test malformed_outcomes_cannot_pass_identity_validation ... ok
+test capacity_failure_does_not_erase_earlier_receipt_or_later_retry ... ok
+test memory_fallback_preserves_order_and_individual_errors ... ok
+test sqlite_batch_survives_reopen ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/sqlite_append_batch.rs (target/debug/deps/sqlite_append_batch-c08a8aa15583586a)
+
+running 5 tests
+test adapter_rejects_oversized_group_without_writing ... ok
+test lost_group_reply_reconciles_all_inserted_identities ... ok
+test group_observes_earlier_replica_backlog_without_discarding_other_stream ... ok
+test grouped_rollback_never_releases_insert_or_same_group_dedup ... ok
+test cancelled_caller_does_not_cancel_accepted_group_or_early_close ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.56s
+
+     Running tests/sqlite_batch_sync.rs (target/debug/deps/sqlite_batch_sync-b651027401a2b619)
+
+running 1 test
+eight inserts: individual sync calls=24, grouped sync calls=3; no latency benchmark
+test grouped_appends_share_real_sqlite_sync_work ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

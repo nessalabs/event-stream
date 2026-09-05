@@ -1,0 +1,21 @@
+    Blocking waiting for file lock on build directory
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running tests/sqlite_append_batch.rs (target/debug/deps/sqlite_append_batch-c08a8aa15583586a)
+
+running 6 tests
+test adapter_rejects_oversized_group_without_writing ... ok
+test lost_group_reply_reconciles_all_inserted_identities ... ok
+test group_observes_earlier_replica_backlog_without_discarding_other_stream ... ok
+test preexisting_retry_is_distinct_from_new_records_during_group_reconciliation ... ok
+test grouped_rollback_never_releases_insert_or_same_group_dedup ... ok
+test cancelled_caller_does_not_cancel_accepted_group_or_early_close ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s
+
+     Running tests/sqlite_batch_sync.rs (target/debug/deps/sqlite_batch_sync-b651027401a2b619)
+
+running 1 test
+test grouped_appends_share_real_sqlite_sync_work ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

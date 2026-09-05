@@ -1,0 +1,107 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.65s
+     Running tests/core_retention.rs (target/debug/deps/core_retention-59788f642d1f9405)
+
+running 3 tests
+test operation_ids_return_exact_receipts_and_reject_reuse ... ok
+test enabling_generations_preserves_legacy_and_qualifies_reused_ids ... ok
+test retry_expiry_and_floor_cleanup_are_logical_before_physical ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/core_snapshots.rs (target/debug/deps/core_snapshots-056da97b9883c4ba)
+
+running 8 tests
+test snapshot_admission_rejects_platform_maxima_before_opening_store ... ok
+test shutdown_wakes_snapshot_operation_waiting_for_capacity ... ok
+test snapshot_admission_rejects_excess_retained_bytes_before_store_entry ... ok
+test snapshot_waiter_count_is_bounded_while_one_operation_is_paused ... ok
+test verification_reconciles_concurrent_publish_and_abort_winners ... ok
+test malformed_verification_progress_never_reaches_publication_or_loops ... ok
+test snapshot_panic_returns_exact_unknown_identity_without_faulting_executor ... ok
+test cancelled_accepted_snapshot_remains_owned_through_shutdown ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/sqlite.rs (target/debug/deps/sqlite-fc429182fd501d63)
+
+running 42 tests
+test corrupt_format_one_input_fails_migration_without_partial_schema_change ... ok
+test committed_data_recovers_after_process_kill ... ok
+test corrupt_active_name_pointer_cannot_retire_another_lifetime ... ok
+test dropping_store_releases_ownership_after_accepted_work_stops ... ok
+test database_quota_failure_rolls_back_record_and_tail ... ok
+test format_one_migration_preserves_record_table_and_exact_bytes ... ok
+test in_process_ownership_lasts_until_worker_stops ... ok
+test corrupt_stream_metadata_lengths_fail_before_blob_allocation ... ok
+test corrupt_record_payload_is_bounded_before_result_materialization ... ok
+test internally_inconsistent_lifecycle_receipt_is_rejected_on_open ... ok
+test corrupt_record_offset_is_rejected_before_blob_allocation ... ok
+test injected_transaction_boundaries_preserve_atomic_state_and_resolve_unknown_commit ... ok
+test lifecycle_quotas_are_atomic_and_identical_retries_bypass_capacity ... ok
+test lifecycle_receipts_and_unavailable_name_survive_restart_and_cleanup ... ok
+test injected_migration_failure_preserves_valid_format_one_then_retries ... ok
+test corrupt_scalar_types_are_rejected_before_result_materialization ... ok
+test malformed_or_foreign_formats_fail_without_partial_initialization ... ok
+test corrupt_record_identifiers_are_bounded_by_utf8_bytes_before_allocation ... ok
+test metadata_rejects_floor_above_tail ... ok
+test lifecycle_and_cleanup_failure_boundaries_are_atomic_and_retryable ... ok
+test ordered_replay_and_retry_lookup_use_declared_indexes ... ok
+test ownership_rejects_hardlinks_symlinks_and_normalizes_parent_aliases ... ok
+test newer_format_is_rejected_without_migration ... ok
+test process_kill_after_commit_before_receipt_deduplicates_retry ... ok
+test process_kill_before_commit_rolls_back_record_and_tail ... ok
+test dropped_close_future_still_closes_after_a_full_queue_drains ... ok
+test positive_but_forged_snapshot_accounting_is_rejected_on_open ... ok
+test malformed_snapshot_identifier_and_partial_schema_are_rejected_on_open ... ok
+test separate_process_cannot_take_ownership ... ok
+test recovery_lease_keeps_retired_suffix_readable_until_release ... ok
+test restart_preserves_records_deduplication_and_incarnation ... ok
+test sqlite_child ... ok
+test published_snapshot_bytes_and_upload_state_survive_restart ... ok
+test retired_cleanup_rejects_history_holes_and_rolls_back_prior_deletes ... ok
+test snapshot_page_limit_above_sqlite_integer_range_is_rejected ... ok
+test shared_lifecycle_store_contract ... ok
+test understated_lifecycle_counters_are_rejected_on_open ... ok
+test unsigned_offset_representation_crosses_signed_boundary_on_a_forged_tail ... ok
+test replay_rejects_internal_holes_and_missing_tail_rows ... ok
+test shared_snapshot_store_contract ... ok
+test snapshot_commit_faults_preserve_identity_and_retry_outcomes ... ok
+test shared_event_store_contract ... ok
+
+test result: ok. 42 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running tests/sqlite_restore.rs (target/debug/deps/sqlite_restore-37a0e5ed618a9d5f)
+
+running 28 tests
+test dangling_symlinked_request_binding_is_rejected_and_preserved ... ok
+test controlled_restore_rejects_snapshot_payload_that_does_not_match_digest ... ok
+test cleanup_removes_owned_completed_staging_without_source ... ok
+test backup_inspection_rejects_oversized_replacement_before_import ... ok
+test corrupt_completed_mapping_count_is_rejected_before_publication ... ok
+test completed_unpublished_restore_retries_without_source ... ok
+test controlled_restore_preserves_snapshot_bytes_and_remaps_stream_identity ... ok
+test legacy_format_two_is_inspected_read_only_restored_and_extended_on_normal_open ... ok
+test cleanup_reports_exact_unlink_and_directory_sync_failures ... ok
+test operation_id_cannot_escape_or_lengthen_staging_name ... ok
+test mapping_reader_rejects_an_incarnation_that_was_not_refreshed ... ok
+test logical_restore_rewrites_full_identity_union_and_survives_restart ... ok
+test restore_process_kill_child ... ok
+test operation_reservation_rejects_conflicts_and_preserves_unknown_entries ... ok
+test mapping_reader_guards_malformed_large_columns_before_materialization ... ok
+test restore_rejects_a_missing_record_before_the_declared_tail ... ok
+test restore_rejects_records_outside_declared_lifetime_extent ... ok
+test controlled_restore_accepts_partial_and_complete_aborted_cleanup_states ... ok
+test linked_restore_retries_each_publication_boundary_without_source ... ok
+test symlinked_operation_owner_is_rejected_and_preserved ... ok
+test record_page_byte_limit_flushes_across_streams ... ok
+test unbound_empty_staging_is_preserved_and_not_adopted ... ok
+test record_pages_batch_across_streams_and_skip_empty_lifetimes ... ok
+test restore_rejects_schema_versions_outside_the_domain_range ... ok
+test staging_symlink_and_hardlink_are_rejected_before_sqlite_open ... ok
+test abrupt_process_kill_recovers_bootstrap_and_publication_boundaries ... ok
+test published_receipt_rejects_malformed_types_counts_and_accounting ... ok
+test staging_quota_failure_never_publishes_the_destination ... ok
+
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.23s
+

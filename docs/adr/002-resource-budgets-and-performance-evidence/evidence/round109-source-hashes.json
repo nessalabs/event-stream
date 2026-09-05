@@ -1,0 +1,7 @@
+{
+  "src/infrastructure/sqlite.rs": "4499b90bb88124ff63418fa01e9280bd46ae4fdfeb35fa5d6049ad7ef36435f7",
+  "tests/append_batch.rs": "e364c885424576480ac930ba38f254f5f7175fe7684f98a6627bf65eea1dbdef",
+  "tests/sqlite_append_batch.rs": "c8fd87b4919177fbaf096dbb76f3b2f0cbfd1c62f45cc7f3eaa5afda91bf472a",
+  "tests/sqlite_batch_sync.rs": "74b16abec0e2334c02af604bb7a200bba16d74f953b9805083c8209c693a97a6",
+  "tests/sqlite_faults.rs": "0d1c8fb9a7b67cf1fcf0b7f6eb477e879fd7ed358aae6df1cfe675990f09f2c1"
+}

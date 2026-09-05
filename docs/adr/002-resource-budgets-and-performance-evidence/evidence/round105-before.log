@@ -1,0 +1,24 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.76s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-7a5dc866188ad24a)
+
+running 1 test
+test infrastructure::memory_retention::timestamp_cleanup_tests::one_row_cleanup_preserves_timestamp_suffix_and_unreclaimed_prefix ... FAILED
+
+failures:
+
+---- infrastructure::memory_retention::timestamp_cleanup_tests::one_row_cleanup_preserves_timestamp_suffix_and_unreclaimed_prefix stdout ----
+
+thread 'infrastructure::memory_retention::timestamp_cleanup_tests::one_row_cleanup_preserves_timestamp_suffix_and_unreclaimed_prefix' (7735932) panicked at src/infrastructure/memory_retention.rs:786:13:
+assertion `left == right` failed
+  left: 4092
+ right: 4095
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    infrastructure::memory_retention::timestamp_cleanup_tests::one_row_cleanup_preserves_timestamp_suffix_and_unreclaimed_prefix
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 31 filtered out; finished in 0.03s
+
+error: test failed, to rerun pass `--lib`

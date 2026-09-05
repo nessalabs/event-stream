@@ -1,0 +1,11 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.46s
+     Running tests/sqlite_bootstrap_cleanup.rs (target/debug/deps/sqlite_bootstrap_cleanup-ee60b6879c67a06f)
+
+running 3 tests
+test sqlite_expired_reader_slot_is_reclaimed_by_bounded_cleanup ... ok
+test sqlite_replaced_snapshot_keeps_reader_then_reuses_capacity ... ok
+test sqlite_aborted_bootstrap_reopens_and_reclaims_bounded_chunks ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+

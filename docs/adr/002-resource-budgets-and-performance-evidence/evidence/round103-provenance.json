@@ -1,0 +1,21 @@
+{
+  "binary": "/tmp/event-stream-round102-target/release/examples/performance_baseline",
+  "binary_sha256": "a372b94e9bf61853bcd58fd0e949ee0dfef4f85728effcde0fa81a621a0ba9a9",
+  "archive_sha256": "856e7c65b55ada3af423a97f64e36c6bc149d40524473d552d10bdf84adc4502",
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "load": [
+    5.65185546875,
+    5.04443359375,
+    4.70458984375
+  ],
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t67%; discharging; 3:24 remaining present: true\n",
+  "started_utc": "2026-09-05T22:05:14.088243+00:00",
+  "profile": {
+    "events": 12000,
+    "interval_us": 5000,
+    "producers": 4,
+    "streams": 4,
+    "payload_bytes": 128
+  },
+  "scope": "Six one-minute fresh processes; bounded generator; no release capacity claim"
+}

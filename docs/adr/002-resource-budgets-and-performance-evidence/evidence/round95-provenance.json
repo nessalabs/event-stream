@@ -1,0 +1,34 @@
+{
+  "binaries": {
+    "baseline": "/tmp/event-stream-round93-snapshot-target/release/examples/performance_baseline",
+    "compact": "/tmp/event-stream-round95-burst-target/release/examples/performance_baseline"
+  },
+  "binary_sha256": {
+    "baseline": "2698fa44f8feae629837693031a0c41127e8c8e790e40712acb03841fb2db0df",
+    "compact": "2b5c4222740e337edfb20c559b029e48ea8740c7b5aa9eb11b4403be4503d3b3"
+  },
+  "archives": {
+    "baseline": "docs/adr/005-snapshots-and-consumer-recovery/evidence/round93-source.tar",
+    "compact": "docs/adr/002-resource-budgets-and-performance-evidence/evidence/round95-source.tar"
+  },
+  "features": [
+    "sqlite",
+    "snapshots",
+    "test-support"
+  ],
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "load": [
+    3.11279296875,
+    3.38232421875,
+    3.25732421875
+  ],
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t95%; discharging; 7:29 remaining present: true\n",
+  "source_difference": [
+    "examples/performance_baseline.rs"
+  ],
+  "scope": "Paired100k one-shot try_append tasks; library source identical; caller/harness optimization. No project builds/tests concurrent.",
+  "archive_sha256": {
+    "baseline": "bb19cee0ee40a271df15f12f3a7772c48a8f3e12832f453436d61a825e5378aa",
+    "compact": "0853473f1aed97defe3e48e92c9d594a7debff28db976e1390efdde51c78586d"
+  }
+}

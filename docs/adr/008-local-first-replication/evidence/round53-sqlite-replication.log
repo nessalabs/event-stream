@@ -1,0 +1,101 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused imports: `params_from_iter` and `types::Value`
+  --> src/infrastructure/sqlite_restore.rs:13:13
+   |
+13 |     params, params_from_iter, types::Value, Connection, OpenFlags, OptionalExtension,
+   |             ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `Digest`
+ --> src/infrastructure/memory_replication.rs:4:12
+  |
+4 | use sha2::{Digest, Sha256};
+  |            ^^^^^^
+
+warning: multiple fields are never read
+   --> src/infrastructure/memory.rs:247:16
+    |
+140 | pub(super) struct State {
+    |                   ----- fields in this struct
+...
+247 |     pub(super) replica_bootstraps:
+    |                ^^^^^^^^^^^^^^^^^^
+...
+250 |     pub(super) published_replica_bootstraps: HashMap<OriginStream, BootstrapId>,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+251 |     #[cfg(feature = "replication")]
+252 |     pub(super) replica_staging_chunks: usize,
+    |                ^^^^^^^^^^^^^^^^^^^^^^
+253 |     #[cfg(feature = "replication")]
+254 |     pub(super) replica_staging_bytes: u64,
+    |                ^^^^^^^^^^^^^^^^^^^^^
+255 |     #[cfg(feature = "replication")]
+256 |     pub(super) replica_staging_records: usize,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^
+257 |     #[cfg(feature = "replication")]
+258 |     pub(super) replica_staging_record_bytes: u64,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+259 |     #[cfg(feature = "replication")]
+260 |     pub(super) replica_published_snapshot_bytes: u64,
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `State` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: multiple fields are never read
+  --> src/infrastructure/memory_replication.rs:28:5
+   |
+27 | pub(super) struct MemoryReplicaBootstrap {
+   |                   ---------------------- fields in this struct
+28 |     request: ReplicaBootstrap,
+   |     ^^^^^^^
+29 |     state: ReplicaBootstrapState,
+   |     ^^^^^
+30 |     chunks: BTreeMap<u64, Payload>,
+   |     ^^^^^^
+31 |     accepted_bytes: u64,
+   |     ^^^^^^^^^^^^^^
+32 |     suffix_records: BTreeMap<u64, Arc<Record>>,
+   |     ^^^^^^^^^^^^^^
+33 |     suffix_batches: std::collections::HashMap<BatchId, ReplicaBatch>,
+   |     ^^^^^^^^^^^^^^
+34 |     suffix_bytes: u64,
+   |     ^^^^^^^^^^^^
+35 |     verification: Option<MemoryReplicaBootstrapVerification>,
+   |     ^^^^^^^^^^^^
+36 |     publish: Option<(PublishReplicaBootstrap, ReplicaBootstrapReceipt)>,
+   |     ^^^^^^^
+37 |     abort: Option<(AbortReplicaBootstrap, AbortReplicaBootstrapReceipt)>,
+   |     ^^^^^
+   |
+   = note: `MemoryReplicaBootstrap` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: fields `snapshot_offset`, `suffix_offset`, `suffix_records`, `suffix_bytes`, and `hasher` are never read
+  --> src/infrastructure/memory_replication.rs:42:5
+   |
+41 | struct MemoryReplicaBootstrapVerification {
+   |        ---------------------------------- fields in this struct
+42 |     snapshot_offset: u64,
+   |     ^^^^^^^^^^^^^^^
+43 |     suffix_offset: u64,
+   |     ^^^^^^^^^^^^^
+44 |     suffix_records: usize,
+   |     ^^^^^^^^^^^^^^
+45 |     suffix_bytes: u64,
+   |     ^^^^^^^^^^^^
+46 |     hasher: Sha256,
+   |     ^^^^^^
+   |
+   = note: `MemoryReplicaBootstrapVerification` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: `event-stream` (lib) generated 5 warnings (run `cargo fix --lib -p event-stream` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.44s
+     Running tests/sqlite.rs (target/debug/deps/sqlite-5905b9f58f62e380)
+
+running 2 tests
+test shared_sqlite_replica_batch_destination_contract ... ok
+test shared_sqlite_replication_origin_batch_contract ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.02s
+

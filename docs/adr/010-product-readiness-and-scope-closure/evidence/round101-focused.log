@@ -1,0 +1,15 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests/retention_read.rs (target/debug/deps/retention_read-c7d642e0da4c33c4)
+
+running 1 test
+test sqlite_retention_read_has_only_complete_page_or_explicit_history_error ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/snapshot_interruption.rs (target/debug/deps/snapshot_interruption-1890c8b2e8dd1484)
+
+running 1 test
+test interrupted_snapshot_staging_is_hidden_resumable_and_bounded_after_reopen ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+

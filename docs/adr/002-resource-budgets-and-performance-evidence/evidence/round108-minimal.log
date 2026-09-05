@@ -1,0 +1,9 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.54s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-7ad66ce73b254b48)
+
+running 1 test
+test infrastructure::sqlite::append_staging_tests::staging_dedup_and_conflict_leave_outer_transaction_in_control ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 17 filtered out; finished in 0.01s
+

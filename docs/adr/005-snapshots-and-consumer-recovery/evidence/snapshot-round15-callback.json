@@ -1,0 +1,58 @@
+{
+  "format_version": 1,
+  "scenario_id": "snapshot-replay",
+  "run_id": "1788594014280468000-4143-0",
+  "started_unix_ms": 1788594014280,
+  "target": "Runtime<MemoryStore> snapshot publication and protected recovery",
+  "implementation_fingerprint": "fnv1a64:d0d2deb233bc287c",
+  "evidence_scope": "Production Runtime and MemoryStore snapshot APIs with bounded deterministic input. The transcript/workflow projection and snapshot encoding are application-owned. This is not SQLite restart or crash-durability evidence.",
+  "input": {
+    "covered_cursor": 2,
+    "tail": 3,
+    "schema": "example.application-state.v1"
+  },
+  "status": "passed",
+  "elapsed_us": 4045,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "The production Memory runtime restored application-owned state and applied only the protected suffix.",
+    "observations": [
+      {
+        "label": "Snapshot content",
+        "expected": "application state through cursor 2",
+        "actual": "16 bytes; transcript=[\"opened\", \"approved\", \"completed\"]",
+        "passed": true
+      },
+      {
+        "label": "Protected suffix",
+        "expected": "exactly offset 3",
+        "actual": "offsets=[3]",
+        "passed": true
+      },
+      {
+        "label": "Recovery result",
+        "expected": "snapshot plus suffix equals full replay",
+        "actual": "equal=true, workflow_step=3",
+        "passed": true
+      }
+    ],
+    "output": {
+      "covered_cursor": 2,
+      "captured_tail": 3,
+      "snapshot_bytes": 16,
+      "suffix_offsets": [
+        3
+      ],
+      "recovered": {
+        "transcript": [
+          "opened",
+          "approved",
+          "completed"
+        ],
+        "workflow_step": 3
+      },
+      "matches_complete_replay": true
+    }
+  }
+}

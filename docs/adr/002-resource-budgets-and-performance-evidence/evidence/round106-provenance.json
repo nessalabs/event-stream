@@ -1,0 +1,23 @@
+{
+  "binary": "/tmp/event-stream-round105-bounded-target/release/examples/performance_baseline",
+  "binary_sha256": "f42b7d9a045e40d1e6b41daef2a622edffcc56b6e9c03a6a9c691d25398d0559",
+  "archive_sha256": "267ba38d191c7b086efef62250653faa666a0d187713099a5f91dea2315fdd10",
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "load": [
+    3.23583984375,
+    4.4775390625,
+    6.70458984375
+  ],
+  "power": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=5439587)\t48%; discharging; 2:32 remaining present: true\n",
+  "started_utc": "2026-09-05T22:49:44.674870+00:00",
+  "populations": [
+    10000
+  ],
+  "repetitions": 3,
+  "cycles": 2,
+  "producers": 4,
+  "interval_us": 1000,
+  "payload_bytes": 128,
+  "features": "all-features",
+  "scope": "three fresh processes per store; 10k streams; two cycles;4000 aggregate offers/s; no subscribers or maintenance; not release qualification"
+}

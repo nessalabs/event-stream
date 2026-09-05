@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "measured_three_repetitions",
+  "run_started_utc": "2026-09-05T05:39:49.749634Z",
+  "run_ended_utc": "2026-09-05T05:45:55.605884Z",
+  "host": "Nessas-MacBook-Air.local; macOS 26.6 (25G72); Darwin 25.6.0 arm64",
+  "rustc": "1.98.1 (48a229cea 2026-09-01)",
+  "workload": {
+    "records": 256,
+    "payload_bytes": 128,
+    "page_records": 256,
+    "population": 100000,
+    "repetitions": 3,
+    "order": "Repetitions 1 and 3 ran before then after per mode; repetition 2 ran after then before per mode.",
+    "watchdog_seconds": 300,
+    "verification": "Every case checked 25,600,000 ordered offsets and exact payload bytes. All 12 passed."
+  },
+  "before": {
+    "source_archive": "decode-baseline-source.tar",
+    "source_archive_sha256": "ba20f0dd7440707b82f51274f83247cab12510a76c5e4ace2dddc2600a7b7ee6",
+    "source_manifest": "decode-baseline-source.sha256",
+    "source_manifest_sha256": "2d3078e13b0a9ac04f3c15462874d70ce8dbdecd93b0d5a5e46ba85dec5ed129",
+    "binary_sha256": "a54c735c03ad00e8e6853fd0e46593e0a390d54b1c83f2de7ce2812a20e5f2f6"
+  },
+  "after": {
+    "source_archive": "decode-after-source.tar",
+    "source_archive_sha256": "dcb7ee5a2549a63f6e6ef56a63af49ac23ae9cbf573e56487fe7d97572ef51b6",
+    "source_manifest": "decode-after-source.sha256",
+    "source_manifest_sha256": "aa3508332b499750f98e5526a943ec44148da256173ec1ad6e8065ae41d211c1",
+    "binary_sha256": "334fdc3c0d6cf90ee1d548e8bf515bf530b04549b8823284172bb862e431151e"
+  },
+  "source_difference": "The two complete, independently buildable snapshots differ in one file only: src/infrastructure/sqlite.rs. Its patch only replaces owned row decoding in decode_row with borrowed rusqlite ValueRef slices.",
+  "results": {
+    "path": "sqlite-decode-borrowed-ab-100k.jsonl",
+    "sha256": "481bfbbfdb4d3f7875dd0327b0e32ee9de94ce231a3ea1b29c3f2913ec95c29d"
+  },
+  "measurement_limits": "Rust allocation counters cover whole-process cumulative traffic in the timed region and exclude SQLite C allocations. RSS is process lifetime peak including setup. Elapsed and process CPU include open/close; runtime also includes registration, drain, drop, and shutdown."
+}

@@ -1,0 +1,660 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 14.53s
+     Running unittests src/lib.rs (target/debug/deps/event_stream-7a5dc866188ad24a)
+
+running 35 tests
+test application::config::tests::grouped_defaults_preserve_the_finite_runtime_policy ... ok
+test application::restore::tests::limits_and_paths_are_rejected_before_backend_admission ... ok
+test application::runtime::tests::ending_subscription_releases_page_capacity_and_allocation ... ok
+test application::restore::tests::cancelled_restore_keeps_its_owned_slot_until_backend_finishes ... ok
+test application::restore::tests::malformed_mapping_page_is_rejected_at_the_application_boundary ... ok
+test application::runtime::tests::shutdown_owns_live_and_pending_membership_exactly_once ... ok
+test application::runtime::tests::indexed_membership_removal_reuses_the_stable_slot ... ok
+test application::runtime::tests::complete_empty_page_is_terminal_and_releases_subscription_quota ... ok
+test application::runtime::tests::cancelled_and_closed_journal_waiters_release_all_permits ... ok
+test domain::lifecycle::tests::lifecycle_operation_ids_use_the_shared_utf8_byte_limit ... ok
+test domain::replication::tests::replica_identifiers_are_bounded ... ok
+test application::runtime::tests::journal_permit_keeps_its_queue_position_across_unrelated_notifications ... ok
+test domain::restore::tests::backup_identity_hex_is_canonical_and_bounded ... ok
+test domain::restore::tests::restore_operation_id_uses_identifier_byte_limit ... ok
+test application::runtime::tests::stable_sweep_cursor_visits_survivors_during_slot_zero_churn ... ok
+test domain::retention::tests::operation_id_and_generation_boundaries_are_explicit ... ok
+test application::restore::tests::restore_panic_is_an_exact_uncertain_publication ... ok
+test infrastructure::memory::tests::append_rejects_offset_overflow_without_mutating_history ... ok
+test application::runtime::tests::draining_last_record_releases_page_capacity_and_allocation ... ok
+test infrastructure::memory::tests::range_read_reports_middle_and_suffix_holes ... ok
+test infrastructure::memory_replication::tests::destination_accepts_a_final_max_offset_and_reads_at_tail ... ok
+test infrastructure::memory_replication::tests::destination_commits_one_exact_bounded_batch_and_reconciles_it ... ok
+test infrastructure::memory_replication::tests::origin_bootstrap_binds_published_snapshot_attempt_and_captured_tail ... ok
+test infrastructure::memory_replication::tests::origin_prepares_one_stable_batch_and_acknowledges_exact_receipt ... ok
+test infrastructure::memory_replication::tests::required_replica_backlog_rejects_a_new_local_commit_atomically ... ok
+test infrastructure::memory_source_journal::tests::marker_retry_does_not_recreate_a_missing_generated_identity ... ok
+test infrastructure::memory_replication::tests::destination_bootstrap_verifies_in_steps_and_publishes_snapshot_plus_suffix ... ok
+test infrastructure::sqlite::append_staging_tests::closed_batch_reply_retains_each_uncertain_identity ... ok
+test infrastructure::memory_replication::tests::application_driver_transfers_snapshot_and_suffix_between_real_stores ... ok
+test infrastructure::sqlite_test_vfs::tests::unavailable_optional_methods_are_not_advertised ... ok
+test application::runtime::tests::indexed_membership_matches_reference_set_across_generated_removals ... ok
+test infrastructure::sqlite::retention_query_plan_tests::production_merged_replay_uses_both_offset_indexes_without_temp_sort ... ok
+test infrastructure::sqlite::append_staging_tests::failure_after_replication_clock_write_rolls_back_record_tail_and_clock ... ok
+test infrastructure::sqlite::append_staging_tests::staging_dedup_and_conflict_leave_outer_transaction_in_control ... ok
+test infrastructure::memory_retention::timestamp_cleanup_tests::one_row_cleanup_preserves_timestamp_suffix_and_unreclaimed_prefix ... ok
+
+test result: ok. 35 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/append_batch.rs (target/debug/deps/append_batch-e5bd013930c88545)
+
+running 5 tests
+test malformed_outcomes_cannot_pass_identity_validation ... ok
+test capacity_and_bytes_are_checked_before_store_use ... ok
+test memory_fallback_preserves_order_and_individual_errors ... ok
+test capacity_failure_does_not_erase_earlier_receipt_or_later_retry ... ok
+test sqlite_batch_survives_reopen ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/core_memory.rs (target/debug/deps/core_memory-6664badbde0c8587)
+
+running 14 tests
+test lifecycle_receipt_and_retired_metadata_quotas_are_finite_and_retry_safe ... ok
+test descriptor_metadata_quota_is_aggregate_and_retry_safe ... ok
+test abort_retains_identity_while_cleanup_releases_chunks_in_bounded_turns ... ok
+test close_rejects_every_recovery_lease_operation ... ok
+test memory_store_passes_snapshot_contract ... ok
+test memory_store_passes_lifecycle_contract ... ok
+test quota_rejects_new_history_but_allows_retry ... ok
+test generated_recovery_schedule_preserves_content_suffix_and_expiry ... ok
+test stream_metadata_has_finite_count_and_byte_quotas ... ok
+test recovery_lease_protects_only_the_required_retired_suffix_until_expiry ... ok
+test tiny_snapshot_chunks_hit_metadata_quota_before_payload_quota ... ok
+test generated_lifecycle_sequence_matches_the_name_state_model ... ok
+test memory_store_passes_shared_contract ... ok
+test generated_snapshot_schedule_preserves_terminal_states_and_order ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/core_replication.rs (target/debug/deps/core_replication-b7a66c7ff51da563)
+
+running 3 tests
+test memory_replication_origin_obeys_batch_contract ... ok
+test memory_replica_destination_obeys_atomic_batch_contract ... ok
+test accepted_replication_drive_finishes_after_its_caller_is_cancelled ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/core_retention.rs (target/debug/deps/core_retention-9d3354f4ec6d47b1)
+
+running 9 tests
+test close_rejects_queued_retention_cleanup ... ok
+test floor_cleanup_retains_retry_until_a_later_expiry ... ok
+test operation_ids_return_exact_receipts_and_reject_reuse ... ok
+test lifecycle_cleanup_releases_retained_retry_capacity_in_bounded_turns ... ok
+test retry_expiry_and_floor_cleanup_are_logical_before_physical ... ok
+test generated_retained_retry_cleanup_checks_bytes_before_each_mutation ... ok
+test enabling_generations_preserves_legacy_and_qualifies_reused_ids ... ok
+test floor_publication_ends_a_subscriber_with_buffered_removed_history ... ok
+test runtime_generated_append_wakes_live_subscription_and_honors_event_limit ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/core_runtime.rs (target/debug/deps/core_runtime-429e0f8255adb62a)
+
+running 35 tests
+test caught_up_subscription_does_not_sleep_past_commit_during_tail_check ... ok
+test cancelled_shutdown_still_completes_the_owned_close ... ok
+test draining_runtime_rejects_new_reads_before_adapter_admission ... ok
+test draining_a_faulted_runtime_never_submits_the_next_queued_write ... ok
+test dropping_last_runtime_handle_on_std_thread_schedules_owned_close ... ok
+test finite_admission_reports_overload_and_timeout ... ok
+test concurrent_runtime_appends_are_gapless_and_replay_is_bounded ... ok
+test future_subscription_gets_only_later_commits ... ok
+test generated_retry_histories_match_a_small_reference_model ... ok
+test invalid_runtime_shape_is_rejected_before_opening_the_store ... ok
+test lifecycle_coordinator_is_anchored_while_active_and_released_after_definite_error ... ok
+test lifecycle_gate_orders_a_queued_old_append_after_the_transition ... ok
+test malformed_lifecycle_receipt_faults_runtime_and_retains_retry_identity ... ok
+test mismatched_unknown_operation_id_is_normalized_faulted_and_retained ... ok
+test multiple_workers_preserve_one_active_turn_and_stream_acceptance_order ... ok
+test cancelled_cleanup_remains_owned_and_shutdown_reports_it ... ok
+test cancelled_metadata_call_remains_owned_and_delays_close ... ok
+test cancelled_subscribe_bounds_remains_owned_and_delays_close ... ok
+test cancelled_lifecycle_call_remains_owned_and_is_reported_during_shutdown ... ok
+test required_persistence_profile_is_enforced ... ok
+test scheduler_gives_another_ready_stream_a_turn ... ok
+test resolved_unknown_commit_wakes_readers_and_retry_deduplicates ... ok
+test subscription_registration_holds_stream_gate_across_tail_capture ... ok
+test panicking_store_read_faults_runtime_and_blocks_later_operations ... ok
+test subscription_replays_then_follows_without_a_gap ... ok
+test unknown_lifecycle_blocks_the_name_and_exact_retry_reuses_its_reservation ... ok
+test subscription_uses_authoritative_nonzero_floor_for_start_and_lag_errors ... ok
+test dropped_accepted_append_finishes_and_shutdown_retains_ownership ... ok
+test cancelled_subscription_next_preserves_cursor_and_owned_page_io ... ok
+test unpolled_lagging_subscription_expires_and_releases_its_slot ... ok
+test shutdown_report_scopes_same_event_id_to_each_stream ... ok
+test cancelled_read_keeps_io_and_page_capacity_until_storage_finishes ... ok
+test full_admission_is_immediate_for_try_and_bounded_for_waiting_append ... ok
+test catch_up_grace_delays_unpolled_subscription_expiry ... ok
+test one_page_permit_fairly_serves_many_subscription_readers ... ok
+
+test result: ok. 35 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+     Running tests/core_snapshots.rs (target/debug/deps/core_snapshots-876f7308fbae5efa)
+
+running 8 tests
+test snapshot_admission_rejects_platform_maxima_before_opening_store ... ok
+test shutdown_wakes_snapshot_operation_waiting_for_capacity ... ok
+test snapshot_admission_rejects_excess_retained_bytes_before_store_entry ... ok
+test snapshot_waiter_count_is_bounded_while_one_operation_is_paused ... ok
+test malformed_verification_progress_never_reaches_publication_or_loops ... ok
+test verification_reconciles_concurrent_publish_and_abort_winners ... ok
+test snapshot_panic_returns_exact_unknown_identity_without_faulting_executor ... ok
+test cancelled_accepted_snapshot_remains_owned_through_shutdown ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/core_source_journal.rs (target/debug/deps/core_source_journal-91aad211bccfcec1)
+
+running 10 tests
+test cleanup_budget_must_fit_every_accepted_journal_row_shape ... ok
+test newline_checkpoint_rejects_impossible_partial_without_mutating_decoder ... ok
+test runtime_rejects_journal_semaphore_ranges_before_opening_store ... ok
+test aggregate_checkpoint_bytes_reject_growth_without_replacing_old_state ... ok
+test begin_capture_read_checkpoint_and_explicit_receipt_expiry ... ok
+test shared_source_journal_contract ... ok
+test multi_output_frame_is_atomic_with_markers_and_pins_its_generation ... ok
+test runtime_composes_capture_and_atomic_output_with_bounded_admission ... ok
+test journal_ingestion_drains_valid_zero_consumption_buffered_outputs ... ok
+test journal_ingestion_replays_after_output_before_checkpoint_and_restores_split_frame ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cursor_codec.rs (target/debug/deps/cursor_codec-a6a71348c8101f1b)
+
+running 6 tests
+test unsupported_cursor_version_cannot_be_encoded ... ok
+test versions_flags_lengths_hex_and_utf8_are_rejected ... ok
+test golden_token_is_stable_and_canonical ... ok
+test cursor_transport_does_not_interpret_unknown_event_envelopes ... ok
+test full_u64_range_and_maximum_identifier_round_trip ... ok
+test malformed_input_fuzz_is_bounded_and_never_panics ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/decoder.rs (target/debug/deps/decoder-559299f316e5c218)
+
+running 16 tests
+test append_failure_retains_the_exact_pending_id_for_resolution ... ok
+test cumulative_work_is_bounded_across_progressing_steps ... ok
+test driver_bounds_chunks_and_unconsumed_input ... ok
+test cancelled_sink_wait_requires_retry_of_the_same_pending_event ... ok
+test finite_buffered_output_is_valid_during_decode_and_finish ... ok
+test expanding_output_uses_an_independent_drive_budget ... ok
+test driver_maps_and_commits_one_item_at_a_time_with_stable_positions ... ok
+test malicious_decoder_contract_violations_stop_the_session ... ok
+test newline_policies_are_exact_at_crlf_empty_and_eof_boundaries ... ok
+test terminal_session_releases_admission_while_its_handle_is_retained ... ok
+test repeated_output_without_input_progress_is_finite ... ok
+test valid_items_commit_before_a_later_parse_failure ... ok
+test newline_output_is_identical_for_every_partition ... ok
+test larger_seeded_chunk_partitions_match_unsplit_decoding ... ok
+test decoder_session_count_and_declared_state_bytes_are_bounded ... ok
+test default_drive_budget_accepts_a_full_chunk_of_empty_frames ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/mixed_workload.rs (target/debug/deps/mixed_workload-33ef5ae4adcd8cec)
+
+running 1 test
+test scheduled_foreground_and_replay_survive_mixed_recovery_and_reply_loss ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.46s
+
+     Running tests/replication_bootstrap_accounting.rs (target/debug/deps/replication_bootstrap_accounting-d0456b827d272243)
+
+running 2 tests
+test maximum_identifiers_are_charged_before_bootstrap_io ... ok
+test bounded_bootstrap_still_retries_the_exact_completed_receipt ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_bootstrap_regressions.rs (target/debug/deps/replication_bootstrap_regressions-73ba262dd9cb2824)
+
+running 2 tests
+test snapshot_only_bootstrap_has_its_covered_cursor_as_the_replica_tail ... ok
+test bootstrap_verification_makes_bounded_progress_across_multiple_calls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_driver_regressions.rs (target/debug/deps/replication_driver_regressions-337ace7d34f17054)
+
+running 5 tests
+test invalid_transport_receipt_does_not_advance_origin ... ok
+test cancelled_caller_does_not_release_capacity_while_transport_owns_batch ... ok
+test lost_transport_reply_retries_exact_destination_commit ... ok
+test retry_policy_resends_unknown_commit_and_shutdown_drains_owned_work ... ok
+test deadline_preserves_owned_transport_until_graceful_shutdown_finishes ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/replication_origin_bootstrap.rs (target/debug/deps/replication_origin_bootstrap-65e0d80ddd151ff8)
+
+running 3 tests
+test origin_rejects_bootstrap_ack_at_its_protection_deadline ... ok
+test bootstrap_transfers_real_snapshot_and_suffix_then_drains_new_local_writes ... ok
+test driver_bootstrap_transfers_real_pages_and_retries_exact_completion ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_read_lease_regressions.rs (target/debug/deps/replication_read_lease_regressions-4b9d9fb9a1973386)
+
+running 4 tests
+test abandoned_expired_reader_slot_is_reclaimed_by_bounded_cleanup ... ok
+test reader_keeps_original_snapshot_across_replacement_until_exact_expiry ... ok
+test released_replaced_snapshot_capacity_is_reusable ... ok
+test aborted_bootstrap_larger_than_cleanup_byte_budget_is_removed_in_chunks ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/replication_resource_regressions.rs (target/debug/deps/replication_resource_regressions-60f189c0b224405e)
+
+running 4 tests
+test attaching_existing_history_preserves_original_commit_age ... ok
+test closed_origin_rejects_exact_attach_retry_and_detach ... ok
+test destination_floor_cannot_exceed_combined_receipt_count_limit ... ok
+test partial_ack_uses_remaining_record_age_and_moves_retention_protection ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/retention_read.rs (target/debug/deps/retention_read-c7d642e0da4c33c4)
+
+running 1 test
+test sqlite_retention_read_has_only_complete_page_or_explicit_history_error ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/runtime_replication.rs (target/debug/deps/runtime_replication-1458925b8f3adb85)
+
+running 7 tests
+test invalid_runtime_replication_budgets_fail_before_open ... ok
+test transfer_byte_budget_rejects_before_transport_io ... ok
+test memory_runtime_replicates_its_own_appends_and_retries_exactly ... ok
+test memory_runtime_bootstraps_snapshot_and_suffix ... ok
+test panicking_transport_reports_unknown_and_exact_retry_reuses_capacity ... ok
+test cancelled_transfer_keeps_its_slot_and_prevents_premature_shutdown ... ok
+test sqlite_runtime_replication_and_bootstrap_survive_origin_reopen ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/snapshot_interruption.rs (target/debug/deps/snapshot_interruption-1890c8b2e8dd1484)
+
+running 1 test
+test interrupted_snapshot_staging_is_hidden_resumable_and_bounded_after_reopen ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/source_finalization.rs (target/debug/deps/source_finalization-ad5379dff8360301)
+
+running 4 tests
+test newline_finished_checkpoint_replays_eof_without_reemitting_output ... ok
+test memory_seal_and_finish_preserve_exact_retries_and_reject_new_work ... ok
+test runtime_routes_finalization_and_rejects_work_after_shutdown ... ok
+test journal_finish_requires_seal_and_recovers_final_frame_mapping_failure ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/sqlite.rs (target/debug/deps/sqlite-b6886d1891135665)
+
+running 61 tests
+test corrupt_format_one_input_fails_migration_without_partial_schema_change ... ok
+test committed_data_recovers_after_process_kill ... ok
+test dropping_store_releases_ownership_after_accepted_work_stops ... ok
+test database_quota_failure_rolls_back_record_and_tail ... ok
+test corrupt_active_name_pointer_cannot_retire_another_lifetime ... ok
+test corrupt_stream_metadata_lengths_fail_before_blob_allocation ... ok
+test corrupt_record_payload_is_bounded_before_result_materialization ... ok
+test corrupt_record_offset_is_rejected_before_blob_allocation ... ok
+test format_one_migration_preserves_record_table_and_exact_bytes ... ok
+test in_process_ownership_lasts_until_worker_stops ... ok
+test dropped_close_future_still_closes_after_a_full_queue_drains ... ok
+test lifecycle_quotas_are_atomic_and_identical_retries_bypass_capacity ... ok
+test internally_inconsistent_lifecycle_receipt_is_rejected_on_open ... ok
+test injected_migration_failure_preserves_valid_format_one_then_retries ... ok
+test corrupt_scalar_types_are_rejected_before_result_materialization ... ok
+test lifecycle_receipts_and_unavailable_name_survive_restart_and_cleanup ... ok
+test injected_transaction_boundaries_preserve_atomic_state_and_resolve_unknown_commit ... ok
+test malformed_or_foreign_formats_fail_without_partial_initialization ... ok
+test ordered_replay_and_retry_lookup_use_declared_indexes ... ok
+test lifecycle_and_cleanup_failure_boundaries_are_atomic_and_retryable ... ok
+test ownership_rejects_hardlinks_symlinks_and_normalizes_parent_aliases ... ok
+test metadata_rejects_floor_above_tail ... ok
+test newer_format_is_rejected_without_migration ... ok
+test process_kill_after_commit_before_receipt_deduplicates_retry ... ok
+test positive_but_forged_snapshot_accounting_is_rejected_on_open ... ok
+test corrupt_record_identifiers_are_bounded_by_utf8_bytes_before_allocation ... ok
+test process_kill_after_journal_output_commit_resolves_exact_content_retry ... ok
+test process_kill_before_commit_rolls_back_record_and_tail ... ok
+test separate_process_cannot_take_ownership ... ok
+test malformed_snapshot_identifier_and_partial_schema_are_rejected_on_open ... ok
+test recovery_lease_keeps_retired_suffix_readable_until_release ... ok
+test published_snapshot_bytes_and_upload_state_survive_restart ... ok
+test restart_preserves_records_deduplication_and_incarnation ... ok
+test shared_lifecycle_store_contract ... ok
+test process_kill_after_snapshot_publication_commit_resolves_exact_retry ... ok
+test sqlite_child ... ok
+test shared_sqlite_replica_batch_destination_contract ... ok
+test retired_cleanup_rejects_history_holes_and_rolls_back_prior_deletes ... ok
+test shared_source_journal_store_contract ... ok
+test snapshot_page_limit_above_sqlite_integer_range_is_rejected ... ok
+test shared_sqlite_replication_origin_batch_contract ... ok
+test shared_snapshot_store_contract ... ok
+test replay_rejects_internal_holes_and_missing_tail_rows ... ok
+test sqlite_journal_marker_retry_does_not_recreate_a_missing_output ... ok
+test sqlite_journal_capture_and_checkpoint_lost_ack_resolve_after_restart ... ok
+test sqlite_journal_receipt_cleanup_does_not_strand_raw_bytes_before_checkpoint ... ok
+test sqlite_journal_parser_recovers_output_before_checkpoint_after_restart ... ok
+test sqlite_rejects_understated_replica_backlog_counter_on_open ... ok
+test sqlite_replica_backlog_counters_and_oldest_age_advance_by_exact_batch ... ok
+test shared_event_store_contract ... ok
+test sqlite_replica_commit_lost_ack_resolves_exactly_after_restart ... ok
+test sqlite_journal_output_transaction_rolls_back_or_resolves_exact_retry ... ok
+test sqlite_replica_bootstrap_publishes_exact_snapshot_and_suffix_after_restart ... ok
+test sqlite_replication_includes_generated_history_and_survives_reopen ... ok
+test sqlite_retention_floor_respects_active_snapshot_recovery_lease ... ok
+test understated_lifecycle_counters_are_rejected_on_open ... ok
+test sqlite_replica_destination_quotas_are_atomic_and_counters_are_audited ... ok
+test unsigned_offset_representation_crosses_signed_boundary_on_a_forged_tail ... ok
+test sqlite_retention_reuses_ids_across_generations_and_cleans_only_after_both_bounds ... ok
+test sqlite_retention_commit_failures_roll_back_and_lost_acks_resolve_after_restart ... ok
+test snapshot_commit_faults_preserve_identity_and_retry_outcomes ... ok
+
+test result: ok. 61 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.78s
+
+     Running tests/sqlite_append_batch.rs (target/debug/deps/sqlite_append_batch-c08a8aa15583586a)
+
+running 6 tests
+test adapter_rejects_oversized_group_without_writing ... ok
+test group_observes_earlier_replica_backlog_without_discarding_other_stream ... ok
+test lost_group_reply_reconciles_all_inserted_identities ... ok
+test preexisting_retry_is_distinct_from_new_records_during_group_reconciliation ... ok
+test grouped_rollback_never_releases_insert_or_same_group_dedup ... ok
+test cancelled_caller_does_not_cancel_accepted_group_or_early_close ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.56s
+
+     Running tests/sqlite_batch_crash.rs (target/debug/deps/sqlite_batch_crash-f7fafa4f4867cc8b)
+
+running 2 tests
+test grouped_crash_child ... ok
+test process_kill_on_both_sides_of_group_commit_preserves_exact_history ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/sqlite_batch_sync.rs (target/debug/deps/sqlite_batch_sync-b651027401a2b619)
+
+running 1 test
+test grouped_appends_share_real_sqlite_sync_work ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/sqlite_bootstrap_cleanup.rs (target/debug/deps/sqlite_bootstrap_cleanup-ee60b6879c67a06f)
+
+running 4 tests
+test sqlite_expired_reader_slot_is_reclaimed_by_bounded_cleanup ... ok
+test sqlite_replaced_snapshot_keeps_reader_then_reuses_capacity ... ok
+test sqlite_aborted_bootstrap_reopens_and_reclaims_bounded_chunks ... ok
+test restore_accepts_replaced_snapshot_after_retired_bytes_are_cleaned ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running tests/sqlite_bootstrap_driver.rs (target/debug/deps/sqlite_bootstrap_driver-e29e43e189e15a73)
+
+running 2 tests
+test sqlite_destination_publishes_real_bootstrap_and_reopens_snapshot_and_suffix ... ok
+test sqlite_both_stores_reopen_and_retry_completed_bootstrap ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/sqlite_faults.rs (target/debug/deps/sqlite_faults-9a69124c1b0bf5c0)
+
+running 8 tests
+test logical_sqlite_page_quota_reports_full_without_losing_prior_history ... ok
+test failed_main_file_write_and_rollback_recover_to_one_atomic_state ... ok
+test private_bounded_filesystem_exhaustion_preserves_history_and_retry ... ok
+test successful_append_reports_normal_vfs_write_and_sync_scope ... ok
+test restore_on_a_real_full_filesystem_keeps_destination_unpublished_and_retries ... ok
+test forwarding_vfs_write_and_sync_faults_leave_resolvable_atomic_state ... ok
+test failed_rollback_truncate_reports_failure_and_preserves_committed_history ... ok
+test grouped_append_vfs_faults_recover_all_records_or_none ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 16.37s
+
+     Running tests/sqlite_ingestion_finalization.rs (target/debug/deps/sqlite_ingestion_finalization-f22eb882496afa92)
+
+running 3 tests
+test sqlite_eof_kill_child ... ok
+test sqlite_finalization_is_bounded_and_survives_reopen ... ok
+test sqlite_eof_recovers_four_process_kill_boundaries ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running tests/sqlite_journal_replication.rs (target/debug/deps/sqlite_journal_replication-2e85fff83fd53470)
+
+running 1 test
+test journal_recovery_to_replica_survives_both_sqlite_restarts ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running tests/sqlite_origin_restore.rs (target/debug/deps/sqlite_origin_restore-1ffd3c74c114d187)
+
+running 9 tests
+test replication_restore_kill_child ... ok
+test restore_rejects_inconsistent_pending_batch_record_count ... ok
+test restore_rejects_foreign_origin_operation_receipt ... ok
+test restore_rejects_pending_batch_beyond_source_tail ... ok
+test restore_rejects_foreign_origin_attachment ... ok
+test restore_rejects_understated_origin_backlog ... ok
+test restore_pending_origin_preserves_history_and_requires_new_bootstrap ... ok
+test restore_completed_receipts_after_payload_retention_cleanup ... ok
+test pending_replication_restore_survives_publication_process_kills ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.55s
+
+     Running tests/sqlite_replica_restore_corruption.rs (target/debug/deps/sqlite_replica_restore_corruption-4d0d2401cd2228da)
+
+running 9 tests
+test restore_rejects_changed_verified_unpublished_snapshot ... ok
+test restore_rejects_partial_upload_counter_mismatch ... ok
+test restore_rejects_partial_upload_chunk_gap ... ok
+test restore_rejects_shifted_published_snapshot_chunk ... ok
+test restore_rejects_missing_published_snapshot_chunk ... ok
+test restore_rejects_missing_published_suffix_record ... ok
+test restore_rejects_corrupt_published_replica_snapshot ... ok
+test restore_accepts_partial_snapshot_upload ... ok
+test restore_accepts_verified_unpublished_snapshot ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
+
+     Running tests/sqlite_replication_chunk_quota.rs (target/debug/deps/sqlite_replication_chunk_quota-a10b85eef67f4df4)
+
+running 3 tests
+test chunk_quota_survives_abort_bounded_cleanup_and_reopen ... ok
+test legacy_destination_accounting_adds_exact_chunk_counters ... ok
+test restore_rebuilds_chunk_quota_and_corrupt_counters_fail_open ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+     Running tests/sqlite_replication_regressions.rs (target/debug/deps/sqlite_replication_regressions-587e5da23070c0dc)
+
+running 5 tests
+test sqlite_attach_operation_rejects_changed_limits ... ok
+test sqlite_rejects_acknowledgement_past_exact_prepared_batch ... ok
+test sqlite_pending_prepare_retry_does_not_include_later_appends ... ok
+test sqlite_missing_replication_metadata_is_corruption_not_a_new_origin ... ok
+test sqlite_pending_batch_identity_and_receipt_survive_reopen ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/sqlite_replication_restore_receipts.rs (target/debug/deps/sqlite_replication_restore_receipts-fc78c6e86f220f28)
+
+running 1 test
+test restore_replays_mapped_completed_bootstrap_receipts_without_reactivating_source ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+     Running tests/sqlite_replication_staging_record_quota.rs (target/debug/deps/sqlite_replication_staging_record_quota-63873e31bd7f207e)
+
+running 8 tests
+test aggregate_staging_record_byte_quota_is_independent_of_row_limit ... ok
+test aborted_staging_record_releases_capacity_only_during_bounded_cleanup ... ok
+test aggregate_staging_record_quota_retries_and_publication_release_exactly ... ok
+test legacy_destination_accounting_adds_exact_staging_record_counters ... ok
+test staging_record_charge_reconciles_before_and_after_commit_failures ... ok
+test publication_release_reconciles_before_and_after_commit_failures ... ok
+test controlled_restore_rebuilds_staging_record_accounting ... ok
+test restore_accepts_matching_legacy_staging_copy_and_rejects_contradiction ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+
+     Running tests/sqlite_restore.rs (target/debug/deps/sqlite_restore-da4d4149d54e102e)
+
+running 37 tests
+test backup_inspection_rejects_oversized_replacement_before_import ... ok
+test controlled_restore_rejects_snapshot_payload_that_does_not_match_digest ... ok
+test cleanup_removes_owned_completed_staging_without_source ... ok
+test controlled_restore_preserves_snapshot_bytes_and_remaps_stream_identity ... ok
+test completed_unpublished_restore_retries_without_source ... ok
+test controlled_restore_preserves_generated_retry_identity_and_merged_history ... ok
+test controlled_restore_preserves_captured_prefix_and_uncheckpointed_output ... ok
+test dangling_symlinked_request_binding_is_rejected_and_preserved ... ok
+test controlled_restore_rotates_destination_and_preserves_published_bootstrap ... ok
+test controlled_restore_rotates_origin_and_detaches_imported_replica ... ok
+test cleanup_reports_exact_unlink_and_directory_sync_failures ... ok
+test corrupt_completed_mapping_count_is_rejected_before_publication ... ok
+test journal_restore_rejects_forged_zero_charge_with_matching_counters ... ok
+test legacy_format_two_is_inspected_read_only_restored_and_extended_on_normal_open ... ok
+test logical_restore_rewrites_full_identity_union_and_survives_restart ... ok
+test controlled_restore_accepts_partial_and_complete_aborted_cleanup_states ... ok
+test mapping_reader_guards_malformed_large_columns_before_materialization ... ok
+test restore_process_kill_child ... ok
+test mapping_reader_rejects_an_incarnation_that_was_not_refreshed ... ok
+test operation_reservation_rejects_conflicts_and_preserves_unknown_entries ... ok
+test operation_id_cannot_escape_or_lengthen_staging_name ... ok
+test linked_restore_retries_each_publication_boundary_without_source ... ok
+test record_page_byte_limit_flushes_across_streams ... ok
+test record_pages_batch_across_streams_and_skip_empty_lifetimes ... ok
+test restore_rejects_a_missing_record_before_the_declared_tail ... ok
+test restore_rejects_records_outside_declared_lifetime_extent ... ok
+test restore_keeps_published_snapshot_after_its_retired_lifetime_was_cleaned ... ok
+test symlinked_operation_owner_is_rejected_and_preserved ... ok
+test retention_restore_accepts_expired_prefix_between_bounded_cleanup_turns ... ok
+test unbound_empty_staging_is_preserved_and_not_adopted ... ok
+test staging_symlink_and_hardlink_are_rejected_before_sqlite_open ... ok
+test restore_rejects_schema_versions_outside_the_domain_range ... ok
+test abrupt_process_kill_recovers_bootstrap_and_publication_boundaries ... ok
+test staging_quota_failure_never_publishes_the_destination ... ok
+test retention_restore_rejects_oversized_receipt_and_honors_page_byte_limit ... ok
+test published_receipt_rejects_malformed_types_counts_and_accounting ... ok
+test retention_restore_keyset_pages_many_pending_cleanup_ranges ... ok
+
+test result: ok. 37 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.37s
+
+     Running tests/sqlite_restore_source.rs (target/debug/deps/sqlite_restore_source-908902a3086cd4a0)
+
+running 1 test
+test validated_source_snapshot_blocks_library_and_raw_sqlite_writers ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running tests/sqlite_source_finalization.rs (target/debug/deps/sqlite_source_finalization-0c5d00e7412b8af9)
+
+running 5 tests
+test sqlite_finalization_precommit_failures_roll_back_and_retry ... ok
+test sqlite_finalization_lost_acknowledgements_reconcile_exactly ... ok
+test sqlite_restore_rejects_inconsistent_source_finalization_metadata ... ok
+test sqlite_seal_finish_reopen_and_restore_preserve_exact_state ... ok
+test sqlite_legacy_journal_schema_restores_read_only_and_migrates_on_open ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running unittests examples/custom_decoder.rs (target/debug/examples/custom_decoder-47c92bfc70b76cdf)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/custom_store.rs (target/debug/examples/custom_store-bc1aab4ea696d7ca)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/local_recovery.rs (target/debug/examples/local_recovery-cbe679578999e9e8)
+
+running 1 test
+test tests::full_store_backup_reopen_and_restore_preserve_exact_history ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running unittests examples/mixed_resource.rs (target/debug/examples/mixed_resource-219eb1670606326f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/performance_baseline.rs (target/debug/examples/performance_baseline-195a2e325ef4068f)
+
+running 6 tests
+test tests::agent_burst_task_result_stays_compact ... ok
+test tests::population_expected_records_follow_receipt_cursor_order ... ok
+test tests::population_record_verifier_rejects_wrong_cursor_id_and_payload ... ok
+test tests::population_mapping_covers_every_stream_once_per_cycle_with_nondivisible_width ... ok
+test tests::sustained_generator_rejects_zero_task_limit ... ok
+test tests::sustained_generator_conserves_offers_at_hard_task_cap ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/projection_reconnect.rs (target/debug/examples/projection_reconnect-11470cab6305b4fc)
+
+running 1 test
+test tests::live_reconnect_matches_replay_and_failed_apply_keeps_checkpoint ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/replicated_recovery.rs (target/debug/examples/replicated_recovery-a4ed02cbbb53bc98)
+
+running 1 test
+test tests::bounded_backlog_restart_catchup_and_retry_keep_exact_history ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running unittests examples/restore_resource.rs (target/debug/examples/restore_resource-15d6378679ae5f6d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/retention_cleanup.rs (target/debug/examples/retention_cleanup-cab96acf10f5c348)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/snapshot_recovery.rs (target/debug/examples/snapshot_recovery-35282e1258986c26)
+
+running 2 tests
+test tests::application_rejects_an_unknown_snapshot_schema_before_decoding ... ok
+test tests::snapshot_plus_protected_suffix_matches_complete_replay ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/snapshot_resource.rs (target/debug/examples/snapshot_resource-c2a876936ae5ec7f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/sqlite_schema_probe.rs (target/debug/examples/sqlite_schema_probe-c4d4648d973a8e69)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

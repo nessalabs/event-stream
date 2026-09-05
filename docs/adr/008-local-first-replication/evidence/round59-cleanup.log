@@ -1,0 +1,12 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.22s
+     Running tests/replication_read_lease_regressions.rs (target/debug/deps/replication_read_lease_regressions-96bbbe93247b4c14)
+
+running 4 tests
+test abandoned_expired_reader_slot_is_reclaimed_by_bounded_cleanup ... ok
+test reader_keeps_original_snapshot_across_replacement_until_exact_expiry ... ok
+test released_replaced_snapshot_capacity_is_reusable ... ok
+test aborted_bootstrap_larger_than_cleanup_byte_budget_is_removed_in_chunks ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

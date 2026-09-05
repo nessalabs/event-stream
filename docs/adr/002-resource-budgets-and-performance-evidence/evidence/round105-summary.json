@@ -1,0 +1,40 @@
+[
+  {
+    "variant": "control",
+    "metrics": {
+      "runtime_ns_median": 119449000,
+      "cpu_us_median": 113642,
+      "memory_bytes_median": 38223872,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 35112,
+      "agents": 1,
+      "accepted": null,
+      "rejected": null,
+      "failed": 0,
+      "delivered": null
+    },
+    "elapsed_ns_range": [
+      87695250,
+      125204625
+    ]
+  },
+  {
+    "variant": "bounded",
+    "metrics": {
+      "runtime_ns_median": 99292,
+      "cpu_us_median": 145,
+      "memory_bytes_median": 38338560,
+      "rust_live_bytes_median": null,
+      "rust_allocated_bytes_median": 35112,
+      "agents": 1,
+      "accepted": null,
+      "rejected": null,
+      "failed": 0,
+      "delivered": null
+    },
+    "elapsed_ns_range": [
+      93791,
+      169667
+    ]
+  }
+]

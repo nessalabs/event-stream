@@ -1,0 +1,17 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.19s
+     Running tests/core_retention.rs (target/debug/deps/core_retention-59788f642d1f9405)
+
+running 9 tests
+test lifecycle_cleanup_releases_retained_retry_capacity_in_bounded_turns ... ok
+test cleanup_byte_budget_stops_before_a_second_retained_record ... ok
+test close_rejects_queued_retention_cleanup ... ok
+test enabling_generations_preserves_legacy_and_qualifies_reused_ids ... ok
+test operation_ids_return_exact_receipts_and_reject_reuse ... ok
+test retry_expiry_and_floor_cleanup_are_logical_before_physical ... ok
+test floor_cleanup_retains_retry_until_a_later_expiry ... ok
+test runtime_generated_append_wakes_live_subscription_and_honors_event_limit ... ok
+test floor_publication_ends_a_subscriber_with_buffered_removed_history ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

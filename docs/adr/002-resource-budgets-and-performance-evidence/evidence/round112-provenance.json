@@ -1,0 +1,8 @@
+{
+  "binary": "/tmp/event-stream-round112-target/release/examples/performance_baseline",
+  "binary_sha256": "bf10d9ec40691a4d7519288ce6b339ec9cfae9a7ebbedd29926d2a50c82f1e46",
+  "archive_sha256": "eb268a15bc0443d02c5b5d6c054fe140a8629abe94523ab9cb6ae25f6e941a85",
+  "gates_sha256": "bc3587103d3a2acf518f327f2137d1bbb5267fce76becafe676bc04aa9625cb1",
+  "host": "macOS-26.6-arm64-arm-64bit",
+  "started_utc": "2026-09-05T23:33:06.174855+00:00"
+}

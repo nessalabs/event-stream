@@ -1,0 +1,40 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused import: `time::Duration`
+ --> tests/sqlite_replica_restore_corruption.rs:6:26
+  |
+6 | use std::{path::PathBuf, time::Duration};
+  |                          ^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `DestinationEpoch` and `ReplicationError`
+  --> tests/sqlite_replica_restore_corruption.rs:26:39
+   |
+26 |         BatchId, BootstrapId, Cursor, DestinationEpoch, IncarnationId, OriginId, OriginStream,
+   |                                       ^^^^^^^^^^^^^^^^
+...
+30 |         ReplicationError, ReplicationOperationId, SnapshotChunk, SnapshotDescriptor,
+   |         ^^^^^^^^^^^^^^^^
+
+warning: `event-stream` (test "sqlite_replica_restore_corruption") generated 2 warnings (run `cargo fix --test "sqlite_replica_restore_corruption" -p event-stream` to apply 2 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.48s
+     Running tests/sqlite_replica_restore_corruption.rs (target/debug/deps/sqlite_replica_restore_corruption-4d0d2401cd2228da)
+
+running 1 test
+test restore_rejects_corrupt_published_replica_snapshot ... FAILED
+
+failures:
+
+---- restore_rejects_corrupt_published_replica_snapshot stdout ----
+
+thread 'restore_rejects_corrupt_published_replica_snapshot' (6716428) panicked at tests/sqlite_replica_restore_corruption.rs:149:5:
+corrupt published replica bytes were restored: Ok(RestoreReceipt { operation_id: RestoreOperationId("restore-replication-destination"), backup_identity: BackupIdentity([238, 227, 165, 35, 52, 178, 225, 239, 200, 35, 156, 185, 166, 133, 218, 155, 189, 153, 126, 45, 117, 131, 212, 54, 248, 154, 128, 103, 124, 73, 242, 10]), destination: "/private/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/replication-destination-roundtrip-1ef13b7b-9c07-47e4-9721-c5496163e2a7/restored.sqlite3", mapping_count: 0 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    restore_rejects_corrupt_published_replica_snapshot
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+error: test failed, to rerun pass `--test sqlite_replica_restore_corruption`

@@ -1,0 +1,52 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: fields `request`, `suffix_records`, and `suffix_bytes` are never read
+  --> src/infrastructure/memory_replication.rs:21:5
+   |
+20 | struct MemoryOriginBootstrap {
+   |        --------------------- fields in this struct
+21 |     request: BeginOriginBootstrap,
+   |     ^^^^^^^
+22 |     suffix_records: usize,
+   |     ^^^^^^^^^^^^^^
+23 |     suffix_bytes: u64,
+   |     ^^^^^^^^^^^^
+   |
+   = note: `MemoryOriginBootstrap` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: variants `BeginBootstrap` and `AcknowledgeBootstrap` are never constructed
+  --> src/infrastructure/memory_replication.rs:32:5
+   |
+27 | pub(super) enum MemoryOriginReceipt {
+   |                 ------------------- variants in this enum
+...
+32 |     BeginBootstrap(BeginOriginBootstrapReceipt),
+   |     ^^^^^^^^^^^^^^
+33 |     AcknowledgeBootstrap(AcknowledgeOriginBootstrapReceipt),
+   |     ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `MemoryOriginReceipt` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: `event-stream` (lib) generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.28s
+     Running tests/replication_bootstrap_regressions.rs (target/debug/deps/replication_bootstrap_regressions-eccfe86264f1779a)
+
+running 2 tests
+test bootstrap_verification_makes_bounded_progress_across_multiple_calls ... ok
+test snapshot_only_bootstrap_has_its_covered_cursor_as_the_replica_tail ... FAILED
+
+failures:
+
+---- snapshot_only_bootstrap_has_its_covered_cursor_as_the_replica_tail stdout ----
+
+thread 'snapshot_only_bootstrap_has_its_covered_cursor_as_the_replica_tail' (6090221) panicked at tests/replication_bootstrap_regressions.rs:270:10:
+called `Result::unwrap()` on an `Err` value: StaleProgress { current: ReplicaPosition { stream: OriginStream { origin: OriginId([11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11]), stream: StreamKey { id: StreamId("snapshot-only"), incarnation: IncarnationId([12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12]) } }, offset: 0 } }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    snapshot_only_bootstrap_has_its_covered_cursor_as_the_replica_tail
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test replication_bootstrap_regressions`

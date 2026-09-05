@@ -1,0 +1,7 @@
+{
+  ".github/workflows/core.yml": "014402a52a1b5675eb4513a9c30c359faf14030679e5e56a11f2c60eacb7ad6a",
+  "Cargo.lock": "765e5dfcb69807722888bb0bcefeaf24f434b2846393d2eed304b87ef83587dd",
+  "examples/local_recovery.rs": "d3d6d53557bec737723ae94ed9626954d9ee13e26fb0ce349ba9ea5bbfae4508",
+  "examples/replicated_recovery.rs": "8ddf8cd9358c670a1f49009dc3d94def3e5089cc62acf52abb7fa1835a060d19",
+  "examples/projection_reconnect.rs": "66c7bca3851fcb8bed53ec9e9b2e1adfe60b3956f0d59600065b913956ebf86e"
+}

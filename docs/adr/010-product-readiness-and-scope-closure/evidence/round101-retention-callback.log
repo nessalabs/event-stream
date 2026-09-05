@@ -1,0 +1,139 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.70s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running `verification/target/debug/event-stream-verification --scenario retention-race`
+{
+  "format_version": 1,
+  "scenario_id": "retention-race",
+  "run_id": "1788645259647860000-55043-0",
+  "started_unix_ms": 1788645259647,
+  "target": "Runtime with real SQLite and injected EventStore read gates",
+  "implementation_fingerprint": "fnv1a64:2243ccecdf0a8e99",
+  "evidence_scope": "Two deterministic port-boundary schedules around production SQLite reads. Gate injection controls scheduling only. This does not prove concurrent SQLite transactions, crash recovery or resource budgets.",
+  "input": {
+    "gate_positions": [
+      "before_sqlite_read",
+      "after_sqlite_page"
+    ],
+    "records_per_stream": 3,
+    "new_floor": 3
+  },
+  "status": "passed",
+  "elapsed_us": 33117,
+  "cpu_ns": null,
+  "peak_memory_bytes": null,
+  "result": {
+    "summary": "A read delayed before SQLite reported missing history; a complete SQLite page remained intact after physical cleanup.",
+    "observations": [
+      {
+        "label": "Cleanup before read",
+        "expected": "HistoryUnavailable with floor 3 and tail 3",
+        "actual": "history_error=true, floor=3, tail=3",
+        "passed": true
+      },
+      {
+        "label": "Cleanup after page creation",
+        "expected": "complete offsets 1, 2, 3 through cursor 3",
+        "actual": "offsets=[1, 2, 3], complete=true, through=3",
+        "passed": true
+      },
+      {
+        "label": "Owned payloads survive cleanup",
+        "expected": "all three payloads unchanged",
+        "actual": "3 retained payloads",
+        "passed": true
+      },
+      {
+        "label": "Physical cleanup",
+        "expected": "6 records removed, no pending cleanup",
+        "actual": "removed=6, remaining=false",
+        "passed": true
+      }
+    ],
+    "output": {
+      "schedule_scope": "injected EventStore port gates around real SQLite read; not concurrent SQLite transactions",
+      "before_read": {
+        "history_unavailable": true,
+        "floor": 3,
+        "tail": 3
+      },
+      "owned_page": {
+        "offsets": [
+          1,
+          2,
+          3
+        ],
+        "complete": true,
+        "through": 3,
+        "payloads": [
+          [
+            114,
+            101,
+            97,
+            100,
+            45,
+            97,
+            102,
+            116,
+            101,
+            114,
+            45,
+            115,
+            113,
+            108,
+            105,
+            116,
+            101,
+            58,
+            49
+          ],
+          [
+            114,
+            101,
+            97,
+            100,
+            45,
+            97,
+            102,
+            116,
+            101,
+            114,
+            45,
+            115,
+            113,
+            108,
+            105,
+            116,
+            101,
+            58,
+            50
+          ],
+          [
+            114,
+            101,
+            97,
+            100,
+            45,
+            97,
+            102,
+            116,
+            101,
+            114,
+            45,
+            115,
+            113,
+            108,
+            105,
+            116,
+            101,
+            58,
+            51
+          ]
+        ]
+      },
+      "removed_records": 6,
+      "cleanup_remaining": false,
+      "resource_measurements": null
+    }
+  }
+}

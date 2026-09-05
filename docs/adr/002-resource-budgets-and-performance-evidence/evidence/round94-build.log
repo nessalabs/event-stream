@@ -1,0 +1,47 @@
+warning: unused import: `decode_offset`
+ --> src/infrastructure/sqlite_restore.rs:2:5
+  |
+2 |     decode_offset, inspect_existing_format, inspect_restore_format, validate_lifecycle_counters,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `params_from_iter` and `types::Value`
+  --> src/infrastructure/sqlite_restore.rs:14:13
+   |
+14 |     params, params_from_iter, types::Value, Connection, OpenFlags, OptionalExtension,
+   |             ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> src/infrastructure/sqlite_restore.rs:956:9
+    |
+956 |     let mut mapping_count = import_identity_mappings(source, target, config)?;
+    |         ----^^^^^^^^^^^^^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `acquire_for_replication`, `replication_lease_is_live`, `release_for_replication`, and `restore_replication_lease` are never used
+   --> src/infrastructure/sqlite_snapshot.rs:117:19
+    |
+ 99 | impl SqliteSnapshotState {
+    | ------------------------ methods in this implementation
+...
+117 |     pub(super) fn acquire_for_replication(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+...
+138 |     pub(super) fn replication_lease_is_live(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+148 |     pub(super) fn release_for_replication(&mut self, id: RecoveryLeaseId) {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+...
+152 |     pub(super) fn restore_replication_lease(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `event-stream` (lib) generated 4 warnings (run `cargo fix --lib -p event-stream` to apply 3 suggestions)
+   Compiling event-stream v0.1.0 (/tmp/event-stream-round93-snapshot-source)
+    Finished `release` profile [optimized] target(s) in 5.01s

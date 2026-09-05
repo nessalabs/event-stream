@@ -1,0 +1,42 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running tests/core_memory.rs (target/debug/deps/core_memory-d299b77ccbae6815)
+
+running 13 tests
+test lifecycle_receipt_and_retired_metadata_quotas_are_finite_and_retry_safe ... ok
+test generated_lifecycle_sequence_matches_the_name_state_model ... ok
+test quota_rejects_new_history_but_allows_retry ... ok
+test descriptor_metadata_quota_is_aggregate_and_retry_safe ... ok
+test close_rejects_every_recovery_lease_operation ... ok
+test recovery_lease_protects_only_the_required_retired_suffix_until_expiry ... ok
+test stream_metadata_has_finite_count_and_byte_quotas ... ok
+test abort_retains_identity_while_cleanup_releases_chunks_in_bounded_turns ... ok
+test tiny_snapshot_chunks_hit_metadata_quota_before_payload_quota ... ok
+test memory_store_passes_snapshot_contract ... ok
+test memory_store_passes_lifecycle_contract ... ok
+test memory_store_passes_shared_contract ... ok
+test generated_snapshot_schedule_preserves_terminal_states_and_order ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/core_snapshots.rs (target/debug/deps/core_snapshots-44f1e8d693145a34)
+
+running 8 tests
+test snapshot_admission_rejects_platform_maxima_before_opening_store ... ok
+test snapshot_admission_rejects_excess_retained_bytes_before_store_entry ... ok
+test snapshot_waiter_count_is_bounded_while_one_operation_is_paused ... ok
+test malformed_verification_progress_never_reaches_publication_or_loops ... ok
+test shutdown_wakes_snapshot_operation_waiting_for_capacity ... ok
+test verification_reconciles_concurrent_publish_and_abort_winners ... ok
+test snapshot_panic_returns_exact_unknown_identity_without_faulting_executor ... ok
+test cancelled_accepted_snapshot_remains_owned_through_shutdown ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running unittests examples/snapshot_recovery.rs (target/debug/examples/snapshot_recovery-59ddbcc547f5b548)
+
+running 2 tests
+test tests::application_rejects_an_unknown_snapshot_schema_before_decoding ... ok
+test tests::snapshot_plus_protected_suffix_matches_complete_replay ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

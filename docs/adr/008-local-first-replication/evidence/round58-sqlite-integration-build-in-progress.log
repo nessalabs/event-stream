@@ -1,0 +1,98 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+error[E0499]: cannot borrow `state` as mutable more than once at a time
+    --> src/infrastructure/memory_replication.rs:1979:9
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- first mutable borrow occurs here
+1979 |         state.replica_staging_chunks = state
+     |         ^^^^^ second mutable borrow occurs here
+...
+1987 |             .checked_sub(bootstrap.accepted_bytes)
+     |                          ------------------------ first borrow later used here
+
+error[E0502]: cannot borrow `state` as immutable because it is also borrowed as mutable
+    --> src/infrastructure/memory_replication.rs:1979:40
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- mutable borrow occurs here
+1979 |         state.replica_staging_chunks = state
+     |                                        ^^^^^ immutable borrow occurs here
+1980 |             .replica_staging_chunks
+1981 |             .checked_sub(bootstrap.chunks.len())
+     |                          ---------------- mutable borrow later used here
+
+error[E0499]: cannot borrow `state` as mutable more than once at a time
+    --> src/infrastructure/memory_replication.rs:1985:9
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- first mutable borrow occurs here
+...
+1985 |         state.replica_staging_bytes = state
+     |         ^^^^^ second mutable borrow occurs here
+...
+1993 |             .checked_sub(bootstrap.suffix_records.len())
+     |                          ------------------------ first borrow later used here
+
+error[E0502]: cannot borrow `state` as immutable because it is also borrowed as mutable
+    --> src/infrastructure/memory_replication.rs:1985:39
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- mutable borrow occurs here
+...
+1985 |         state.replica_staging_bytes = state
+     |                                       ^^^^^ immutable borrow occurs here
+1986 |             .replica_staging_bytes
+1987 |             .checked_sub(bootstrap.accepted_bytes)
+     |                          ------------------------ mutable borrow later used here
+
+error[E0499]: cannot borrow `state` as mutable more than once at a time
+    --> src/infrastructure/memory_replication.rs:1991:9
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- first mutable borrow occurs here
+...
+1991 |         state.replica_staging_records = state
+     |         ^^^^^ second mutable borrow occurs here
+...
+1999 |             .checked_sub(bootstrap.suffix_bytes)
+     |                          ---------------------- first borrow later used here
+
+error[E0502]: cannot borrow `state` as immutable because it is also borrowed as mutable
+    --> src/infrastructure/memory_replication.rs:1991:41
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- mutable borrow occurs here
+...
+1991 |         state.replica_staging_records = state
+     |                                         ^^^^^ immutable borrow occurs here
+1992 |             .replica_staging_records
+1993 |             .checked_sub(bootstrap.suffix_records.len())
+     |                          ------------------------ mutable borrow later used here
+
+error[E0499]: cannot borrow `state` as mutable more than once at a time
+    --> src/infrastructure/memory_replication.rs:1997:9
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- first mutable borrow occurs here
+...
+1997 |         state.replica_staging_record_bytes = state
+     |         ^^^^^ second mutable borrow occurs here
+...
+2003 |         bootstrap.suffix_records.clear();
+     |         ------------------------ first borrow later used here
+
+error[E0502]: cannot borrow `state` as immutable because it is also borrowed as mutable
+    --> src/infrastructure/memory_replication.rs:1997:46
+     |
+1978 |         let bootstrap = state.replica_bootstraps.get_mut(&request.id).unwrap();
+     |                         ----- mutable borrow occurs here
+...
+1997 |         state.replica_staging_record_bytes = state
+     |                                              ^^^^^ immutable borrow occurs here
+1998 |             .replica_staging_record_bytes
+1999 |             .checked_sub(bootstrap.suffix_bytes)
+     |                          ---------------------- mutable borrow later used here
+
+Some errors have detailed explanations: E0499, E0502.
+For more information about an error, try `rustc --explain E0499`.
+error: could not compile `event-stream` (lib) due to 8 previous errors

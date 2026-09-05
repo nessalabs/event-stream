@@ -1,0 +1,12 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.07s
+     Running tests/append_batch.rs (target/debug/deps/append_batch-715df6383ebb67bf)
+
+running 4 tests
+test malformed_outcomes_cannot_pass_identity_validation ... ok
+test capacity_and_bytes_are_checked_before_store_use ... ok
+test capacity_failure_does_not_erase_earlier_receipt_or_later_retry ... ok
+test memory_fallback_preserves_order_and_individual_errors ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,194 @@
+    Checking event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: fields `next_snapshot`, `next_record`, and `hasher` are never read
+  --> src/infrastructure/sqlite_replication.rs:40:5
+   |
+39 | struct BootstrapVerification {
+   |        --------------------- fields in this struct
+40 |     next_snapshot: u64,
+   |     ^^^^^^^^^^^^^
+41 |     next_record: u64,
+   |     ^^^^^^^^^^^
+42 |     hasher: Sha256,
+   |     ^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: fields `bootstrap`, `published`, and `expires_at` are never read
+  --> src/infrastructure/sqlite_replication.rs:46:5
+   |
+45 | struct ReplicaReadLease {
+   |        ---------------- fields in this struct
+46 |     bootstrap: BootstrapId,
+   |     ^^^^^^^^^
+47 |     published: PublishedReplicaBootstrap,
+   |     ^^^^^^^^^
+48 |     expires_at: DurableTimestampMillis,
+   |     ^^^^^^^^^^
+
+warning: field `readers` is never read
+  --> src/infrastructure/sqlite_replication.rs:53:5
+   |
+51 | pub(super) struct SqliteReplicationState {
+   |                   ---------------------- field in this struct
+52 |     verifications: HashMap<BootstrapId, BootstrapVerification>,
+53 |     readers: HashMap<ReplicaReadLeaseId, ReplicaReadLease>,
+   |     ^^^^^^^
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:109:9
+    |
+108 |     AcknowledgeOriginBootstrap(
+    |     -------------------------- field in this variant
+109 |         AcknowledgeOriginBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+109 |         (),
+    |         ~~
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:113:9
+    |
+112 |     CleanupOrigin(
+    |     ------------- field in this variant
+113 |         ReplicaCleanupLimits,
+    |         ^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+113 |         (),
+    |         ~~
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:129:9
+    |
+128 |     VerifyBootstrap(
+    |     --------------- field in this variant
+129 |         VerifyReplicaBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+129 |         (),
+    |         ~~
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:133:9
+    |
+132 |     PublishBootstrap(
+    |     ---------------- field in this variant
+133 |         PublishReplicaBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+133 |         (),
+    |         ~~
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:137:9
+    |
+136 |     PublishedBootstrap(
+    |     ------------------ field in this variant
+137 |         OriginStream,
+    |         ^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+137 |         (),
+    |         ~~
+
+warning: fields `0` and `1` are never read
+   --> src/infrastructure/sqlite_replication.rs:141:9
+    |
+140 |     AcquireBootstrapRead(
+    |     -------------------- fields in this variant
+141 |         OriginStream,
+    |         ^^^^^^^^^^^^
+142 |         Duration,
+    |         ^^^^^^^^
+    |
+help: consider changing the fields to be of unit type to suppress this warning while preserving the field numbering, or remove the fields
+    |
+141 ~         (),
+142 ~         (),
+    |
+
+warning: fields `0`, `1`, and `2` are never read
+   --> src/infrastructure/sqlite_replication.rs:146:9
+    |
+145 |     ReadBootstrapBytes(
+    |     ------------------ fields in this variant
+146 |         ReplicaReadLeaseId,
+    |         ^^^^^^^^^^^^^^^^^^
+147 |         u64,
+    |         ^^^
+148 |         usize,
+    |         ^^^^^
+    |
+help: consider changing the fields to be of unit type to suppress this warning while preserving the field numbering, or remove the fields
+    |
+146 ~         (),
+147 ~         (),
+148 ~         (),
+    |
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:152:9
+    |
+151 |     ReleaseBootstrapRead(
+    |     -------------------- field in this variant
+152 |         ReplicaReadLeaseId,
+    |         ^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+152 |         (),
+    |         ~~
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:156:9
+    |
+155 |     AbortBootstrap(
+    |     -------------- field in this variant
+156 |         AbortReplicaBootstrap,
+    |         ^^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+156 |         (),
+    |         ~~
+
+warning: field `0` is never read
+   --> src/infrastructure/sqlite_replication.rs:160:9
+    |
+159 |     CleanupDestination(
+    |     ------------------ field in this variant
+160 |         ReplicaCleanupLimits,
+    |         ^^^^^^^^^^^^^^^^^^^^
+    |
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+160 |         (),
+    |         ~~
+
+warning: fields `publish_operation` and `abort_operation` are never read
+    --> src/infrastructure/sqlite_replication.rs:2203:5
+     |
+2197 | struct StoredDestinationBootstrap {
+     |        -------------------------- fields in this struct
+...
+2203 |     publish_operation: Option<String>,
+     |     ^^^^^^^^^^^^^^^^^
+2204 |     abort_operation: Option<String>,
+     |     ^^^^^^^^^^^^^^^
+
+warning: function `verify_bootstrap` is never used
+    --> src/infrastructure/sqlite_replication.rs:2582:4
+     |
+2582 | fn verify_bootstrap(
+     |    ^^^^^^^^^^^^^^^^
+
+warning: `event-stream` (lib) generated 15 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.59s

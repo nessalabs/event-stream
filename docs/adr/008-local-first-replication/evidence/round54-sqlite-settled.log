@@ -1,0 +1,22 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+warning: unused imports: `params_from_iter` and `types::Value`
+  --> src/infrastructure/sqlite_restore.rs:13:13
+   |
+13 |     params, params_from_iter, types::Value, Connection, OpenFlags, OptionalExtension,
+   |             ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `event-stream` (lib) generated 1 warning (run `cargo fix --lib -p event-stream` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.76s
+     Running tests/sqlite_replication_regressions.rs (target/debug/deps/sqlite_replication_regressions-1bb8c78bb6b02993)
+
+running 5 tests
+test sqlite_attach_operation_rejects_changed_limits ... ok
+test sqlite_rejects_acknowledgement_past_exact_prepared_batch ... ok
+test sqlite_pending_prepare_retry_does_not_include_later_appends ... ok
+test sqlite_missing_replication_metadata_is_corruption_not_a_new_origin ... ok
+test sqlite_pending_batch_identity_and_receipt_survive_reopen ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+

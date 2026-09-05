@@ -1,0 +1,13 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.05s
+     Running tests/sqlite.rs (target/debug/deps/sqlite-cf5c47825dc74563)
+
+running 5 tests
+test sqlite_journal_receipt_cleanup_does_not_strand_raw_bytes_before_checkpoint ... ok
+test shared_source_journal_store_contract ... ok
+test sqlite_journal_marker_retry_does_not_recreate_a_missing_output ... ok
+test sqlite_journal_parser_recovers_output_before_checkpoint_after_restart ... ok
+test sqlite_journal_output_transaction_rolls_back_or_resolves_exact_retry ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 46 filtered out; finished in 0.04s
+

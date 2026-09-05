@@ -1,0 +1,7 @@
+{"kind": "diagnostic_completion", "samples": 6, "failures": 0, "binary_unchanged": true, "ended_utc": "2026-09-05T09:45:42.578567+00:00"}
+{"repetition": 0, "mode": "foreground_verify_control", "append_p99_ns": 1153000, "append_max_ns": 1172125, "snapshot_phase_ns": 42, "overlapping_append_receipts": 0, "kind": "snapshot_foreground_sample"}
+{"repetition": 0, "mode": "foreground_verify", "append_p99_ns": 3190625, "append_max_ns": 3757125, "snapshot_phase_ns": 3750875, "overlapping_append_receipts": 8, "kind": "snapshot_foreground_sample"}
+{"repetition": 1, "mode": "foreground_verify", "append_p99_ns": 3445458, "append_max_ns": 3974667, "snapshot_phase_ns": 4017167, "overlapping_append_receipts": 8, "kind": "snapshot_foreground_sample"}
+{"repetition": 1, "mode": "foreground_verify_control", "append_p99_ns": 1192458, "append_max_ns": 1199958, "snapshot_phase_ns": 125, "overlapping_append_receipts": 0, "kind": "snapshot_foreground_sample"}
+{"repetition": 2, "mode": "foreground_verify_control", "append_p99_ns": 1106542, "append_max_ns": 1135083, "snapshot_phase_ns": 83, "overlapping_append_receipts": 0, "kind": "snapshot_foreground_sample"}
+{"repetition": 2, "mode": "foreground_verify", "append_p99_ns": 3199708, "append_max_ns": 3679625, "snapshot_phase_ns": 3724166, "overlapping_append_receipts": 8, "kind": "snapshot_foreground_sample"}

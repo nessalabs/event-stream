@@ -1,0 +1,15 @@
+{
+  "streams": 10000,
+  "cycles": 10,
+  "offers": 100000,
+  "aggregate_rate": 800,
+  "max_generator_tasks": 256,
+  "require_all_accepted": true,
+  "require_all_streams_covered": true,
+  "require_exact_replay": true,
+  "require_no_unresolved_shutdown": true,
+  "rss_ceiling_bytes": 134217728,
+  "receipt_p99_ceiling_ns": 1000000000,
+  "timeout_seconds": 300,
+  "scope": "One bounded sparse-load stability screen; diagnostic ceilings, not release SLOs or long-running memory qualification"
+}

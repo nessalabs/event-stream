@@ -1,0 +1,59 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.14s
+     Running tests/sqlite.rs (target/debug/deps/sqlite-83cc99d57a1c3591)
+
+running 38 tests
+test database_quota_failure_rolls_back_record_and_tail ... FAILED
+test corrupt_format_one_input_fails_migration_without_partial_schema_change ... ok
+test committed_data_recovers_after_process_kill ... ok
+test corrupt_active_name_pointer_cannot_retire_another_lifetime ... ok
+test dropping_store_releases_ownership_after_accepted_work_stops ... ok
+test in_process_ownership_lasts_until_worker_stops ... ok
+test corrupt_stream_metadata_lengths_fail_before_blob_allocation ... ok
+test corrupt_record_payload_is_bounded_before_result_materialization ... ok
+test format_one_migration_preserves_record_table_and_exact_bytes ... ok
+test corrupt_record_offset_is_rejected_before_blob_allocation ... ok
+test corrupt_scalar_types_are_rejected_before_result_materialization ... ok
+test lifecycle_quotas_are_atomic_and_identical_retries_bypass_capacity ... ok
+test injected_migration_failure_preserves_valid_format_one_then_retries ... ok
+test internally_inconsistent_lifecycle_receipt_is_rejected_on_open ... ok
+test lifecycle_receipts_and_unavailable_name_survive_restart_and_cleanup ... ok
+test injected_transaction_boundaries_preserve_atomic_state_and_resolve_unknown_commit ... ok
+test malformed_or_foreign_formats_fail_without_partial_initialization ... ok
+test corrupt_record_identifiers_are_bounded_by_utf8_bytes_before_allocation ... ok
+test ordered_replay_and_retry_lookup_use_declared_indexes ... ok
+test ownership_rejects_hardlinks_symlinks_and_normalizes_parent_aliases ... ok
+test metadata_rejects_floor_above_tail ... ok
+test lifecycle_and_cleanup_failure_boundaries_are_atomic_and_retryable ... ok
+test process_kill_after_commit_before_receipt_deduplicates_retry ... ok
+test process_kill_before_commit_rolls_back_record_and_tail ... ok
+test newer_format_is_rejected_without_migration ... ok
+test separate_process_cannot_take_ownership ... ok
+test sqlite_child ... ok
+test restart_preserves_records_deduplication_and_incarnation ... ok
+test published_snapshot_bytes_and_upload_state_survive_restart ... ok
+test recovery_lease_keeps_retired_suffix_readable_until_release ... ok
+test dropped_close_future_still_closes_after_a_full_queue_drains ... ok
+test shared_lifecycle_store_contract ... ok
+test retired_cleanup_rejects_history_holes_and_rolls_back_prior_deletes ... ok
+test understated_lifecycle_counters_are_rejected_on_open ... ok
+test unsigned_offset_representation_crosses_signed_boundary_on_a_forged_tail ... ok
+test replay_rejects_internal_holes_and_missing_tail_rows ... ok
+test shared_snapshot_store_contract ... ok
+test shared_event_store_contract ... ok
+
+failures:
+
+---- database_quota_failure_rolls_back_record_and_tail stdout ----
+
+thread 'database_quota_failure_rolls_back_record_and_tail' (5749678) panicked at tests/sqlite.rs:986:50:
+called `Result::unwrap()` on an `Err` value: StoreWriteFailed("initialize snapshot schema: database or disk is full")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    database_quota_failure_rolls_back_record_and_tail
+
+test result: FAILED. 37 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+error: test failed, to rerun pass `--test sqlite`

@@ -1,0 +1,5 @@
+    Checking libc v0.2.189
+    Checking getrandom v0.4.3
+    Checking uuid v1.26.0
+    Checking event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.67s

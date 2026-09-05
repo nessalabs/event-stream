@@ -1,0 +1,106 @@
+[
+  {
+    "label": "control / 64 KiB snapshot",
+    "metrics": {
+      "runtime_ns_median": 662237666,
+      "cpu_us_median": 232205,
+      "memory_bytes_median": 8421376,
+      "rust_live_bytes_median": 118811,
+      "rust_allocated_bytes_median": 3101500,
+      "agents": 1,
+      "accepted": 512,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 14026542,
+    "receipt_p99_ns_range": [
+      1445250,
+      51860583
+    ],
+    "schedule_lateness_p99_ns_median": 2349167,
+    "overlap_receipts": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "label": "mixed / 64 KiB snapshot",
+    "metrics": {
+      "runtime_ns_median": 662049583,
+      "cpu_us_median": 264393,
+      "memory_bytes_median": 9486336,
+      "rust_live_bytes_median": 228969,
+      "rust_allocated_bytes_median": 5266780,
+      "agents": 1,
+      "accepted": 512,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 1719000,
+    "receipt_p99_ns_range": [
+      1408750,
+      11549500
+    ],
+    "schedule_lateness_p99_ns_median": 2290792,
+    "overlap_receipts": [
+      32,
+      30,
+      32
+    ]
+  },
+  {
+    "label": "control / 1024 KiB snapshot",
+    "metrics": {
+      "runtime_ns_median": 657822625,
+      "cpu_us_median": 277981,
+      "memory_bytes_median": 8454144,
+      "rust_live_bytes_median": 105465,
+      "rust_allocated_bytes_median": 3125604,
+      "agents": 1,
+      "accepted": 512,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 1945250,
+    "receipt_p99_ns_range": [
+      1821833,
+      5255459
+    ],
+    "schedule_lateness_p99_ns_median": 2249917,
+    "overlap_receipts": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "label": "mixed / 1024 KiB snapshot",
+    "metrics": {
+      "runtime_ns_median": 665028916,
+      "cpu_us_median": 334099,
+      "memory_bytes_median": 12992512,
+      "rust_live_bytes_median": 1213785,
+      "rust_allocated_bytes_median": 30543267,
+      "agents": 1,
+      "accepted": 512,
+      "rejected": 0,
+      "failed": 0,
+      "delivered": null
+    },
+    "receipt_p99_ns_median": 24432041,
+    "receipt_p99_ns_range": [
+      1343417,
+      26206291
+    ],
+    "schedule_lateness_p99_ns_median": 2319792,
+    "overlap_receipts": [
+      122,
+      133,
+      199
+    ]
+  }
+]

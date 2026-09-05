@@ -1,0 +1,23 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running tests/sqlite_origin_restore.rs (target/debug/deps/sqlite_origin_restore-1ffd3c74c114d187)
+
+running 6 tests
+test restore_rejects_understated_origin_backlog ... ok
+test restore_rejects_inconsistent_pending_batch_record_count ... ok
+test restore_rejects_foreign_origin_attachment ... ok
+test restore_rejects_foreign_origin_operation_receipt ... ok
+test restore_rejects_pending_batch_beyond_source_tail ... ok
+test restore_pending_origin_preserves_history_and_requires_new_bootstrap ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running tests/sqlite_replica_restore_corruption.rs (target/debug/deps/sqlite_replica_restore_corruption-4d0d2401cd2228da)
+
+running 4 tests
+test restore_rejects_missing_published_snapshot_chunk ... ok
+test restore_rejects_missing_published_suffix_record ... ok
+test restore_rejects_corrupt_published_replica_snapshot ... ok
+test restore_rejects_shifted_published_snapshot_chunk ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+

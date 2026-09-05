@@ -1,0 +1,28 @@
+   Compiling event-stream v0.1.0 (/Users/nessa/Documents/NessaLabs/event-stream)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.92s
+     Running tests/sqlite_origin_restore.rs (target/debug/deps/sqlite_origin_restore-1ffd3c74c114d187)
+
+running 7 tests
+test restore_rejects_foreign_origin_attachment ... ok
+test restore_completed_receipts_after_payload_retention_cleanup ... FAILED
+test restore_rejects_understated_origin_backlog ... ok
+test restore_rejects_pending_batch_beyond_source_tail ... ok
+test restore_rejects_foreign_origin_operation_receipt ... ok
+test restore_rejects_inconsistent_pending_batch_record_count ... ok
+test restore_pending_origin_preserves_history_and_requires_new_bootstrap ... ok
+
+failures:
+
+---- restore_completed_receipts_after_payload_retention_cleanup stdout ----
+
+thread 'restore_completed_receipts_after_payload_retention_cleanup' (6749140) panicked at tests/sqlite_origin_restore.rs:415:50:
+called `Result::unwrap()` on an `Err` value: CorruptBackup("prepared replication receipt does not match retained history")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    restore_completed_receipts_after_payload_retention_cleanup
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+error: test failed, to rerun pass `--test sqlite_origin_restore`
