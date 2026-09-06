@@ -7843,6 +7843,13 @@
       "build_id": "189f3f20599899b25889ab864b40ad0da176d26084720f4c65e1f1f6168b7ec5",
       "experiments": [],
       "summary": "Create local reproducible stability checkpoint with source, tests, documentation and retained evidence. Build outputs remain excluded. No remote is configured; the user will push to GitHub and remote CI remains unverified. Production code unchanged; no fresh performance samples."
+    },
+    {
+      "number": 116,
+      "status": "not_measured",
+      "build_id": "acb2da8ad8619eb0fb7d2daecaaff47f6c3619ab965ec5d9b5a53b2d7a3a56d1",
+      "experiments": [],
+      "summary": "Public checkpoint CI passed all three contract matrix jobs and verification workspace. Linux style failed on a platform-dependent timeval conversion. Scope the Clippy allowance to the two conversion helpers; preserve macOS widening and saturating arithmetic. No performance measurements. Corrected remote CI result must be checked separately."
     }
   ]
 }

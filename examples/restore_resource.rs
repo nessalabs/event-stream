@@ -1099,6 +1099,8 @@ mod enabled {
         value.map_or_else(|| "null".into(), |value| value.to_string())
     }
 
+    // tv_usec is i32 on macOS and i64 on 64-bit Linux; keep the portable conversion.
+    #[allow(clippy::useless_conversion)]
     fn timeval_us(value: libc::timeval) -> i64 {
         value
             .tv_sec
