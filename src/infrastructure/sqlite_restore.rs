@@ -260,7 +260,7 @@ fn open_locked_source(
     conn.execute_batch("BEGIN;")
         .map_err(|error| RestoreError::CorruptBackup(format!("begin backup snapshot: {error}")))?;
     conn.query_row("SELECT count(*) FROM sqlite_schema", [], |row| {
-        row.get::<_, u64>(0)
+        row.get::<_, i64>(0)
     })
     .map_err(|error| RestoreError::CorruptBackup(format!("establish backup snapshot: {error}")))?;
     let identity = hash_file(source, config.copy_buffer_bytes, config.max_source_bytes)?;
@@ -806,10 +806,10 @@ fn create_incomplete_staging(
             RestoreError::StorageFailure(format!("bound staging temp memory: {error}"))
         })?;
     let page_size: u64 = conn
-        .pragma_query_value(None, "page_size", |row| row.get(0))
-        .map_err(|error| {
-            RestoreError::StorageFailure(format!("read staging page size: {error}"))
-        })?;
+        .pragma_query_value::<i64, _>(None, "page_size", |row| row.get(0))
+        .map_err(|error| RestoreError::StorageFailure(format!("read staging page size: {error}")))?
+        .try_into()
+        .map_err(|_| RestoreError::CapacityExceeded)?;
     let database_bytes = config
         .max_staging_bytes
         .checked_sub(u64::try_from(owner_charge).map_err(|_| RestoreError::CapacityExceeded)?)
@@ -820,10 +820,12 @@ fn create_incomplete_staging(
             "staging byte limit cannot be represented as SQLite pages".into(),
         ));
     }
-    conn.pragma_update(None, "max_page_count", pages)
-        .map_err(|error| {
-            RestoreError::StorageFailure(format!("set staging page limit: {error}"))
-        })?;
+    conn.pragma_update(
+        None,
+        "max_page_count",
+        i64::try_from(pages).map_err(|_| RestoreError::CapacityExceeded)?,
+    )
+    .map_err(|error| RestoreError::StorageFailure(format!("set staging page limit: {error}")))?;
     let destination = destination
         .to_str()
         .ok_or_else(|| RestoreError::InvalidConfig("canonical destination must be UTF-8".into()))?;
@@ -919,15 +921,17 @@ fn map_sql_write(action: &str, error: rusqlite::Error) -> RestoreError {
 }
 
 fn enforce_staging_limit(conn: &Connection, max_bytes: u64) -> RestoreResult<()> {
-    let (pages, page_size): (u64, u64) = conn
+    let (pages, page_size): (i64, i64) = conn
         .query_row(
             "SELECT page_count,page_size FROM pragma_page_count(),pragma_page_size()",
             [],
             |row| Ok((row.get(0)?, row.get(1)?)),
         )
         .map_err(|error| RestoreError::StorageFailure(format!("measure staging: {error}")))?;
-    pages
-        .checked_mul(page_size)
+    u64::try_from(pages)
+        .ok()
+        .zip(u64::try_from(page_size).ok())
+        .and_then(|(pages, page_size)| pages.checked_mul(page_size))
         .filter(|bytes| *bytes <= max_bytes)
         .ok_or(RestoreError::CapacityExceeded)?;
     Ok(())
