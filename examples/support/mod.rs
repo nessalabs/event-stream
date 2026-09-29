@@ -191,6 +191,7 @@ pub fn current_rss_bytes() -> Option<u64> {
     None
 }
 
+#[allow(clippy::unnecessary_cast)] // tv_usec is i32 on macOS and i64 on Linux.
 fn timeval_us(value: libc::timeval) -> i64 {
     value
         .tv_sec

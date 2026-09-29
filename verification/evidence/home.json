@@ -7856,7 +7856,7 @@
       "status": "not_measured",
       "build_id": null,
       "experiments": [],
-      "summary": "SQLite dependency compatibility for Nessa integration: rusqlite 0.40.2 replaces 0.32.1, with signed SQL integer conversion at restore boundaries. SQLite tests, all-feature tests, and all-target Clippy passed locally. No performance samples or deployment qualification."
+      "summary": "SQLite dependency compatibility for Nessa integration: rusqlite 0.40.2 replaces 0.32.1, with signed SQL integer conversion at restore boundaries. SQLite tests, all-feature tests, and macOS all-target Clippy passed locally. Linux CI found an existing platform-dependent timeval cast warning; the conversion helper now scopes its allowance to that cast. No performance samples or deployment qualification."
     }
   ]
 }
