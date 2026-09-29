@@ -78,16 +78,16 @@ fn main() -> rusqlite::Result<()> {
                     black_box(value);
                 }
                 let retry_ns = retry_started.elapsed().as_nanos() / u128::from(query_iterations);
-                let page_count: u64 =
+                let page_count: i64 =
                     conn.pragma_query_value(None, "page_count", |row| row.get(0))?;
-                let page_size: u64 =
+                let page_size: i64 =
                     conn.pragma_query_value(None, "page_size", |row| row.get(0))?;
-                let table_bytes: u64 = conn.query_row(
+                let table_bytes: i64 = conn.query_row(
                     "SELECT coalesce(sum(pgsize),0) FROM dbstat WHERE name='records'",
                     [],
                     |row| row.get(0),
                 )?;
-                let index_bytes: u64 = conn.query_row("SELECT coalesce(sum(pgsize),0) FROM dbstat WHERE name NOT IN ('records','sqlite_schema')", [], |row| row.get(0))?;
+                let index_bytes: i64 = conn.query_row("SELECT coalesce(sum(pgsize),0) FROM dbstat WHERE name NOT IN ('records','sqlite_schema')", [], |row| row.get(0))?;
                 let replay_plan: String = conn.query_row("EXPLAIN QUERY PLAN SELECT payload FROM records WHERE stream_key=?1 AND offset>?2 AND offset<=?3 ORDER BY offset LIMIT 8", params![1_i64, read_start.to_be_bytes().as_slice(), read_end.to_be_bytes().as_slice()], |row| row.get(3))?;
                 let retry_plan: String = conn.query_row("EXPLAIN QUERY PLAN SELECT payload FROM records WHERE stream_key=?1 AND event_id=?2", params![1_i64, retry_id], |row| row.get(3))?;
                 println!("{{\"kind\":\"sample\",\"repetition\":{repetition},\"layout\":\"{layout}\",\"case\":\"{case_name}\",\"payload_bytes\":{payload_bytes},\"records\":{records},\"query_iterations\":{query_iterations},\"database_bytes\":{},\"table_bytes\":{table_bytes},\"index_bytes\":{index_bytes},\"insert_transaction_ns\":{insert_ns},\"replay_ns_per_query\":{replay_ns},\"retry_ns_per_query\":{retry_ns},\"replay_plan\":\"{}\",\"retry_plan\":\"{}\"}}", page_count * page_size, json_escape(&replay_plan), json_escape(&retry_plan));

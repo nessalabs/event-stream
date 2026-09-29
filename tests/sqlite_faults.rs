@@ -4,11 +4,10 @@
 //! every callback forwards to the bundled default VFS after translating the file
 //! pointer. Production code and filesystem behavior are not replaced.
 
+#[cfg(target_os = "macos")]
+use event_stream::infrastructure::{SqliteRestoreBackend, SqliteRestoreManager};
 use event_stream::{
-    infrastructure::{
-        SqliteFailureInjection, SqliteOptions, SqliteRestoreBackend, SqliteRestoreManager,
-        SqliteStore,
-    },
+    infrastructure::{SqliteFailureInjection, SqliteOptions, SqliteStore},
     *,
 };
 use rusqlite::{ffi, Connection};

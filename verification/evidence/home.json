@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-05T23:41:36.259078+00:00",
+  "generated_at_utc": "2026-09-29T02:37:04.316674+00:00",
   "rounds": [
     {
       "number": 1,
@@ -7850,6 +7850,13 @@
       "build_id": "acb2da8ad8619eb0fb7d2daecaaff47f6c3619ab965ec5d9b5a53b2d7a3a56d1",
       "experiments": [],
       "summary": "Public checkpoint CI passed all three contract matrix jobs and verification workspace. Linux style failed on a platform-dependent timeval conversion. Scope the Clippy allowance to the two conversion helpers; preserve macOS widening and saturating arithmetic. No performance measurements. Corrected remote CI result must be checked separately."
+    },
+    {
+      "number": 117,
+      "status": "not_measured",
+      "build_id": null,
+      "experiments": [],
+      "summary": "SQLite dependency compatibility for Nessa integration: rusqlite 0.40.2 replaces 0.32.1, with signed SQL integer conversion at restore boundaries. SQLite tests, all-feature tests, and macOS all-target Clippy passed locally. Linux CI found an existing platform-dependent timeval cast warning; the conversion helper scopes its allowance to that cast, and macOS-only test imports are gated to macOS. No performance samples or deployment qualification."
     }
   ]
 }

@@ -738,19 +738,17 @@ async fn retention_restore_rejects_oversized_receipt_and_honors_page_byte_limit(
     )
     .await;
     let huge = "x".repeat(1024 * 1024);
+    let charge = i64::try_from(1024 * 1024 + "bounded-retention".len() + 256).unwrap();
     let conn = Connection::open(&source).unwrap();
     conn.pragma_update(None, "ignore_check_constraints", true)
         .unwrap();
     conn.execute(
         "UPDATE retention_receipts SET operation_id=?1,charge=?2",
-        rusqlite::params![huge, 1024 * 1024 + "bounded-retention".len() + 256],
+        rusqlite::params![huge, charge],
     )
     .unwrap();
-    conn.execute(
-        "UPDATE retention_metadata SET receipt_bytes=?1",
-        [1024 * 1024 + "bounded-retention".len() + 256],
-    )
-    .unwrap();
+    conn.execute("UPDATE retention_metadata SET receipt_bytes=?1", [charge])
+        .unwrap();
     drop(conn);
     let manager = SqliteRestoreManager::new(
         SqliteRestoreBackend::new(&root).unwrap(),
