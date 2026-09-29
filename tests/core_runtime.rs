@@ -25,6 +25,30 @@ fn subscription(start: StartPosition) -> SubscriptionOptions {
 }
 
 #[tokio::test]
+async fn find_stream_does_not_create_and_reports_retired_names() {
+    let runtime =
+        Runtime::<MemoryStore>::open(MemoryStoreOptions::default(), RuntimeConfig::default())
+            .await
+            .unwrap();
+    let id = StreamId::new("find-stream").unwrap();
+    assert_eq!(runtime.find_stream(&id).await.unwrap(), None);
+    let key = runtime.create_stream(&id).await.unwrap();
+    assert_eq!(runtime.find_stream(&id).await.unwrap(), Some(key.clone()));
+    runtime
+        .change_lifecycle(LifecycleRequest {
+            operation_id: LifecycleOperationId::new("retire-found").unwrap(),
+            expected: key.clone(),
+            action: LifecycleAction::Delete,
+        })
+        .await
+        .unwrap();
+    assert!(matches!(
+        runtime.find_stream(&id).await,
+        Err(Error::StreamUnavailable { last }) if *last == key
+    ));
+}
+
+#[tokio::test]
 async fn concurrent_runtime_appends_are_gapless_and_replay_is_bounded() {
     let runtime =
         Runtime::<MemoryStore>::open(MemoryStoreOptions::default(), RuntimeConfig::default())
@@ -195,6 +219,9 @@ impl EventStore for BlockingStore {
     }
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.memory.create_if_absent(id).await
+    }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.memory.find_stream(id).await
     }
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         self.controls
@@ -544,6 +571,9 @@ impl EventStore for UnknownOnceStore {
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.memory.create_if_absent(id).await
     }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.memory.find_stream(id).await
+    }
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         let id = event.id.clone();
         let receipt = self.memory.append_atomic(stream, event).await?;
@@ -789,6 +819,10 @@ impl EventStore for FloorStore {
         }
     }
 
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        Ok((id == &self.key.id).then(|| self.key.clone()))
+    }
+
     async fn append_atomic(&self, _: &StreamKey, _: NewEvent) -> Result<AppendReceipt> {
         Err(Error::StoreWriteFailed("seeded read-only store".into()))
     }
@@ -970,6 +1004,10 @@ impl EventStore for PausedIoStore {
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.controls.maybe_pause(&self.controls.pause_create).await;
         self.memory.create_if_absent(id).await
+    }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.controls.maybe_pause(&self.controls.pause_create).await;
+        self.memory.find_stream(id).await
     }
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         self.memory.append_atomic(stream, event).await
@@ -1402,6 +1440,34 @@ async fn cancelled_metadata_call_remains_owned_and_delays_close() {
 }
 
 #[tokio::test]
+async fn cancelled_find_remains_owned_and_delays_close() {
+    let controls = PausedIoOptions::new();
+    let runtime = Runtime::<PausedIoStore>::open(controls.clone(), RuntimeConfig::default())
+        .await
+        .unwrap();
+    controls.pause_create.store(true, Ordering::SeqCst);
+    let find = {
+        let runtime = runtime.clone();
+        tokio::spawn(async move {
+            runtime
+                .find_stream(&StreamId::new("paused-find").unwrap())
+                .await
+        })
+    };
+    controls.entered.notified().await;
+    find.abort();
+    assert!(
+        !runtime
+            .shutdown(Duration::from_millis(5))
+            .await
+            .unwrap()
+            .closed
+    );
+    controls.release.notify_one();
+    wait_closed(&runtime).await;
+}
+
+#[tokio::test]
 async fn cancelled_subscribe_bounds_remains_owned_and_delays_close() {
     let controls = PausedIoOptions::new();
     let runtime = Runtime::<PausedIoStore>::open(controls.clone(), RuntimeConfig::default())
@@ -1583,6 +1649,9 @@ impl EventStore for UnresolvedUnknownStore {
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.memory.create_if_absent(id).await
     }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.memory.find_stream(id).await
+    }
     async fn append_atomic(&self, _: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         self.controls
             .appends
@@ -1686,6 +1755,9 @@ impl EventStore for LifecycleTestStore {
 
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.memory.create_if_absent(id).await
+    }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.memory.find_stream(id).await
     }
 
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
@@ -1827,6 +1899,10 @@ async fn unknown_lifecycle_blocks_the_name_and_exact_retry_reuses_its_reservatio
     ));
     assert!(matches!(
         runtime.create_stream(&key.id).await,
+        Err(Error::LifecycleCommitUnknown { .. })
+    ));
+    assert!(matches!(
+        runtime.find_stream(&key.id).await,
         Err(Error::LifecycleCommitUnknown { .. })
     ));
     assert!(matches!(

@@ -460,6 +460,9 @@ impl<S: EventStore> EventStore for ProbedStore<S> {
     async fn create_if_absent(&self, id: &StreamId) -> event_stream::Result<StreamKey> {
         self.inner.create_if_absent(id).await
     }
+    async fn find_stream(&self, id: &StreamId) -> event_stream::Result<Option<StreamKey>> {
+        self.inner.find_stream(id).await
+    }
     async fn append_atomic(
         &self,
         stream: &StreamKey,

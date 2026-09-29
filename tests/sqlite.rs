@@ -28,6 +28,32 @@ fn temp_db(label: &str) -> (PathBuf, PathBuf) {
     (dir.join("events.sqlite3"), dir)
 }
 
+#[tokio::test]
+async fn find_stream_preserves_absence_and_validates_active_name() {
+    let (path, directory) = temp_db("find-stream");
+    let store = SqliteStore::open(SqliteOptions::new(&path)).await.unwrap();
+    let id = StreamId::new("find-stream").unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), None);
+    let key = store.create_if_absent(&id).await.unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), Some(key.clone()));
+    store.close().await.unwrap();
+
+    let db = Connection::open(&path).unwrap();
+    db.execute(
+        "UPDATE event_stream_names SET active_stream_key=999999 WHERE public_id=?1",
+        params![id.as_str()],
+    )
+    .unwrap();
+    drop(db);
+    let store = SqliteStore::open(SqliteOptions::new(&path)).await.unwrap();
+    assert!(matches!(
+        store.find_stream(&id).await,
+        Err(Error::StoreCorrupt(_))
+    ));
+    store.close().await.unwrap();
+    std::fs::remove_dir_all(directory).unwrap();
+}
+
 fn event(id: &str, payload: &[u8]) -> NewEvent {
     NewEvent {
         id: EventId::new(id).unwrap(),

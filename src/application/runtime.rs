@@ -2776,6 +2776,19 @@ impl<S: EventStore> EventReader for Runtime<S> {
         Ok(result)
     }
 
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.ensure_name_available(id).await?;
+        let store = self.inner.store.clone();
+        let owned_id = id.clone();
+        let result = tracked_read(self.inner.clone(), 0, async move {
+            store.find_stream(&owned_id).await
+        })
+        .await
+        .map(|(value, _)| value)?;
+        self.ensure_name_available(id).await?;
+        Ok(result)
+    }
+
     async fn bounds(&self, stream: &StreamKey) -> Result<Bounds> {
         self.ensure_name_available(&stream.id).await?;
         let store = self.inner.store.clone();
@@ -4129,6 +4142,10 @@ mod tests {
             } else {
                 Err(Error::StreamNotFound)
             }
+        }
+
+        async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+            Ok((id == &self.key.id).then(|| self.key.clone()))
         }
 
         async fn append_atomic(&self, _: &StreamKey, _: NewEvent) -> Result<AppendReceipt> {
