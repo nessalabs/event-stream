@@ -717,6 +717,20 @@ impl EventStore for MemoryStore {
         }
     }
 
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        let state = self.lock()?;
+        if state.closed {
+            return Err(Error::Closed);
+        }
+        match state.streams.get(id) {
+            None => Ok(None),
+            Some(StreamEntry::Active(history)) => Ok(Some(history.key.clone())),
+            Some(StreamEntry::Unavailable(last)) => Err(Error::StreamUnavailable {
+                last: Box::new(last.clone()),
+            }),
+        }
+    }
+
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         let mut state = self.lock()?;
         if state.closed {

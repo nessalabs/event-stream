@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-29T02:37:04.316674+00:00",
+  "generated_at_utc": "2026-09-29T04:14:12.327319+00:00",
   "rounds": [
     {
       "number": 1,
@@ -7857,6 +7857,13 @@
       "build_id": null,
       "experiments": [],
       "summary": "SQLite dependency compatibility for Nessa integration: rusqlite 0.40.2 replaces 0.32.1, with signed SQL integer conversion at restore boundaries. SQLite tests, all-feature tests, and macOS all-target Clippy passed locally. Linux CI found an existing platform-dependent timeval cast warning; the conversion helper scopes its allowance to that cast, and macOS-only test imports are gated to macOS. No performance samples or deployment qualification."
+    },
+    {
+      "number": 118,
+      "status": "not_measured",
+      "build_id": null,
+      "experiments": [],
+      "summary": "Added noncreating stream lookup across memory, SQLite and runtime. Local all-feature tests, Clippy and rustdoc passed; focused restart, retired cleanup, corruption, capacity, lifecycle and cancellation cases passed. Verification workspace compilation checked. No performance measurements."
     }
   ]
 }

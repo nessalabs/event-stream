@@ -298,6 +298,7 @@ pub(super) struct Limits {
 }
 pub(super) enum Command {
     Create(StreamId, oneshot::Sender<Result<StreamKey>>),
+    Find(StreamId, oneshot::Sender<Result<Option<StreamKey>>>),
     Append(StreamKey, NewEvent, oneshot::Sender<Result<AppendReceipt>>),
     AppendBatch(
         Vec<(StreamKey, NewEvent)>,
@@ -507,6 +508,11 @@ impl EventStore for SqliteStore {
         self.submit(Command::Create(id.clone(), tx))?;
         recv(rx).await
     }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        let (tx, rx) = oneshot::channel();
+        self.submit(Command::Find(id.clone(), tx))?;
+        recv(rx).await
+    }
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         if event.accounted_bytes() > self.limits.record {
             return Err(Error::PayloadTooLarge);
@@ -700,6 +706,9 @@ fn worker(
             Command::Create(id, tx) => {
                 let _ = tx.send(create_stream(conn.as_mut().unwrap(), id));
             }
+            Command::Find(id, tx) => {
+                let _ = tx.send(find_stream(conn.as_ref().unwrap(), &id));
+            }
             Command::Append(stream, event, tx) => {
                 let (r, f) = append(
                     conn.as_mut().unwrap(),
@@ -841,6 +850,9 @@ fn fail(command: Command) {
     let e = || Error::RuntimeFaulted("SQLite connection cannot be safely reused".into());
     match command {
         Command::Create(_, tx) => {
+            let _ = tx.send(Err(e()));
+        }
+        Command::Find(_, tx) => {
             let _ = tx.send(Err(e()));
         }
         Command::Append(_, _, tx) => {
@@ -1359,6 +1371,23 @@ fn create_stream(conn: &mut Connection, id: StreamId) -> Result<StreamKey> {
     tx.commit()
         .map_err(|e| write_error("commit stream creation", e))?;
     Ok(StreamKey { id, incarnation })
+}
+
+fn find_stream(conn: &Connection, id: &StreamId) -> Result<Option<StreamKey>> {
+    let Some((incarnation, active_key)) = name_row(conn, id)? else {
+        return Ok(None);
+    };
+    let key = StreamKey {
+        id: id.clone(),
+        incarnation,
+    };
+    if active_key.is_none() {
+        return Err(Error::StreamUnavailable {
+            last: Box::new(key),
+        });
+    }
+    stream_row(conn, &key)?;
+    Ok(Some(key))
 }
 
 fn name_row(conn: &Connection, id: &StreamId) -> Result<Option<(IncarnationId, Option<i64>)>> {

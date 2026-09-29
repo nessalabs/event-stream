@@ -104,6 +104,10 @@ impl EventStore for PausedSnapshotStore {
         Ok(self.stream.clone())
     }
 
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        Ok((id == &self.stream.id).then(|| self.stream.clone()))
+    }
+
     async fn append_atomic(&self, _: &StreamKey, _: NewEvent) -> Result<AppendReceipt> {
         Err(Error::StoreWriteFailed("unused".into()))
     }

@@ -12,6 +12,9 @@ pub trait EventStore: Send + Sync + Sized + 'static {
     async fn open(options: Self::Options) -> Result<Self>;
     fn capabilities(&self) -> StoreCapabilities;
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey>;
+    /// Find an active stream without creating one. A retired name is an error,
+    /// not absence, so callers cannot silently reuse a deleted identity.
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>>;
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt>;
     /// Process inputs in order and return one outcome per input, including errors.
     /// A conflict must not discard another item's success. This fallback commits
@@ -57,6 +60,8 @@ pub trait EventSink: Send + Sync {
 #[async_trait]
 pub trait EventReader: Send + Sync {
     async fn create_stream(&self, id: &StreamId) -> Result<StreamKey>;
+    /// Find an active stream without changing the store.
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>>;
     async fn bounds(&self, stream: &StreamKey) -> Result<Bounds>;
     async fn read_after(
         &self,

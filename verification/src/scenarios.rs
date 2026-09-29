@@ -1021,6 +1021,9 @@ impl EventStore for GateStore {
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.memory.create_if_absent(id).await
     }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.memory.find_stream(id).await
+    }
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         if self.options.block.swap(false, Ordering::SeqCst) {
             self.options.entered.notify_one();

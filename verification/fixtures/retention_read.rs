@@ -74,6 +74,9 @@ impl EventStore for GatedSqlite {
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.sqlite.create_if_absent(id).await
     }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.sqlite.find_stream(id).await
+    }
 
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         self.sqlite.append_atomic(stream, event).await

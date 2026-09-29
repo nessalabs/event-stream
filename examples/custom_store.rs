@@ -18,6 +18,9 @@ impl EventStore for MyStore {
     async fn create_if_absent(&self, id: &StreamId) -> Result<StreamKey> {
         self.0.create_if_absent(id).await
     }
+    async fn find_stream(&self, id: &StreamId) -> Result<Option<StreamKey>> {
+        self.0.find_stream(id).await
+    }
     async fn append_atomic(&self, stream: &StreamKey, event: NewEvent) -> Result<AppendReceipt> {
         self.0.append_atomic(stream, event).await
     }
