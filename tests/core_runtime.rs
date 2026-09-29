@@ -49,6 +49,25 @@ async fn find_stream_does_not_create_and_reports_retired_names() {
 }
 
 #[tokio::test]
+async fn absent_lookup_uses_no_memory_stream_capacity() {
+    let options = MemoryStoreOptions {
+        max_streams: 1,
+        ..MemoryStoreOptions::default()
+    };
+    let store = MemoryStore::open(options).await.unwrap();
+    let absent = StreamId::new("absent-at-capacity").unwrap();
+    assert_eq!(store.find_stream(&absent).await.unwrap(), None);
+    let first = StreamId::new("first-at-capacity").unwrap();
+    let key = store.create_if_absent(&first).await.unwrap();
+    assert_eq!(store.find_stream(&first).await.unwrap(), Some(key));
+    assert_eq!(store.find_stream(&absent).await.unwrap(), None);
+    assert!(matches!(
+        store.create_if_absent(&absent).await,
+        Err(Error::CapacityExceeded)
+    ));
+}
+
+#[tokio::test]
 async fn concurrent_runtime_appends_are_gapless_and_replay_is_bounded() {
     let runtime =
         Runtime::<MemoryStore>::open(MemoryStoreOptions::default(), RuntimeConfig::default())

@@ -54,6 +54,51 @@ async fn find_stream_preserves_absence_and_validates_active_name() {
     std::fs::remove_dir_all(directory).unwrap();
 }
 
+#[tokio::test]
+async fn find_stream_survives_restart_and_retired_cleanup() {
+    let (path, directory) = temp_db("find-stream-restart");
+    let id = StreamId::new("find-stream-restart").unwrap();
+    let store = SqliteStore::open(SqliteOptions::new(&path)).await.unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), None);
+    store.close().await.unwrap();
+
+    let store = SqliteStore::open(SqliteOptions::new(&path)).await.unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), None);
+    let key = store.create_if_absent(&id).await.unwrap();
+    store.close().await.unwrap();
+
+    let store = SqliteStore::open(SqliteOptions::new(&path)).await.unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), Some(key.clone()));
+    store
+        .change_lifecycle(LifecycleRequest {
+            operation_id: LifecycleOperationId::new("find-stream-delete").unwrap(),
+            expected: key.clone(),
+            action: LifecycleAction::Delete,
+        })
+        .await
+        .unwrap();
+    store.close().await.unwrap();
+
+    let store = SqliteStore::open(SqliteOptions::new(&path)).await.unwrap();
+    assert!(matches!(
+        store.find_stream(&id).await,
+        Err(Error::StreamUnavailable { last }) if *last == key
+    ));
+    store
+        .cleanup_retired(CleanupLimits {
+            max_records: 1,
+            max_bytes: 2 * 1024 * 1024,
+        })
+        .await
+        .unwrap();
+    assert!(matches!(
+        store.find_stream(&id).await,
+        Err(Error::StreamUnavailable { last }) if *last == key
+    ));
+    store.close().await.unwrap();
+    std::fs::remove_dir_all(directory).unwrap();
+}
+
 fn event(id: &str, payload: &[u8]) -> NewEvent {
     NewEvent {
         id: EventId::new(id).unwrap(),
