@@ -128,7 +128,9 @@ pub async fn run_store_contract<S: EventStore>(store: S) {
     ));
 
     let id = StreamId::new("contract-stream").unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), None);
     let key = store.create_if_absent(&id).await.unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), Some(key.clone()));
     assert_eq!(key, store.create_if_absent(&id).await.unwrap());
     let empty = store.bounds(&key).await.unwrap();
     assert_eq!((empty.floor.offset, empty.tail.offset), (0, 0));
@@ -436,12 +438,15 @@ pub async fn run_store_contract<S: EventStore>(store: S) {
 
     store.close().await.unwrap();
     assert!(matches!(store.bounds(&key).await, Err(Error::Closed)));
+    assert!(matches!(store.find_stream(&id).await, Err(Error::Closed)));
 }
 
 pub async fn run_lifecycle_store_contract<S: LifecycleStore>(store: S) {
     let store = Arc::new(store);
     let id = StreamId::new("lifecycle-contract").unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), None);
     let first = store.create_if_absent(&id).await.unwrap();
+    assert_eq!(store.find_stream(&id).await.unwrap(), Some(first.clone()));
     for index in 1..=3 {
         store
             .append_atomic(&first, event(&format!("retired-{index}"), &[index]))
@@ -456,6 +461,7 @@ pub async fn run_lifecycle_store_contract<S: LifecycleStore>(store: S) {
     let reset_receipt = store.change_lifecycle(reset.clone()).await.unwrap();
     let second = reset_receipt.replacement.clone().unwrap();
     assert_ne!(first, second);
+    assert_eq!(store.find_stream(&id).await.unwrap(), Some(second.clone()));
     assert_eq!(
         store.change_lifecycle(reset.clone()).await.unwrap(),
         reset_receipt
@@ -495,6 +501,10 @@ pub async fn run_lifecycle_store_contract<S: LifecycleStore>(store: S) {
         store.create_if_absent(&id).await,
         Err(Error::StreamUnavailable { last }) if *last == second
     ));
+    assert!(matches!(
+        store.find_stream(&id).await,
+        Err(Error::StreamUnavailable { last }) if *last == second
+    ));
     assert_eq!(
         store.change_lifecycle(delete).await.unwrap().replacement,
         None
@@ -513,6 +523,7 @@ pub async fn run_lifecycle_store_contract<S: LifecycleStore>(store: S) {
         .unwrap();
     assert_ne!(second, third);
     assert_eq!(store.create_if_absent(&id).await.unwrap(), third);
+    assert_eq!(store.find_stream(&id).await.unwrap(), Some(third.clone()));
 
     let limits = CleanupLimits {
         max_records: 2,
@@ -531,6 +542,7 @@ pub async fn run_lifecycle_store_contract<S: LifecycleStore>(store: S) {
     assert_eq!(empty_lifetime.removed_records, 0);
     assert!(!empty_lifetime.remaining);
     assert_eq!(store.cleanup_retired(limits).await.unwrap().stream, None);
+    assert_eq!(store.find_stream(&id).await.unwrap(), Some(third));
 
     let concurrent_key = store
         .create_if_absent(&StreamId::new("concurrent-lifecycle").unwrap())
