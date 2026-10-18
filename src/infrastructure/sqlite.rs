@@ -453,6 +453,21 @@ fn canonical_db(path: &Path, allow_hardlink: bool) -> Result<PathBuf> {
     Ok(parent.join(name))
 }
 
+/// The most reads the runtime may hand the worker at once.
+///
+/// They still run one at a time on the worker's one connection. Handing over
+/// several lets the next read wait in the worker's queue while the current one
+/// runs, instead of starting only after the previous caller has woken up and
+/// asked again. With one at a time the worker sat idle between reads while
+/// thousands of readers waited (half its time, measured under a thousand
+/// conversations reading at once). Half the queue stays free for writes and
+/// lifecycle commands, so admitted reads alone never fill it.
+pub const MAX_QUEUED_READS: usize = 64;
+
+fn queued_reads(worker_queue_capacity: usize) -> usize {
+    (worker_queue_capacity / 2).clamp(1, MAX_QUEUED_READS)
+}
+
 #[async_trait]
 impl EventStore for SqliteStore {
     type Options = SqliteOptions;
@@ -465,6 +480,7 @@ impl EventStore for SqliteStore {
             page_records: options.max_page_records,
             page_bytes: options.max_page_bytes,
         };
+        let queued_reads = queued_reads(options.worker_queue_capacity);
         let (tx, rx) = mpsc::channel(options.worker_queue_capacity);
         let shared = Arc::new(Shared {
             state: AtomicU8::new(OPEN),
@@ -492,7 +508,7 @@ impl EventStore for SqliteStore {
                 persistence: PersistenceProfile::ProcessRestart,
                 format_version: SQLITE_FORMAT_VERSION,
                 max_record_bytes: limits.record,
-                max_concurrent_reads: 1,
+                max_concurrent_reads: queued_reads,
                 max_concurrent_writes: 1,
                 ownership: "exclusive in-process registry and OS file lock through worker shutdown",
             },

@@ -464,11 +464,17 @@ macro_rules! forward_io {
     };
 }
 
-forward_io!(x_file_size(size:*mut ffi::sqlite3_int64)->c_int,xFileSize);
-forward_io!(x_lock(lock:c_int)->c_int,xLock);
-forward_io!(x_unlock(lock:c_int)->c_int,xUnlock);
-forward_io!(x_reserved(out:*mut c_int)->c_int,xCheckReservedLock);
-forward_io!(x_control(op:c_int,arg:*mut c_void)->c_int,xFileControl);
+forward_io!(
+    x_file_size(size: *mut ffi::sqlite3_int64) -> c_int,
+    xFileSize
+);
+forward_io!(x_lock(lock: c_int) -> c_int, xLock);
+forward_io!(x_unlock(lock: c_int) -> c_int, xUnlock);
+forward_io!(x_reserved(out: *mut c_int) -> c_int, xCheckReservedLock);
+forward_io!(
+    x_control(op: c_int, arg: *mut c_void) -> c_int,
+    xFileControl
+);
 
 unsafe extern "C" fn x_sector(file: *mut ffi::sqlite3_file) -> c_int {
     (methods(file).xSectorSize.unwrap())(real_file(file))

@@ -3922,3 +3922,51 @@ async fn ordered_replay_and_retry_lookup_use_declared_indexes() {
     drop(conn);
     std::fs::remove_dir_all(dir).unwrap();
 }
+
+#[tokio::test]
+async fn reads_queue_at_the_worker_up_to_half_its_command_queue() {
+    use event_stream::{
+        infrastructure::MAX_QUEUED_READS, EventReader, EventRuntime, Runtime, RuntimeConfig,
+    };
+    let (path, dir) = temp_db("queued-reads");
+    let store = SqliteStore::open(SqliteOptions::new(&path)).await.unwrap();
+    assert_eq!(store.capabilities().max_concurrent_reads, MAX_QUEUED_READS);
+    assert_eq!(store.capabilities().max_concurrent_writes, 1);
+    store.close().await.unwrap();
+    let mut small = SqliteOptions::new(&path);
+    small.worker_queue_capacity = 8;
+    let store = SqliteStore::open(small.clone()).await.unwrap();
+    assert_eq!(store.capabilities().max_concurrent_reads, 4);
+    store.close().await.unwrap();
+    small.worker_queue_capacity = 1;
+    let store = SqliteStore::open(small).await.unwrap();
+    assert_eq!(store.capabilities().max_concurrent_reads, 1);
+    store.close().await.unwrap();
+
+    // A runtime may admit that many at once, and every one is answered.
+    let mut config = RuntimeConfig::default();
+    config.reads.max_concurrent = MAX_QUEUED_READS;
+    let runtime = Runtime::<SqliteStore>::open(SqliteOptions::new(&path), config)
+        .await
+        .unwrap();
+    let key = runtime
+        .create_stream(&StreamId::new("queued").unwrap())
+        .await
+        .unwrap();
+    let mut reads = tokio::task::JoinSet::new();
+    for _ in 0..MAX_QUEUED_READS * 4 {
+        let (runtime, key) = (runtime.clone(), key.clone());
+        reads.spawn(async move { runtime.bounds(&key).await });
+    }
+    while let Some(bounds) = reads.join_next().await {
+        assert_eq!(bounds.unwrap().unwrap().tail.offset, 0);
+    }
+    let mut config = RuntimeConfig::default();
+    config.reads.max_concurrent = MAX_QUEUED_READS + 1;
+    runtime.shutdown(Duration::from_secs(2)).await.unwrap();
+    assert!(matches!(
+        Runtime::<SqliteStore>::open(SqliteOptions::new(&path), config).await,
+        Err(Error::InvalidConfig(_))
+    ));
+    std::fs::remove_dir_all(dir).unwrap();
+}
