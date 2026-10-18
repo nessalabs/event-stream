@@ -188,7 +188,7 @@ One worker thread owns the `rusqlite::Connection`, prepared-statement cache, SQL
 (worker_queue_capacity + one active worker command) × max_record_bytes
 ```
 
-in logical append envelopes, plus command, channel, identifier, and allocator overhead. Read and metadata commands are smaller and use the same command slots. The runtime adds its own queue in front of this adapter and restricts SQLite to one write and one read at a time.
+in logical append envelopes, plus command, channel, identifier, and allocator overhead. Read and metadata commands are smaller and use the same command slots. The runtime adds its own queue in front of this adapter. It hands SQLite one write at a time. It may hand over up to `MAX_QUEUED_READS` (64) reads at once, capped at half of `worker_queue_capacity`. Those reads still run one at a time on the one connection. Queuing them lets the worker start the next read as soon as the current one ends, instead of waiting for the previous caller to wake up and ask again. Admitted reads alone can never fill the command queue, so writes always find room.
 
 Submitting a command uses `try_send`, so a full adapter queue rejects immediately. Once queued, the worker completes the operation even if the oneshot receiver is dropped. The first `close` changes the adapter to `CLOSING`; if the command queue is full, at most one detached standard thread waits to enqueue that close behind already accepted commands. The connection, OS lock, and in-process ownership entry remain held until the worker closes.
 
