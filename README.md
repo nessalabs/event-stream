@@ -4,6 +4,9 @@ A standalone Rust library for ordered immutable events, exact append retries, bo
 
 **Status: ADR 0001 implementation is in progress.** The memory runtime, optional official SQLite adapter, cursor tokens, and decoder path exist. Release gates and remaining findings are tracked in the [completion audit](docs/adr/001-event-stream/completion-audit.md). The package is not published, and performance qualification is not complete.
 
+For task-oriented lifecycle maps and current bounded-model evidence, start with
+the [state atlas](docs/state/README.md).
+
 ## Try the implementation
 
 ```sh

@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "browser": "156.0.8078.80",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "pages": 14,
+  "diagrams": 10,
+  "errors": [],
+  "results": [
+    {
+      "id": "events",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "append",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "console",
+      "figures": 0,
+      "failed": 0
+    },
+    {
+      "id": "inventory",
+      "figures": 0,
+      "failed": 0
+    },
+    {
+      "id": "journal",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "lifecycle",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "replay",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "replication",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "restore",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "retention",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "shutdown",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "snapshots",
+      "figures": 1,
+      "failed": 0
+    },
+    {
+      "id": "storage",
+      "figures": 0,
+      "failed": 0
+    },
+    {
+      "id": "verification",
+      "figures": 0,
+      "failed": 0
+    }
+  ]
+}

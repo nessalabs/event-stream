@@ -1,0 +1,107 @@
+[
+  {
+    "owner": "append",
+    "name": "accept-conflicting-payload",
+    "from": "/\\ tail < 2 /\\ value = payload",
+    "to": "/\\ tail < 2",
+    "rule": "SameContent"
+  },
+  {
+    "owner": "append",
+    "name": "allocate-offset-for-exact-retry",
+    "from": "tail' = tail",
+    "to": "tail' = tail + 1",
+    "rule": "OneStoredIdentity"
+  },
+  {
+    "owner": "replay",
+    "name": "read-below-floor",
+    "from": "/\\ after >= floor /\\ through >= after",
+    "to": "/\\ through >= after",
+    "rule": "RetainedStart"
+  },
+  {
+    "owner": "replay",
+    "name": "read-beyond-captured-tail",
+    "from": "/\\ through >= after /\\ through <= 3",
+    "to": "/\\ through >= after",
+    "rule": "CommittedEnd"
+  },
+  {
+    "owner": "lifecycle",
+    "name": "change-stale-incarnation",
+    "from": "/\\ ~receipt /\\ expected = current",
+    "to": "/\\ ~receipt",
+    "rule": "CurrentLifetime"
+  },
+  {
+    "owner": "lifecycle",
+    "name": "reuse-operation-for-other-action",
+    "from": "/\\ expected = savedExpected /\\ action = savedAction",
+    "to": "/\\ expected = savedExpected",
+    "rule": "ExactReceiptRequest"
+  },
+  {
+    "owner": "snapshots",
+    "name": "publish-before-final-verification",
+    "from": "/\\ ~published /\\ verified = 2 /\\ digestMatches",
+    "to": "/\\ ~published /\\ digestMatches",
+    "rule": "CompleteVerification"
+  },
+  {
+    "owner": "snapshots",
+    "name": "publish-mismatching-digest",
+    "from": "/\\ verified = 2 /\\ digestMatches /\\ published",
+    "to": "/\\ verified = 2 /\\ published",
+    "rule": "MatchingDigest"
+  },
+  {
+    "owner": "retention",
+    "name": "cross-active-recovery-protection",
+    "from": "/\\ (~recovery \\/ next <= 1)",
+    "to": "/\\ TRUE",
+    "rule": "RecoveryProtected"
+  },
+  {
+    "owner": "retention",
+    "name": "cross-required-replica-protection",
+    "from": "/\\ (~replica \\/ next <= 0)",
+    "to": "/\\ TRUE",
+    "rule": "ReplicaProtected"
+  },
+  {
+    "owner": "journal",
+    "name": "checkpoint-uncaptured-source",
+    "from": "/\\ source <= captured /\\ items <= committed",
+    "to": "/\\ items <= committed",
+    "rule": "CapturedBeforeCheckpoint"
+  },
+  {
+    "owner": "journal",
+    "name": "checkpoint-uncommitted-items",
+    "from": "/\\ source <= captured /\\ items <= committed",
+    "to": "/\\ source <= captured",
+    "rule": "OutputBeforeCheckpoint"
+  },
+  {
+    "owner": "replication",
+    "name": "receipt-before-destination-commit",
+    "from": "/\\ ~receiptReady /\\ destinationCommitted /\\ receiptReady",
+    "to": "/\\ ~receiptReady /\\ receiptReady",
+    "rule": "DestinationBeforeAck"
+  },
+  {
+    "owner": "replication",
+    "name": "acknowledge-foreign-receipt",
+    "from": "/\\ receiptReady /\\ matches /\\ ~acknowledged",
+    "to": "/\\ receiptReady /\\ ~acknowledged",
+    "rule": "MatchingReceipt"
+  },
+  {
+    "owner": "lifecycle",
+    "name": "reuse-operation-for-other-expected-key",
+    "from": "/\\ receipt /\\ expected = savedExpected /\\ action = savedAction",
+    "to": "/\\ receipt /\\ action = savedAction",
+    "rule": "ExactReceiptRequest"
+  }
+]
