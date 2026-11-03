@@ -1,0 +1,633 @@
+{
+  "date": "2026-11-03T09:27:07.612Z",
+  "documents": 14,
+  "baselines": [
+    {
+      "owner": "append",
+      "id": "7ba1d75c-040d-40c0-a04b-7a53e312216b",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:08.231Z",
+        "config": "tla/AppendIdentity.cfg",
+        "modelDigest": "272dd0947b92a87945ffd47fa1b3dba7304d91b27fce663636788d6ecb1eec6f",
+        "states": 3,
+        "held": [
+          "SameContent",
+          "OneStoredIdentity"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "journal",
+      "id": "14faa224-2d86-4d24-bde4-bed56db841cd",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:11.489Z",
+        "config": "tla/JournalCheckpoint.cfg",
+        "modelDigest": "50a70015c1eaa8529b9c0af3d8d83bcf2989a1497cc889a569aa1ccf482fae78",
+        "states": 64,
+        "held": [
+          "CapturedBeforeCheckpoint",
+          "OutputBeforeCheckpoint"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "lifecycle",
+      "id": "0e8c2483-88db-48f3-a0a3-7c295dada235",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:14.735Z",
+        "config": "tla/LifecycleIdentity.cfg",
+        "modelDigest": "3efdb5d28346db51539838e2f39e4a601c8eb243a81482da4bcc7364dcfef01b",
+        "states": 10,
+        "held": [
+          "CurrentLifetime",
+          "ExactReceiptRequest"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "replay",
+      "id": "fac1cc3c-87f5-4955-9113-7941ff4938b8",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:19.302Z",
+        "config": "tla/ReplayWindow.cfg",
+        "modelDigest": "6f1f13d1ba5300c5d914234f17ec2acf5663340e1f18ec94ea3d93bbd8708c34",
+        "states": 48,
+        "held": [
+          "RetainedStart",
+          "CommittedEnd"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "replication",
+      "id": "c673bc35-fd87-48a9-8195-20c63d0e62f8",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:22.672Z",
+        "config": "tla/ReplicaAcknowledgement.cfg",
+        "modelDigest": "c4648fa8901987cac73827863c6cc3d9e45d434c28c9981035f7fefaabb2001e",
+        "states": 6,
+        "held": [
+          "DestinationBeforeAck",
+          "MatchingReceipt"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "retention",
+      "id": "cf922e11-f52e-4f84-8fe6-10c7c8708c6a",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:26.007Z",
+        "config": "tla/RetentionProtection.cfg",
+        "modelDigest": "accf5f0c4371696ada7a52e0d9e93a1e3ab1afcff80fe0530f7bdfa893baaf99",
+        "states": 17,
+        "held": [
+          "RecoveryProtected",
+          "ReplicaProtected"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "snapshots",
+      "id": "75c11d21-ee13-411a-9b08-251c7c4b1a45",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:29.496Z",
+        "config": "tla/SnapshotPublication.cfg",
+        "modelDigest": "690c26b3ec55e8b7f1896bfb9db291d03c1f6f6c65b4adaf8689af9f0496c119",
+        "states": 11,
+        "held": [
+          "CompleteVerification",
+          "MatchingDigest"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "accept-conflicting-payload",
+      "owner": "append",
+      "expected": "SameContent",
+      "passed": true,
+      "id": "bf316267-9ce4-4e9e-85cb-36194d3dd020",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:09.553Z",
+        "config": "tla/AppendIdentity.cfg",
+        "modelDigest": "5edb6d2b5ae29b078e0fe29942bb06836710bb4fca50eb87cb557d2e3685fdca",
+        "states": 5,
+        "held": [
+          "OneStoredIdentity"
+        ],
+        "broke": [
+          {
+            "rule": "SameContent",
+            "path": [
+              "Start with offered is 1, stored is FALSE, payload is 1, tail is 0, accepted is FALSE.",
+              "Insert: offered is 1, stored is TRUE, payload is 1, tail is 1, accepted is TRUE.",
+              "Retry: offered is 2, stored is TRUE, payload is 1, tail is 1, accepted is TRUE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "allocate-offset-for-exact-retry",
+      "owner": "append",
+      "expected": "OneStoredIdentity",
+      "passed": true,
+      "id": "8c73819f-2280-4b7a-a428-4d178daad04b",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:10.836Z",
+        "config": "tla/AppendIdentity.cfg",
+        "modelDigest": "2e19c9d9f8f00de8fde773ff799f57e3ab46da819c94a4d8d29f29c3700b8632",
+        "states": 5,
+        "held": [
+          "SameContent"
+        ],
+        "broke": [
+          {
+            "rule": "OneStoredIdentity",
+            "path": [
+              "Start with offered is 1, stored is FALSE, payload is 1, tail is 0, accepted is FALSE.",
+              "Insert: offered is 1, stored is TRUE, payload is 1, tail is 1, accepted is TRUE.",
+              "Retry: offered is 1, stored is TRUE, payload is 1, tail is 2, accepted is TRUE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "checkpoint-uncaptured-source",
+      "owner": "journal",
+      "expected": "CapturedBeforeCheckpoint",
+      "passed": true,
+      "id": "9fd2ac06-1dcf-4d4b-a2fe-399a1507d309",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:12.795Z",
+        "config": "tla/JournalCheckpoint.cfg",
+        "modelDigest": "7d9af5f135743e603cf2508fbfe12552317a0d175186b929c75d3f9fe176ae1f",
+        "states": 87,
+        "held": [
+          "OutputBeforeCheckpoint"
+        ],
+        "broke": [
+          {
+            "rule": "CapturedBeforeCheckpoint",
+            "path": [
+              "Start with savedItems is 0, captureAtSave is 0, committed is 0, commitAtSave is 0, saved is FALSE, savedSource is 0, captured is 0.",
+              "Checkpoint: savedItems is 0, captureAtSave is 0, committed is 0, commitAtSave is 0, saved is TRUE, savedSource is 1, captured is 0."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "checkpoint-uncommitted-items",
+      "owner": "journal",
+      "expected": "OutputBeforeCheckpoint",
+      "passed": true,
+      "id": "3a80b2f8-86ae-4ab0-b7fe-54cd2f9b7791",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:14.134Z",
+        "config": "tla/JournalCheckpoint.cfg",
+        "modelDigest": "d8a948e5966970bfa41d1f724af59915303c0839b1a112b85abb5e75b74edd33",
+        "states": 126,
+        "held": [
+          "CapturedBeforeCheckpoint"
+        ],
+        "broke": [
+          {
+            "rule": "OutputBeforeCheckpoint",
+            "path": [
+              "Start with savedItems is 0, captureAtSave is 0, committed is 0, commitAtSave is 0, saved is FALSE, savedSource is 0, captured is 0.",
+              "Checkpoint: savedItems is 1, captureAtSave is 0, committed is 0, commitAtSave is 0, saved is TRUE, savedSource is 0, captured is 0."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "change-stale-incarnation",
+      "owner": "lifecycle",
+      "expected": "CurrentLifetime",
+      "passed": true,
+      "id": "c1cb5991-ca45-4f7f-9c1c-ddeb70c02a44",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:15.939Z",
+        "config": "tla/LifecycleIdentity.cfg",
+        "modelDigest": "c47442b41e60270eb6e205ad6a4617b9ad0028e85123a745dbd345e3a29cadbe",
+        "states": 18,
+        "held": [
+          "ExactReceiptRequest"
+        ],
+        "broke": [
+          {
+            "rule": "CurrentLifetime",
+            "path": [
+              "Start with changed is FALSE, savedAction is 1, savedExpected is 1, changeCurrent is 1, current is 1, retryExpected is 1, retried is FALSE, receipt is FALSE, changeExpected is 1, retryAction is 1.",
+              "Change: changed is TRUE, savedAction is 1, savedExpected is 2, changeCurrent is 1, current is 1, retryExpected is 1, retried is FALSE, receipt is TRUE, changeExpected is 2, retryAction is 1."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "reuse-operation-for-other-action",
+      "owner": "lifecycle",
+      "expected": "ExactReceiptRequest",
+      "passed": true,
+      "id": "528fe78f-b96c-48f9-90a3-657b07a77a79",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:17.257Z",
+        "config": "tla/LifecycleIdentity.cfg",
+        "modelDigest": "3f78eee130336888df5cc8af806d7c9e1fe4410a567172a71f8d035a6db9e17b",
+        "states": 14,
+        "held": [
+          "CurrentLifetime"
+        ],
+        "broke": [
+          {
+            "rule": "ExactReceiptRequest",
+            "path": [
+              "Start with changed is FALSE, savedAction is 1, savedExpected is 1, changeCurrent is 1, current is 1, retryExpected is 1, retried is FALSE, receipt is FALSE, changeExpected is 1, retryAction is 1.",
+              "Change: changed is TRUE, savedAction is 1, savedExpected is 1, changeCurrent is 1, current is 1, retryExpected is 1, retried is FALSE, receipt is TRUE, changeExpected is 1, retryAction is 1.",
+              "Retry: changed is TRUE, savedAction is 1, savedExpected is 1, changeCurrent is 1, current is 1, retryExpected is 1, retried is TRUE, receipt is TRUE, changeExpected is 1, retryAction is 2."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "reuse-operation-for-other-expected-key",
+      "owner": "lifecycle",
+      "expected": "ExactReceiptRequest",
+      "passed": true,
+      "id": "6dd21533-24a8-43eb-8646-526d88a718b9",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:18.624Z",
+        "config": "tla/LifecycleIdentity.cfg",
+        "modelDigest": "39294f87e131c9844a67a708531447afcd0be53e03ff5a61f7f9462c2bc806d8",
+        "states": 14,
+        "held": [
+          "CurrentLifetime"
+        ],
+        "broke": [
+          {
+            "rule": "ExactReceiptRequest",
+            "path": [
+              "Start with changed is FALSE, savedAction is 1, savedExpected is 1, changeCurrent is 1, current is 1, retryExpected is 1, retried is FALSE, receipt is FALSE, changeExpected is 1, retryAction is 1.",
+              "Change: changed is TRUE, savedAction is 1, savedExpected is 1, changeCurrent is 1, current is 1, retryExpected is 1, retried is FALSE, receipt is TRUE, changeExpected is 1, retryAction is 1.",
+              "Retry: changed is TRUE, savedAction is 1, savedExpected is 1, changeCurrent is 1, current is 1, retryExpected is 2, retried is TRUE, receipt is TRUE, changeExpected is 1, retryAction is 1."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "read-below-floor",
+      "owner": "replay",
+      "expected": "RetainedStart",
+      "passed": true,
+      "id": "39362e4a-eaf2-40b4-bfc3-6e175c2cf1ec",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:20.645Z",
+        "config": "tla/ReplayWindow.cfg",
+        "modelDigest": "204e285f177f47a5e665f921d9be608b4e8f66a9e53b017dca4d1ff2151c696b",
+        "states": 63,
+        "held": [
+          "CommittedEnd"
+        ],
+        "broke": [
+          {
+            "rule": "RetainedStart",
+            "path": [
+              "Start with checkedFloor is 0, floor is 0, finish is 0, accepted is FALSE, start is 0.",
+              "AdvanceFloor: checkedFloor is 0, floor is 1, finish is 0, accepted is FALSE, start is 0.",
+              "Read: checkedFloor is 1, floor is 1, finish is 0, accepted is TRUE, start is 0."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "read-beyond-captured-tail",
+      "owner": "replay",
+      "expected": "CommittedEnd",
+      "passed": true,
+      "id": "ced42cf9-d63f-42f5-bfb6-3e538ad611ef",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:22.014Z",
+        "config": "tla/ReplayWindow.cfg",
+        "modelDigest": "5b3df95be10773fb783cc25bca5e64e1606cf31bc29f6e68b7adff7e00c85215",
+        "states": 68,
+        "held": [
+          "RetainedStart"
+        ],
+        "broke": [
+          {
+            "rule": "CommittedEnd",
+            "path": [
+              "Start with checkedFloor is 0, floor is 0, finish is 0, accepted is FALSE, start is 0.",
+              "Read: checkedFloor is 0, floor is 0, finish is 4, accepted is TRUE, start is 0."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "receipt-before-destination-commit",
+      "owner": "replication",
+      "expected": "DestinationBeforeAck",
+      "passed": true,
+      "id": "333c0601-626f-42b5-97fa-21276883fca5",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:23.981Z",
+        "config": "tla/ReplicaAcknowledgement.cfg",
+        "modelDigest": "3649babd924c198e10640ff46db3da7318929d0b90fb5799c8c632bebf6b0f54",
+        "states": 9,
+        "held": [
+          "MatchingReceipt"
+        ],
+        "broke": [
+          {
+            "rule": "DestinationBeforeAck",
+            "path": [
+              "Start with matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is FALSE, commitAtAck is FALSE, receiptReady is FALSE, matches is FALSE.",
+              "ValidReceipt: matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is FALSE, commitAtAck is FALSE, receiptReady is TRUE, matches is TRUE.",
+              "Acknowledge: matchAtAck is TRUE, destinationCommitted is FALSE, acknowledged is TRUE, commitAtAck is FALSE, receiptReady is TRUE, matches is TRUE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "acknowledge-foreign-receipt",
+      "owner": "replication",
+      "expected": "MatchingReceipt",
+      "passed": true,
+      "id": "e74af577-98a9-4229-a092-5abafe2ca3a5",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:25.315Z",
+        "config": "tla/ReplicaAcknowledgement.cfg",
+        "modelDigest": "364f3ea29e461b7304ffcf0606ac3afe116342ea03c8fa7572cbb2a53a28e1d6",
+        "states": 6,
+        "held": [],
+        "broke": [
+          {
+            "rule": "DestinationBeforeAck",
+            "path": [
+              "Start with matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is FALSE, commitAtAck is FALSE, receiptReady is FALSE, matches is FALSE.",
+              "ForeignReceipt: matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is FALSE, commitAtAck is FALSE, receiptReady is TRUE, matches is FALSE.",
+              "Acknowledge: matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is TRUE, commitAtAck is FALSE, receiptReady is TRUE, matches is FALSE."
+            ],
+            "states": []
+          },
+          {
+            "rule": "MatchingReceipt",
+            "path": [
+              "Start with matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is FALSE, commitAtAck is FALSE, receiptReady is FALSE, matches is FALSE.",
+              "ForeignReceipt: matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is FALSE, commitAtAck is FALSE, receiptReady is TRUE, matches is FALSE.",
+              "Acknowledge: matchAtAck is FALSE, destinationCommitted is FALSE, acknowledged is TRUE, commitAtAck is FALSE, receiptReady is TRUE, matches is FALSE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "cross-active-recovery-protection",
+      "owner": "retention",
+      "expected": "RecoveryProtected",
+      "passed": true,
+      "id": "d84d5da4-8e88-4630-857d-8e2a2df9c47e",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:27.346Z",
+        "config": "tla/RetentionProtection.cfg",
+        "modelDigest": "032d142ea68d98ddf91719700565f33a14ded16adcede552631f9ecd3af7c990",
+        "states": 19,
+        "held": [
+          "ReplicaProtected"
+        ],
+        "broke": [
+          {
+            "rule": "RecoveryProtected",
+            "path": [
+              "Start with floor is 0, recovery is TRUE, accepted is FALSE, replica is TRUE, recoveryAtDecision is TRUE, acceptedFloor is 0, replicaAtDecision is TRUE.",
+              "ReleaseReplica: floor is 0, recovery is TRUE, accepted is FALSE, replica is FALSE, recoveryAtDecision is TRUE, acceptedFloor is 0, replicaAtDecision is TRUE.",
+              "Advance: floor is 2, recovery is TRUE, accepted is TRUE, replica is FALSE, recoveryAtDecision is TRUE, acceptedFloor is 2, replicaAtDecision is FALSE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "cross-required-replica-protection",
+      "owner": "retention",
+      "expected": "ReplicaProtected",
+      "passed": true,
+      "id": "e23eed49-d239-4a89-8e64-2f78070006bc",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:28.683Z",
+        "config": "tla/RetentionProtection.cfg",
+        "modelDigest": "d08894ae8f3fbbaaa2ef94c61011e6d502aff1b0a458534a45594b8266875fc3",
+        "states": 25,
+        "held": [
+          "RecoveryProtected"
+        ],
+        "broke": [
+          {
+            "rule": "ReplicaProtected",
+            "path": [
+              "Start with floor is 0, recovery is TRUE, accepted is FALSE, replica is TRUE, recoveryAtDecision is TRUE, acceptedFloor is 0, replicaAtDecision is TRUE.",
+              "Advance: floor is 1, recovery is TRUE, accepted is TRUE, replica is TRUE, recoveryAtDecision is TRUE, acceptedFloor is 1, replicaAtDecision is TRUE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "publish-before-final-verification",
+      "owner": "snapshots",
+      "expected": "CompleteVerification",
+      "passed": true,
+      "id": "f4795a33-51f2-4141-855e-519c65c458a6",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:30.801Z",
+        "config": "tla/SnapshotPublication.cfg",
+        "modelDigest": "de5e3de7b0f327a2983f5132d7219434e7deed9285d03fe42c3fcdf07621a3ae",
+        "states": 15,
+        "held": [
+          "MatchingDigest"
+        ],
+        "broke": [
+          {
+            "rule": "CompleteVerification",
+            "path": [
+              "Start with published is FALSE, digestMatches is TRUE, verified is 0, uploaded is 0.",
+              "Publish: published is TRUE, digestMatches is TRUE, verified is 0, uploaded is 0."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "publish-mismatching-digest",
+      "owner": "snapshots",
+      "expected": "MatchingDigest",
+      "passed": true,
+      "id": "2c60c1ab-4687-499e-909e-128fcb0f7a8a",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "e16580f3d3602a1ff9966e89d4915be4e752aea0",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:27:32.111Z",
+        "config": "tla/SnapshotPublication.cfg",
+        "modelDigest": "82051d0e8b49c0c8ff8deec25909be28f1c32e79ee5a041fb1ee7f6f76eb4942",
+        "states": 12,
+        "held": [
+          "CompleteVerification"
+        ],
+        "broke": [
+          {
+            "rule": "MatchingDigest",
+            "path": [
+              "Start with published is FALSE, digestMatches is FALSE, verified is 0, uploaded is 0.",
+              "Upload: published is FALSE, digestMatches is FALSE, verified is 0, uploaded is 1.",
+              "Upload: published is FALSE, digestMatches is FALSE, verified is 0, uploaded is 2.",
+              "Verify: published is FALSE, digestMatches is FALSE, verified is 1, uploaded is 2.",
+              "Verify: published is FALSE, digestMatches is FALSE, verified is 2, uploaded is 2.",
+              "Publish: published is TRUE, digestMatches is FALSE, verified is 2, uploaded is 2."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    }
+  ],
+  "ok": true
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-29T04:30:35.216981+00:00",
+  "generated_at_utc": "2026-11-03T09:25:19.189120+00:00",
   "rounds": [
     {
       "number": 1,
@@ -7871,6 +7871,13 @@
       "build_id": null,
       "experiments": [],
       "summary": "Follow-up contract coverage for noncreating find_stream: shared event-store and lifecycle contracts now assert absent, active, reset, retired, cleanup, and closed outcomes for memory and SQLite. Local all-feature tests, Clippy, rustdoc, and verification workspace compile passed. No performance measurements."
+    },
+    {
+      "number": 120,
+      "status": "not_measured",
+      "build_id": null,
+      "experiments": [],
+      "summary": "Source-grounded Nessa Docs atlas at e16580f3d3602a1ff9966e89d4915be4e752aea0. Local all-feature/all-target library tests pass 358 cases and separate verification tests pass 19; no production changes or fresh performance measurements. Seven bounded models and 15 semantic negative controls passed; independent reader/source/model review closed and atlas browser checks passed 14 pages and 10 diagrams. Native console interaction, deployment qualification and power loss remain unverified by this round."
     }
   ]
 }
